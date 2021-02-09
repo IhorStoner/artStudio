@@ -1,0 +1,13 @@
+.picture {
+  padding: 10px;
+  max-width: 586px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  &__slider {
+    height: 560px;
+    width: 560px;
+  }
+}

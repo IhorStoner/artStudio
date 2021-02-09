@@ -2,9 +2,9 @@
   "name": "artstudio",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "cross-env NODE_ENV=production node index.js",
     "heroku-prebuild": "npm install --prefix client",
     "client::install": "npm install --prefix client",
     "client::build": "npm run build --prefix client",
@@ -27,8 +27,9 @@
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
-    "nodemon": "^2.0.6",
     "mongoose": "^5.11.8",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.6",
     "path": "^0.12.7"
   }
 }

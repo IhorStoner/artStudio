@@ -1,0 +1,27 @@
+.header {
+  background-color: #000;
+
+  &__logoContainer {
+    text-align: center;
+  }
+  &__navList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__navItem {
+    list-style-type: none;
+    color: #fff;
+    font-family: 'Monotype Corsiva';
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--active {
+      text-decoration: underline;
+    }
+  }
+}

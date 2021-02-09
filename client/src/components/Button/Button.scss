@@ -1,0 +1,29 @@
+.btn {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1% 18%;
+  color: #000;
+  font-family: "Monotype Corsiva";
+  font-style: italic;
+  font-weight: normal;
+  font-size: 64px;
+  max-width: 586px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+
+  &:hover {
+    background: #E2E2E2;
+  }
+
+  &--active {
+    background-color: #000;
+    color: #fff;
+    &:hover {
+      background: #353535;
+    }
+  }
+}

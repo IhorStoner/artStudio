@@ -1,0 +1,28 @@
+.works {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 0;
+
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 13px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    margin-right: 2.6%;
+    margin-bottom: 2%;
+
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
+  }
+}
