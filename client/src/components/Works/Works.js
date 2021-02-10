@@ -12,8 +12,8 @@ export default function Works() {
   const pictures = useSelector(getPictures)
 
   useEffect(() => {
-    dispatch(fetchPictures())
-  }, [])
+    dispatch(fetchPictures(activeItem))
+  }, [activeItem])
 
   return (
     <div className='works'>

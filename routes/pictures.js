@@ -8,6 +8,16 @@ pictureRouter.get('/',async (req,res) => {
   res.status(200).json(pictures)
 })
 
+pictureRouter.get('/acrylic',async (req,res) => {
+  const pictures = await PictureModel.find({type: 'acrylic'});
+  res.status(200).json(pictures)
+})
+
+pictureRouter.get('/oil',async (req,res) => {
+  const pictures = await PictureModel.find({type: 'oil'});
+  res.status(200).json(pictures)
+})
+
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);
   const { _id } = await newPicture.save();

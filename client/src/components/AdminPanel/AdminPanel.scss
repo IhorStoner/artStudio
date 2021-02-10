@@ -1,0 +1,19 @@
+.adminPanel {
+  padding: 1.5% 0;
+
+  &__btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 865px;
+    margin: 0 auto;
+    margin-bottom: 1%;
+  }
+
+  &__btn {
+    margin-right: 1%;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

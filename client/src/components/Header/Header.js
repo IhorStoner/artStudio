@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Header.scss'
 import logo from '../../assets/png/logo.png'
 import { NavLink, useParams } from 'react-router-dom'
+import {AuthContext} from '../../context/AuthContext'
 
 export default function Header() {
   const {nav} = useParams()
+  const {isAuthenticated} = useContext(AuthContext)
 
   return (
     <div className='header'>
       <div className="container">
+        {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__navItem  ${nav === 'adminPanel' && 'header__navItem--active'}`}>AdminPanel</NavLink>}
         <div className="header__logoContainer">
           <NavLink to='/home/aboutUs'><img className='header__logo' src={logo} alt="" /></NavLink>
         </div>

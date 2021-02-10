@@ -1,14 +1,108 @@
 .newPictureForm {
-  max-width: 500px;
+  max-width: 1169px;
   margin: 0 auto;
-  border: 1px solid black;
   font-size: 0.8rem;
 
   &__container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
     margin-bottom: 10px;
+    max-width: 900px;
+  }
+
+  &__inputFile {
+    display: none;
+  }
+
+  &__labelFile {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background-image: url("../../assets/svg/newImg.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  &__photos {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    margin-bottom: 1%;
+  }
+
+  &__imgContainer {
+    position: relative;
+    margin-right: 1%;
+  }
+
+  &__images {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__btnDelImg {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0px 0px 5px #000000);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__input {
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 3px 10px;
+    outline: none;
+    margin-left: 1%;
+    font-size: 1rem;
+    font-family: "Monotype Corsiva";
+    width: 100%;
+  }
+
+  &__radioContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 112px;
+    cursor: pointer;
+  }
+
+  &__labelContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btnSubmit {
+    background: #000000;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+    font-size: 1rem;
+    font-family: "Monotype Corsiva";
+    padding: 2% 5%;
+    border-radius: 10px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    
+    &:hover {
+      background: #353535;
+    }
+  }
+  &__submitContainer {
+    text-align: center;
   }
 }

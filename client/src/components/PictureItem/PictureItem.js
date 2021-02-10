@@ -13,7 +13,7 @@ export default function PictureItem({picture,className}) {
       </div>
       <div className="picture__footer">
         <p className="picture__price">{picture.price} грн</p>
-        <button>Заказать</button>
+        <button className="picture__btn" onMouseDown={{backgroundColor: 'red'}}>Заказать</button>
       </div>
     </div>
   )

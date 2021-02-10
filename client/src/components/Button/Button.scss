@@ -4,19 +4,22 @@
   box-sizing: border-box;
   box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  padding: 1% 18%;
+  padding: 1% 5%;
   color: #000;
   font-family: "Monotype Corsiva";
-  font-style: italic;
   font-weight: normal;
-  font-size: 64px;
+  font-size: 1rem;
   max-width: 586px;
   cursor: pointer;
   text-align: center;
   outline: none;
+  width: 100%;
 
   &:hover {
     background: #E2E2E2;
+  }
+  &:active {
+    background: #D1D1D1;
   }
 
   &--active {
@@ -24,6 +27,9 @@
     color: #fff;
     &:hover {
       background: #353535;
+    }
+    &:active {
+      background: #555;
     }
   }
 }

@@ -1,0 +1,36 @@
+.footer {
+  padding: 2% 5%;
+  background-color: #000;
+  display: flex;
+
+  &__nav {
+    margin-right: 16%;
+  }
+
+  &__navList {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__navItem {
+    font-size: 1rem;
+    color: #fff;
+
+    &--active {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__copyright {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  &__logoContainer {
+    text-align: center;
+  }
+}

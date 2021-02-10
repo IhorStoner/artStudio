@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const PictureSchema = new Schema({
+  title: {
+    type: String
+  },
   text: {
     type: String,
   },
