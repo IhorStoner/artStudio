@@ -6,6 +6,6 @@ const adminRouter = require('./admin');
 
 apiRouter.use('/pictures', picturesRouter);
 apiRouter.use('/images', imagesRouter);
-apiRouter.use('/admin', adminRouter)
+apiRouter.use('/admin', adminRouter);
 
 module.exports = apiRouter;
