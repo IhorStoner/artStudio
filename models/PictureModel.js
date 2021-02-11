@@ -16,6 +16,10 @@ const PictureSchema = new Schema({
   },
   type: {
     type: String,
+  },
+  date: {
+    type: Date,
+    default: Date.now()
   }
 });
 

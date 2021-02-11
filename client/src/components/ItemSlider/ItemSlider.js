@@ -4,17 +4,6 @@ import { useEmblaCarousel } from "embla-carousel/react";
 import "./embla.scss";
 import config from '../../config/default.json'
 
-// const viewportCss = {
-//   overflow: 'hidden',
-// }
-// const containerCss = {
-//   display: 'flex',
-// }
-// const slideCss = {
-//   position: 'relative',
-//   minWidth: '100%',
-// }
-
 
 export default function ItemSlider({ imgArr }) {
   const [viewportRef, embla] = useEmblaCarousel({ loop: true });

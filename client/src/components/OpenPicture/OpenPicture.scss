@@ -1,0 +1,48 @@
+.openPicture {
+  padding: 2% 0;
+  // max-width: 1000px;
+  margin: 0 auto;
+
+  &__title {
+    text-align: center;
+    font-family: "Monotype Corsiva";
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  &__description {
+    max-width: 930px;
+    margin: 0 auto;
+    font-family: 'Monotype Corsiva';
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+
+  &__btn {
+    background: #000000;
+    border-radius: 10px;
+    padding: 5px 10%;
+    border: none;
+    color: #fff;
+    font-family: 'Monotype Corsiva';
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.1rem;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background: #353535;
+    }
+    &:active { 
+      background: #555555;
+      }
+  }
+
+  &__priceContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}

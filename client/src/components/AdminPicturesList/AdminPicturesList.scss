@@ -1,0 +1,17 @@
+.adminPicturesList {
+  display: grid;
+  grid-template-columns: auto;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 90px 150px 90px 405px 145px 117px 140px;
+    gap: 1%;
+  }
+
+  &__itemText {
+    font-family: 'Monotype Corsiva';
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: #000000;
+  }
+}

@@ -7,3 +7,9 @@ export const fetchPictures = createAsyncThunk('pictures/fetchPictures', async (a
     res => res.data)
   return data;
 });
+
+export const fetchOnePicture = createAsyncThunk('pictures/fetchOnePicture', async (id) => {
+  const data = axios.get(`${config.serverUrl}/api/pictures/${id}`).then(
+    res => res.data)
+  return data;
+});
