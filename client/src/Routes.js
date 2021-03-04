@@ -10,7 +10,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/home/admin">
-          <AdminAuthPage/>
+          <AdminAuthPage />
         </Route>
         <Route path="/home/works/:pictureId">
           <OpenPicturePage />
@@ -18,7 +18,7 @@ export default function Routes() {
         <Route path="/home/:nav">
           <Homepage />
         </Route>
-        <Redirect to='/home/aboutUs'/>
+        <Redirect to='/home/aboutUs' />
       </Switch>
     </Router>
   )

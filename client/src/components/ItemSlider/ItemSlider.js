@@ -30,7 +30,7 @@ export default function ItemSlider({ imgArr }) {
     <div className="embla">
       <div className="embla__viewport" ref={viewportRef}>
         <div className="embla__container">
-          {imgArr.map((img,index) => (
+          {imgArr.map((img, index) => (
             <div className="embla__slide" key={index}>
               <div className="embla__slide__inner">
                 <img

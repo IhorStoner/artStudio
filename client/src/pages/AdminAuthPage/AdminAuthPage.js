@@ -1,4 +1,4 @@
-import React,{useCallback,useState,useContext} from 'react'
+import React, { useCallback, useState, useContext } from 'react'
 import AdminAuthPopup from '../../components/AdminAuthPopup/AdminAuthPopup'
 import axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
@@ -27,7 +27,7 @@ export default function AdminAuthPage() {
 
   return (
     <div>
-      <AdminAuthPopup onSubmit={onSubmitAuth}/>
+      <AdminAuthPopup onSubmit={onSubmitAuth} />
     </div>
   )
 }

@@ -2,7 +2,21 @@
   background-color: #000;
 
   &__logoContainer {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    & div {
+      display: flex;
+      align-items: flex-end;
+      & span {
+        color: #ffffff;
+      }
+      & svg {
+        &:nth-child(even) {
+          margin: 0 15px;
+        }
+        // margin-left: 15px;
+      }
+    }
   }
   &__navList {
     display: flex;
@@ -12,7 +26,7 @@
   &__navItem {
     list-style-type: none;
     color: #fff;
-    font-family: 'Monotype Corsiva';
+    font-family: "Monotype Corsiva";
     cursor: pointer;
     text-decoration: none;
 

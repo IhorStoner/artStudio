@@ -5,15 +5,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 865px;
+    max-width: 1460px;
     margin: 0 auto;
     margin-bottom: 1%;
+    & input {
+      width: 327px;
+      height: 40px;
+      border-radius: 10px;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   &__btn {
     margin-right: 1%;
-    &:last-child {
-      margin-right: 0;
-    }
+    width: 345px;
+    height: 100px;
   }
 }
