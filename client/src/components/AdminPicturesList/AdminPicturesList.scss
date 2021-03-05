@@ -1,18 +1,24 @@
 .admin-pictures-list {
   display: grid;
   grid-template-columns: auto;
-
   &__head {
     display: grid;
     grid-template-columns: 335px 128px 316px 160px 110px 100px 120px;
-    &--small {
-      font-size: 14px;
-      line-height: 16px;
+    & div {
+      &:nth-child(5) {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      &:nth-child(7) {
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
   }
+
   &__data {
     display: grid;
-    grid-template-columns: 90px 245px 124px 325px 155px 105px 100px 250px;
+    grid-template-columns: 90px 245px 124px 325px 155px 105px 100px 115px 177px;
     margin-bottom: 15px;
     border: solid #000 1px;
     border-radius: 10px;
@@ -21,14 +27,60 @@
     line-height: 27px;
     & div {
       display: flex;
+      max-height: 90px;
       align-items: center;
+      // white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      & img {
+        max-width: 90px;
+        height: 90px;
+      }
+
+      &:nth-child(n + 2):nth-child(-n + 8) {
+        border-right: 1px solid #000;
+      }
+      & input {
+        width: 52px;
+        height: 52px;
+        background: #ffffff;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        border-radius: 10px;
+      }
+      &:nth-child(8) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &:nth-child(9) {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &__itemText {
+      font-family: "Monotype Corsiva";
+      font-weight: 400;
+      font-size: 0.7rem;
+      color: #000000;
     }
   }
-
-  &__itemText {
-    font-family: "Monotype Corsiva";
-    font-weight: 400;
-    font-size: 0.7rem;
-    color: #000000;
+  &__pagination-container {
+    display: grid;
+    grid-template-columns: 240px 240px 256px 240px 240px;
+    width: 1224px;
+    height: 56px;
+    margin: 0 auto;
+    & div {
+      &:nth-child(1) {
+        display: flex;
+        justify-self: end;
+        padding-right: 10px;
+      }
+      &:nth-child(2) {
+        margin: 0 auto;
+      }
+    }
   }
 }

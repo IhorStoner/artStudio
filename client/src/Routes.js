@@ -18,6 +18,9 @@ export default function Routes() {
         <Route path="/home/:nav">
           <Homepage />
         </Route>
+        <Route path="/home/admin/pictures/:id">
+          <Homepage />
+        </Route>
         <Redirect to='/home/aboutUs' />
       </Switch>
     </Router>

@@ -31,7 +31,6 @@ export default function Works() {
             <PictureItem key={index} className='works__item' picture={picture} />
           ))
         }
-
       </div>
     </div>
   )

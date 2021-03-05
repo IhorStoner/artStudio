@@ -55,9 +55,8 @@ export default function NewPictureForm() {
     let finnalyData = result
     finnalyData.images = resultImg
 
-    console.log({ resultImg })
-    const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setSuccessForm(true))
     console.log(finnalyData)
+    const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setSuccessForm(true))
   }, [result])
 
   const handleDeleteImage = (file) => {
@@ -65,14 +64,15 @@ export default function NewPictureForm() {
   }
 
   const swithSizes = e => {
-    setResult({ ...result, sizes: { ...result.sizes, [e.target.name]: { in: e.target.checked } } })
+    setResult({ ...result, chart: { ...result.chart, [e.target.name]: { in: e.target.checked } } })
   }
 
   const setAvailabel = e => {
     let name = e.target.value
     let checked = e.target.checked
-    setResult({ ...result, sizes: { ...result.sizes, [name]: { ...result.sizes[name], include: checked } } })
+    setResult({ ...result, chart: { ...result.chart, [name]: { ...result.chart[name], include: checked } } })
   }
+
 
 
   return (
@@ -132,7 +132,7 @@ export default function NewPictureForm() {
             </label>
             <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
               <input type='radio' id='t-shirts' name='type' value="t-shirts" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-              <span>Штаны</span>
+              <span>Футболки</span>
             </label>
             <label htmlFor="jackets" className='newPictureForm__radioContainer'>
               <input type='radio' id='jackets' name='type' value="jackets" onChange={(e) => setResult({ ...result, type: e.target.value })} />
@@ -140,7 +140,7 @@ export default function NewPictureForm() {
             </label>
             <label htmlFor="jumpsuits" className='newPictureForm__radioContainer'>
               <input type='radio' id='jumpsuits' name='type' value="jumpsuits" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-              <span className='newPictureForm__radioText'>Куртки</span>
+              <span className='newPictureForm__radioText'>Комбинизоны</span>
             </label>
 
           </div>
@@ -191,39 +191,39 @@ export default function NewPictureForm() {
 
             <div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XXXS" disabled={!result?.sizes?.xxxs?.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
+                <input type="checkbox" id="include_XXXS" disabled={!result?.chart?.xxxs?.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
                 <label htmlFor="include_XXXS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XXS" disabled={!result?.sizes?.xxs?.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
+                <input type="checkbox" id="include_XXS" disabled={!result?.chart?.xxs?.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
                 <label htmlFor="include_XXS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XS" disabled={!result?.sizes?.xs?.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
+                <input type="checkbox" id="include_XS" disabled={!result?.chart?.xs?.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
                 <label htmlFor="include_XS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="Include_S" disabled={!result?.sizes?.s?.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
+                <input type="checkbox" id="Include_S" disabled={!result?.chart?.s?.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
                 <label htmlFor="Include_S">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_M" disabled={!result?.sizes?.m?.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
+                <input type="checkbox" id="include_M" disabled={!result?.chart?.m?.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
                 <label htmlFor="include_M">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_L" disabled={!result?.sizes?.l?.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
+                <input type="checkbox" id="include_L" disabled={!result?.chart?.l?.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
                 <label htmlFor="include_L">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XL" disabled={!result?.sizes?.xl?.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
+                <input type="checkbox" id="include_XL" disabled={!result?.chart?.xl?.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
                 <label htmlFor="include_XL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="iclude_XXL" disabled={!result?.sizes?.xxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxl" />
+                <input type="checkbox" id="iclude_XXL" disabled={!result?.chart?.xxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxl" />
                 <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="iclude_XXL" disabled={!result?.sizes?.xxxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
+                <input type="checkbox" id="iclude_XXL" disabled={!result?.chart?.xxxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
                 <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
             </  div>
@@ -235,12 +235,13 @@ export default function NewPictureForm() {
           <span>На сайте</span>
           <div>
             <div>
-              <input type='radio' id='turnON' name='includesInSite' value="turnON" onChange={(e) => setResult({ ...result, type: e.target.value })} />
+              <input type='radio' id='turnON' name='includesInSite' value="exist" onChange={(e) => setResult({ ...result, onSite: e.target.value })} />
               <label htmlFor="turnON" className='newPictureForm__radioContainer'>
                 <span>Да</span></label>
             </div>
             <div>
-              <input type='radio' id='turnOff' name='includesInSite' value="turnOff" onChange={(e) => setResult({ ...result, type: e.target.value })} />
+              <input type='radio' id='turnOff' name='includesInSite' value="unExist" onChange={(e) => delete result.onSite} />
+              {/* <input type='radio' id='turnOff' name='includesInSite' value="turnOff" onChange={(e) => setResult({ ...result, onSite: e.target.value })} /> */}
               <label htmlFor="turnOff" className='newPictureForm__radioContainer'>
                 <span>Нет</span></label>
             </div>
