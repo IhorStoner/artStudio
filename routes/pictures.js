@@ -8,15 +8,29 @@ pictureRouter.get('/', async (req, res) => {
   res.status(200).json(pictures)
 })
 
-pictureRouter.get('/acrylic', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 'acrylic' });
+pictureRouter.get('/trousers', async (req, res) => {
+  const pictures = await PictureModel.find({ type: 'trousers' });
   res.status(200).json(pictures)
 })
 
-pictureRouter.get('/oil', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 'oil' });
+pictureRouter.get('/t-shirts', async (req, res) => {
+  const pictures = await PictureModel.find({ type: 't-shirts' });
   res.status(200).json(pictures)
 })
+pictureRouter.get('/jackets', async (req, res) => {
+  const pictures = await PictureModel.find({ type: 'jackets' });
+  res.status(200).json(pictures)
+})
+pictureRouter.get('/jumpsuits', async (req, res) => {
+  const pictures = await PictureModel.find({ type: 'jumpsuits' });
+  res.status(200).json(pictures)
+})
+pictureRouter.get('/all/all', async (req, res) => {
+  const pictures = await PictureModel.find({});
+  res.status(200).json(pictures)
+})
+
+
 
 pictureRouter.get('/:pictureId', async (req, res) => {
   const picture = await PictureModel.find({ _id: req.params.pictureId });
@@ -27,6 +41,18 @@ pictureRouter.get('/:pictureId', async (req, res) => {
   } else {
     res.status(200).send(picture);
   }
+})
+
+pictureRouter.delete('/delete/', async (req, res) => {
+  console.log(req.data)
+  // const picture = await PictureModel.deleteOne({ _id: req.params.pictureId });
+
+  // if (!picture) {
+  //   res.status(400).send({ error: 'Picture not found' });
+  //   return
+  // } else {
+  //   res.status(200).send(picture);
+  // }
 })
 
 pictureRouter.post('/', async (req, res) => {
