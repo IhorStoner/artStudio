@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 import config from '../../config/default.json'
 
@@ -13,3 +13,5 @@ export const fetchOnePicture = createAsyncThunk('pictures/fetchOnePicture', asyn
     res => res.data)
   return data;
 });
+
+export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')

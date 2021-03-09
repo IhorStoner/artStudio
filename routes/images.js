@@ -59,10 +59,6 @@ ImgRouter.post(
   }
 );
 
-ImgRouter.get('/:imgId', async (req, res) => {
-
-})
-
 ImgRouter.delete('/:imgId', async (req, res) => {
   const imgId = req.params.imgId
   fs.unlink(path.resolve(__dirname, `path/to/uploadedFiles/${imgId}`), (err) => {

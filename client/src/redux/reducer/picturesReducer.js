@@ -1,12 +1,13 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchPictures,fetchOnePicture } from '../action/picturesAction'
+import { fetchPictures, fetchOnePicture, setStateEdditPicture } from '../action/picturesAction'
 
 const initialState = {
   loading: false,
   data: [],
   picture: {},
   pages: 0,
-  error: null
+  error: null,
+  stateEdditPicture: {}
 };
 
 const picturesReducer = createReducer(initialState, {
@@ -34,7 +35,10 @@ const picturesReducer = createReducer(initialState, {
   [fetchOnePicture.rejected]: (state, action) => {
     state.loading = false;
     state.error = action.payload;
-  }
+  },
+  [setStateEdditPicture.type]: (state, action) => {
+    state.stateEdditPicture = action.payload;
+  },
 });
 
 export default picturesReducer

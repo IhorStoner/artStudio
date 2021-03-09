@@ -3,7 +3,9 @@ import NewPictureForm from '../NewPictureForm/NewPictureForm'
 import Button from '../Button/Button'
 import './AdminPanel.scss'
 import AdminPicturesList from '../AdminPicturesList/AdminPicturesList'
+import EdditPicturesForm from '../EdditPicturesForm/EdditPicturesForm'
 import { ReactComponent as Magnifier } from '../../assets/svg/magnifier.svg'
+import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
 
 export default function AdminPanel() {
   const [activeItem, setActiveItem] = useState('picturesList')
@@ -19,7 +21,9 @@ export default function AdminPanel() {
         <Magnifier />
       </div>
       {activeItem === 'newPicture' && <NewPictureForm />}
-      {activeItem === 'picturesList' && <AdminPicturesList />}
+      {activeItem === 'picturesList' && <AdminPicturesList setActiveItem={setActiveItem} />}
+      {activeItem === 'edditPicture' && <EdditPicturesForm />}
+      {activeItem === 'showPicture' && <OpenPicturePage />}
     </div>
   )
 }

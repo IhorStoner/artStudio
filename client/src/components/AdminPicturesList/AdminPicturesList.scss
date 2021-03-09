@@ -16,6 +16,25 @@
     }
   }
 
+  &__popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.7;
+    &__modal {
+      width: 608px;
+      height: 322px;
+      font-weight: normal;
+      font-size: 48px;
+      line-height: 54px;
+      text-align: center;
+      color: #000000;
+    }
+  }
+
   &__data {
     display: grid;
     grid-template-columns: 90px 245px 124px 325px 155px 105px 100px 115px 177px;
@@ -52,10 +71,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        // & input[type="checkbox"]:checked + label::before {
+        //   background-color: brown;
+        // }
       }
       &:nth-child(9) {
         display: flex;
         justify-content: space-around;
+        & a {
+          display: flex;
+        }
       }
     }
 

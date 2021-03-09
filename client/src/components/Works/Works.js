@@ -15,8 +15,6 @@ export default function Works() {
     dispatch(fetchPictures(activeItem))
   }, [activeItem])
 
-  console.log(pictures)
-
   return (
     <div className='works'>
       <div className="works__btns">

@@ -1,10 +1,22 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import './NewPictureForm.scss'
 import axios from 'axios'
 import config from '../../config/default.json'
 
 export default function NewPictureForm() {
-  const [result, setResult] = useState({})
+  const [result, setResult] = useState({
+    chart: {
+      xxxs: { in: false, include: false },
+      xxs: { in: false, include: false },
+      xs: { in: false, include: false },
+      s: { in: false, include: false },
+      m: { in: false, include: false },
+      l: { in: false, include: false },
+      xl: { in: false, include: false },
+      xxl: { in: false, include: false },
+      xxxl: { in: false, include: false },
+    }
+  })
   const [images, setImages] = useState([])
   const [successForm, setSuccessForm] = useState(false)
 
@@ -29,6 +41,7 @@ export default function NewPictureForm() {
   function getFormData() {
     const formData = new FormData();
     [...images].map(img => formData.append('pictures', img))
+    console.log(formData)
     return formData;
   }
 
@@ -45,9 +58,34 @@ export default function NewPictureForm() {
           }
         }
       )
-
       return data;
     });
+  }
+
+  const showSuccess = () => {
+    setSuccessForm(true)
+    setTimeout(() => {
+      setSuccessForm(false)
+    }, [2000])
+  }
+
+
+  const setReset = () => {
+    setResult({
+      chart: {
+        xxxs: { in: false, include: false },
+        xxs: { in: false, include: false },
+        xs: { in: false, include: false },
+        s: { in: false, include: false },
+        m: { in: false, include: false },
+        l: { in: false, include: false },
+        xl: { in: false, include: false },
+        xxl: { in: false, include: false },
+        xxxl: { in: false, include: false },
+      }
+    })
+    setImages([])
+    showSuccess()
   }
 
   const onSubmit = useCallback(async (ev) => {
@@ -55,8 +93,8 @@ export default function NewPictureForm() {
     let finnalyData = result
     finnalyData.images = resultImg
 
-    console.log(finnalyData)
-    const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setSuccessForm(true))
+    const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setReset())
+
   }, [result])
 
   const handleDeleteImage = (file) => {
@@ -64,6 +102,7 @@ export default function NewPictureForm() {
   }
 
   const swithSizes = e => {
+    console.log(result)
     setResult({ ...result, chart: { ...result.chart, [e.target.name]: { in: e.target.checked } } })
   }
 
@@ -73,8 +112,6 @@ export default function NewPictureForm() {
     setResult({ ...result, chart: { ...result.chart, [name]: { ...result.chart[name], include: checked } } })
   }
 
-
-
   return (
     <div className="container">
       {successForm && <div style={{ color: 'green', textAlign: 'center' }}>Картина добавлена</div>}
@@ -83,12 +120,12 @@ export default function NewPictureForm() {
           <p className="newPicture__text">
             Фото:
           </p>
-          {!images.length && <label htmlFor="files" className="newPictureForm__labelFile">
-            <input className='newPictureForm__inputFile' id='files' name='files' type="file" multiple onChange={(e) => setImages(e.target.files)} />
-          </label>}
           <div className='newPictureForm__images'>
-            {[...images].map((file, i) => (
-              <div className="newPictureForm__imgContainer">
+            <label htmlFor="files" className="newPictureForm__labelFile">
+              <input className='newPictureForm__inputFile' id='files' name='files' type="file" multiple onChange={(e) => { setImages((images) => [...images, ...e.target.files]); console.log(images) }} />
+            </label>
+            {[...images].map((file, i) =>
+              <div key={i} className="newPictureForm__imgContainer">
                 <button type='button' className="newPictureForm__btnDelImg" onClick={() => handleDeleteImage(file)}>
                   <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d)">
@@ -110,7 +147,8 @@ export default function NewPictureForm() {
                 </button>
                 <img src={URL.createObjectURL(file)} className='newPicture__imgItem' width='200' height='200'></img>
               </div>
-            ))}
+            )
+            }
           </div>
         </div>
         <div className="newPictureForm__text newPictureForm__container">
@@ -136,11 +174,11 @@ export default function NewPictureForm() {
             </label>
             <label htmlFor="jackets" className='newPictureForm__radioContainer'>
               <input type='radio' id='jackets' name='type' value="jackets" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-              <span className='newPictureForm__radioText'>Куртки</span>
+              <span >Куртки</span>
             </label>
             <label htmlFor="jumpsuits" className='newPictureForm__radioContainer'>
               <input type='radio' id='jumpsuits' name='type' value="jumpsuits" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-              <span className='newPictureForm__radioText'>Комбинизоны</span>
+              <span >Комбинизоны</span>
             </label>
 
           </div>
@@ -152,78 +190,78 @@ export default function NewPictureForm() {
           <div className="newPictureForm__checkboxContainer">
             <div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xxxs" onChange={(e) => swithSizes(e)} name="xxxs" />
+                <input type="checkbox" id="xxxs" onChange={(e) => swithSizes(e)} name="xxxs" checked={result.chart.xxxs.in} />
                 <label htmlFor="xxxs">XXXS</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xxs" onChange={(e) => swithSizes(e)} name="xxs" />
+                <input type="checkbox" checked={result.chart.xxs.in} id="xxs" onChange={(e) => swithSizes(e)} name="xxs" />
                 <label htmlFor="xxs">XXS</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xs" onChange={(e) => swithSizes(e)} name="xs" />
+                <input type="checkbox" checked={result.chart.xs.in} id="xs" onChange={(e) => swithSizes(e)} name="xs" />
                 <label htmlFor="xs">XS</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="s" onChange={(e) => swithSizes(e)} name="s" />
+                <input type="checkbox" checked={result.chart.s.in} id="s" onChange={(e) => swithSizes(e)} name="s" />
                 <label htmlFor="s">S</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="m" onChange={(e) => swithSizes(e)} name="m" />
+                <input type="checkbox" checked={result.chart.m.in} id="m" onChange={(e) => swithSizes(e)} name="m" />
                 <label htmlFor="m">M</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="l" onChange={(e) => swithSizes(e)} name="l" />
+                <input type="checkbox" checked={result.chart.l.in} id="l" onChange={(e) => swithSizes(e)} name="l" />
                 <label htmlFor="l">L</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xl" onChange={(e) => swithSizes(e)} name="xl" />
+                <input type="checkbox" checked={result.chart.xl.in} id="xl" onChange={(e) => swithSizes(e)} name="xl" />
                 <label htmlFor="xl">XL</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xxl" onChange={(e) => swithSizes(e)} name="xxl" />
+                <input type="checkbox" checked={result.chart.xxl.in} id="xxl" onChange={(e) => swithSizes(e)} name="xxl" />
                 <label htmlFor="xxl">XXL</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xxxl" onChange={(e) => swithSizes(e)} name="xxxl" />
+                <input type="checkbox" checked={result.chart.xxxl.in} id="xxxl" onChange={(e) => swithSizes(e)} name="xxxl" />
                 <label htmlFor="xxxl">XXXL</label>
               </div>
             </div>
 
             <div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XXXS" disabled={!result?.chart?.xxxs?.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
+                <input type="checkbox" defaultChecked={false} id="include_XXXS" disabled={!result.chart.xxxs.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
                 <label htmlFor="include_XXXS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XXS" disabled={!result?.chart?.xxs?.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
+                <input type="checkbox" defaultChecked={false} id="include_XXS" disabled={!result.chart.xxs.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
                 <label htmlFor="include_XXS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XS" disabled={!result?.chart?.xs?.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
+                <input type="checkbox" defaultChecked={false} id="include_XS" disabled={!result.chart.xs.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
                 <label htmlFor="include_XS">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="Include_S" disabled={!result?.chart?.s?.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
+                <input type="checkbox" defaultChecked={false} id="Include_S" disabled={!result.chart.s.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
                 <label htmlFor="Include_S">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_M" disabled={!result?.chart?.m?.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
+                <input type="checkbox" defaultChecked={false} id="include_M" disabled={!result.chart.m.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
                 <label htmlFor="include_M">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_L" disabled={!result?.chart?.l?.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
+                <input type="checkbox" defaultChecked={false} id="include_L" disabled={!result.chart.l.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
                 <label htmlFor="include_L">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="include_XL" disabled={!result?.chart?.xl?.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
+                <input type="checkbox" defaultChecked={false} id="include_XL" disabled={!result.chart.xl.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
                 <label htmlFor="include_XL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="iclude_XXL" disabled={!result?.chart?.xxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxl" />
+                <input type="checkbox" defaultChecked={false} id="iclude_XXL" disabled={!result.chart.xxl.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxl" />
                 <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="iclude_XXL" disabled={!result?.chart?.xxxl?.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
+                <input type="checkbox" defaultChecked={false} id="iclude_XXL" disabled={!result.chart.xxxl.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
                 <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
             </  div>
@@ -253,7 +291,7 @@ export default function NewPictureForm() {
           <input className="newPictureForm__input" type="number" value={result.price} onChange={(e) => setResult({ ...result, price: e.target.value })} />
         </div>
         <div className="newPictureForm__submitContainer">
-          <button type='button' className='newPictureForm__btnSubmit' onClick={(ev) => onSubmit(ev)}>Добавить</button>
+          <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => { onSubmit(ev) }}> Добавить </button>
         </div>
       </form>
     </div>

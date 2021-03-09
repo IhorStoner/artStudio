@@ -31,7 +31,6 @@ pictureRouter.get('/all/all', async (req, res) => {
 })
 
 
-
 pictureRouter.get('/:pictureId', async (req, res) => {
   const picture = await PictureModel.find({ _id: req.params.pictureId });
 
@@ -43,16 +42,16 @@ pictureRouter.get('/:pictureId', async (req, res) => {
   }
 })
 
-pictureRouter.delete('/delete/', async (req, res) => {
-  console.log(req.data)
-  // const picture = await PictureModel.deleteOne({ _id: req.params.pictureId });
 
-  // if (!picture) {
-  //   res.status(400).send({ error: 'Picture not found' });
-  //   return
-  // } else {
-  //   res.status(200).send(picture);
-  // }
+pictureRouter.delete('/:pictureId', async (req, res) => {
+  console.log(req.data)
+  const picture = await PictureModel.deleteOne({ _id: req.params.pictureId });
+  if (!picture) {
+    res.status(400).send({ error: 'Picture not found' });
+    return
+  } else {
+    res.status(200).send(picture);
+  }
 })
 
 pictureRouter.post('/', async (req, res) => {
