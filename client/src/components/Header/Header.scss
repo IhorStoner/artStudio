@@ -1,7 +1,7 @@
 .header {
   background-color: #000;
 
-  &__logoContainer {
+  &__logo-container {
     display: flex;
     justify-content: space-between;
     & div {
@@ -18,12 +18,12 @@
       }
     }
   }
-  &__navList {
+  &__nav-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  &__navItem {
+  &__nav-item {
     list-style-type: none;
     color: #fff;
     font-family: "Monotype Corsiva";
@@ -39,7 +39,7 @@
     }
   }
 
-  &__adminPanel {
+  &__admin-panel {
     color: #fff;
     cursor: pointer;
   }

@@ -7,9 +7,11 @@ import { getPictures } from '../../redux/selector/picturesSelector'
 import './Works.scss'
 
 export default function Works() {
-  const [activeItem, setActiveItem] = useState('oil')
+  const [activeItem, setActiveItem] = useState('trousers')
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
+
+
 
   useEffect(() => {
     dispatch(fetchPictures(activeItem))

@@ -6,6 +6,7 @@ import Works from '../../components/Works/Works'
 import Footer from '../../components/Footer/Footer'
 import { AuthContext } from '../../context/AuthContext'
 import AdminPanel from '../../components/AdminPanel/AdminPanel'
+import { PictureOrder } from '../../components/PictureOrder/PictureOrder'
 
 export default function Homepage({ adminPanel }) {
   const { nav } = useParams()

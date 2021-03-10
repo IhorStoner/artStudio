@@ -13,9 +13,9 @@ export default function Header() {
 
   return (
     <div className='header'>
-      {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__navItem  ${nav === 'adminPanel' && 'header__navItem--active'}`}>AdminPanel</NavLink>}
+      {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>}
       <div className="container">
-        <div className="header__logoContainer">
+        <div className="header__logo-container">
           <div>
             <Instagram />
             <Telegram />
@@ -26,21 +26,21 @@ export default function Header() {
           {/* <NavLink to='/home/aboutUs'><img className='header__logo' src={logo} alt="" /></NavLink> */}
         </div>
         <nav className='header__nav'>
-          <ul className="header__navList">
+          <ul className="header__nav-list">
             <li>
-              <NavLink to='/home/aboutUs' className={`header__navItem ${nav === 'aboutUs' && 'header__navItem--active'}`}>О нас</NavLink>
+              <NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
             </li>
             <li>
-              <NavLink to='/home/works' className={`header__navItem ${nav === 'works' && 'header__navItem--active'}`}>Каталог</NavLink>
+              <NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
             </li>
             <li >
-              <NavLink to='/home/masters' className={`header__navItem ${nav === 'masters' && 'header__navItem--active'}`}>Доставка и оплата</NavLink>
+              <NavLink to='/home/masters' className={`header__nav-item ${nav === 'masters' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
             </li>
             <li>
-              <NavLink to='/home/delivery' className={`header__navItem ${nav === 'delivery' && 'header__navItem--active'}`}>Контакты</NavLink>
+              <NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
             </li>
             <li>
-              <NavLink to='/home/garants' className={`header__navItem ${nav === 'garants' && 'header__navItem--active'}`}>Гарантии качества</NavLink>
+              <NavLink to='/home/garants' className={`header__nav-item ${nav === 'garants' && 'header__nav-item--active'}`}>Гарантии качества</NavLink>
             </li>
           </ul>
         </nav>

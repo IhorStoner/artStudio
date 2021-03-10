@@ -11,7 +11,8 @@ import { setStateEdditPicture } from '../../redux/action/picturesAction'
 
 
 export default function AdminPicturesList({ setActiveItem }) {
-
+  const [deletePicture, setDeletePicture] = useState(false)
+  const [idDeletePicture, setIdDeletePicture] = useState(null)
   const [state, setState] = useState()
   const dispatch = useDispatch()
 
@@ -42,15 +43,18 @@ export default function AdminPicturesList({ setActiveItem }) {
     deleteObj(id)
   }
 
+
   return (
     <div className="container">
       <div className='admin-pictures-list'>
-        {/* <div className='admin-pictures-list__popup'>
-          <div>Вы действительно хотите удалить этот товар?
-            <button>Да, удалить</button>
-            <button>Нет, оставить</button>
+        {deletePicture && <div className='admin-pictures-list__popup'>
+          <div className='admin-pictures-list__modal'>Вы действительно хотите удалить этот товар?
+            <div>
+              <button onClick={() => { handleDeleteObj(idDeletePicture); setDeletePicture(false) }}>Да, удалить</button>
+              <button onClick={() => setDeletePicture(false)}>Нет, оставить</button>
+            </div>
           </div>
-        </div> */}
+        </div>}
         <div className='admin-pictures-list__head'>
           <div className='admin-pictures-list__item-text'>Название</div>
           <div className='admin-pictures-list__item-text'>Тип</div>
@@ -77,7 +81,7 @@ export default function AdminPicturesList({ setActiveItem }) {
                 <Correct onClick={() => refToCorrect(elem)} />
                 <NavLink to={`/home/works/${elem._id}`}>
                   <Open /></NavLink>
-                <Delete onClick={() => handleDeleteObj(elem._id)} /></div>
+                <Delete onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
             </div>)
         })}
 

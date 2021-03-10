@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 import './AdminPanel.scss'
 import AdminPicturesList from '../AdminPicturesList/AdminPicturesList'
 import EdditPicturesForm from '../EdditPicturesForm/EdditPicturesForm'
-import { ReactComponent as Magnifier } from '../../assets/svg/magnifier.svg'
+import { ReactComponent as MagnifierSVG } from '../../assets/svg/magnifier.svg'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
 
 export default function AdminPanel() {
@@ -18,7 +18,7 @@ export default function AdminPanel() {
         <Button className='adminPanel__btn' text='Добавить товар' active={activeItem === 'newPicture'} onClick={() => setActiveItem('newPicture')} />
         <Button className='adminPanel__btn' text='Список товаров' active={activeItem === 'picturesList'} onClick={() => setActiveItem('picturesList')} />
         <input />
-        <Magnifier />
+        <MagnifierSVG />
       </div>
       {activeItem === 'newPicture' && <NewPictureForm />}
       {activeItem === 'picturesList' && <AdminPicturesList setActiveItem={setActiveItem} />}

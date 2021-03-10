@@ -1,23 +1,127 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './OpenPicture.scss'
 import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
+import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
+import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
+import { ReactComponent as BasketDelete } from '../../assets/svg/basketDelete.svg'
+import config from '../../config/default.json'
+import { useHistory } from 'react-router'
+
+
+const conditions = {
+  "Доставка": ' доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка <br/> ljljljljljl',
+  "Оплата": 'оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата ',
+  "Гарантия": " Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия "
+}
 
 export default function OpenPicture({ picture }) {
+  const [stateAmount, setStateAmount] = useState(0)
+  const [stateNavList, setStateNavList] = useState('Доставка')
+  const [selectedSize, setSelectedSize] = useState('XL')
+  const [sentToBasket, setSentToBasket] = useState(false)
+  const { push } = useHistory()
+
+  console.log(picture)
 
   return (
     <div className='container'>
-      <div className="openPicture">
-        <h2 className="openPicture__title">{picture.title}</h2>
-        <div className="openPicture__slider">
-          {picture.images && <OpenPictureSlider imgArr={picture.images} thumbs={true} />}
-        </div>
-        <p className='openPicture__description'>{picture.text}</p>
-        <div className="openPicture__priceContainer">
-          <div className="openPicture__price">
-            <span>Цена:</span>
-            <span>{picture.price}</span>
+      {sentToBasket && <div className="sent-to-basket">
+        <div className="sent-to-basket__form">
+          <div className="sent-to-basket__head"><h2>Корзина</h2> <div> <span>Количество</span> <span>Стоимость</span></div></div>
+          <div className="sent-to-basket__main">
+            <div className="sent-to-basket__diskribe-image">
+              {picture.images && <img src={`${config.serverUrl}/api/images/${picture.images[0]}`} className="sent-to-basket__img"></img >}
+              <div>
+                <p>
+                  {picture.title}
+                </p>
+                <p>
+                  Размер - {selectedSize.toUpperCase()}
+                </p>
+              </div>
+            </div>
+            <div className="sent-to-basket__acive-side">
+              <div className="sent-to-basket__acive-side--head">
+                <div className="sent-to-basket__choose-size">
+                  <button onClick={() => stateAmount > 1 && setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
+                    <Discreate />
+                  </button>
+                  {stateAmount}
+                  <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
+                    <Increate />
+                  </button>
+                </div>
+                <span> {picture.price} грн</span>
+                <BasketDelete onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
+              </div>
+              <div className="sent-to-basket__acive-side--foot">
+                <span> Итог </span>  {picture.price * stateAmount} грн
+              </div>
+            </div>
           </div>
-          <button className='openPicture__btn'>Заказать</button>
+          <div className='sent-to-basket__foot'>
+            <button onClick={() => { push('/home/works') }}>Вернуться к покупкам</button>
+            <button>Оформить заказ</button>
+          </div>
+        </div>
+      </div>}
+      <div className="open-picture">
+        <div className="open-picture__articul">
+          {picture.title}
+          <span>Артикул 88888888</span>
+        </div>
+        <div className="open-picture__main">
+          <div className="open-picture__slider-container">
+            <div className="open-picture__slider">
+              {picture.images && <OpenPictureSlider imgArr={picture.images} thumbs={true} />}
+            </div>
+            <div className="open-picture__discribe">
+              Описание: <br />
+              {picture.text}
+            </div>
+          </div>
+          <div className="open-picture__order-container">
+            <h2 className="open-picture__price"> {picture.price} грн </h2>
+            <span> Размеры: <br /></span>
+            <div className="open-picture__chart-container">
+              {picture.chart &&
+                Object.keys(picture.chart).map(
+                  (elem, i) => picture.chart[elem] &&
+                    <div
+                      key={i}
+                      onClick={() => setSelectedSize(elem)}
+                      className={`open-picture__chart${selectedSize === elem ? '--active' : ''}`}
+                    >
+                      {elem.toUpperCase()}
+                    </div>)
+              }
+            </div>
+            <span>Есть в наличии</span>
+            <div className="open-picture__buy-container">
+              <div className="open-picture__choose-size">
+                <button onClick={() => setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
+                  <Discreate />
+                </button>
+                {stateAmount}
+                <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
+                  <Increate />
+                </button>
+              </div>
+              <button onClick={() => setSentToBasket(true)} className="open-picture__buy-btn"> Купить </button>
+            </div>
+            <div>
+              <nav className="open-picture__nav">
+                <ul>
+                  <li onClick={() => setStateNavList('Доставка')} className={stateNavList === 'Доставка' && `open-picture__nav--active`}>Доставка</li>
+                  <li onClick={() => setStateNavList('Оплата')} className={stateNavList === 'Оплата' && `open-picture__nav--active`}>Оплата</li>
+                  <li onClick={() => setStateNavList('Гарантия')} className={stateNavList === 'Гарантия' && `open-picture__nav--active`}>Гарантия</li>
+                </ul>
+              </nav>
+              <div classname="open-picture__conditions">
+                {conditions[stateNavList]}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

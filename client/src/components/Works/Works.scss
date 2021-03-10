@@ -9,7 +9,6 @@
     width: 100%;
     & button {
       width: 24%;
-      // margin-left: 1%;
       margin-bottom: 1%;
     }
     // grid-template-columns: repeat(4, 1fr);
@@ -19,11 +18,11 @@
   &__content {
     display: grid;
     justify-content: flex-start;
-    grid-template-columns: 49%;
+    grid-template-columns: 33%;
     flex-wrap: wrap;
-    flex-basis: 49%;
-    grid-template-columns: 49% 49%;
-    grid-column-gap: 2%;
+    flex-basis: 33%;
+    grid-template-columns: 33% 33% 33%;
+    grid-column-gap: 0.5%;
   }
 
   &__item {

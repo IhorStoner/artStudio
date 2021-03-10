@@ -4,11 +4,11 @@ import { NavLink, useParams } from 'react-router-dom'
 import logo from '../../assets/png/logo.png'
 
 export default function Footer() {
-  const {nav} = useParams()
+  const { nav } = useParams()
 
   return (
     <div className='footer'>
-      <nav className='footer__nav'>
+      {/* <nav className='footer__nav'>
         <ul className='footer__navList'>
           <li>
             <NavLink to='/home/aboutUs' className={`footer__navItem ${nav === 'aboutUs' && 'footer__navItem--active'}`}>О нас</NavLink>
@@ -26,10 +26,10 @@ export default function Footer() {
             <NavLink to='/home/garants' className={`footer__navItem ${nav === 'garants' && 'footer__navItem--active'}`}>Гарантии качества</NavLink>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <div className="footer__logoContainer">
-        <img src={logo} alt="artStudio"/>
-          <p className='footer__copyright'>©Арт Студия “название” 2021</p>
+        <img src={logo} alt="artStudio" />
+        <p className='footer__copyright'>©Арт Студия “название” 2021</p>
       </div>
     </div>
   )
