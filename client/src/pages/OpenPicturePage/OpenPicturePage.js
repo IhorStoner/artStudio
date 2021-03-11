@@ -13,7 +13,6 @@ export default function OpenPicturePage() {
   const picture = useSelector(getOnePicture)
 
   useEffect(() => {
-    console.log(pictureId)
     dispatch(fetchOnePicture(pictureId))
   }, [pictureId])
 

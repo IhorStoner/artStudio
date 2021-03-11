@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './Header.scss'
 import logo from '../../assets/png/logo.png'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { ReactComponent as Instagram } from '../../assets/svg/instagram.svg'
 import { ReactComponent as Telegram } from '../../assets/svg/telegram.svg'
@@ -10,6 +10,7 @@ import { ReactComponent as Basket } from '../../assets/svg/basket.svg'
 export default function Header() {
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
+  const { push } = useHistory()
 
   return (
     <div className='header'>
@@ -21,7 +22,7 @@ export default function Header() {
             <Telegram />
             <span>+(380) 66 666 66 66</span>
           </div>
-          <Basket />
+          <Basket onClick={() => push('/home/orderForm')} />
 
           {/* <NavLink to='/home/aboutUs'><img className='header__logo' src={logo} alt="" /></NavLink> */}
         </div>

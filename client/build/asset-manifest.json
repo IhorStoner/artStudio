@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.7753e62c.chunk.css",
-    "main.js": "/static/js/main.c6d8c120.chunk.js",
-    "main.js.map": "/static/js/main.c6d8c120.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.ae9c8de9.js",
-    "runtime-main.js.map": "/static/js/runtime-main.ae9c8de9.js.map",
-    "static/js/2.aa8d0641.chunk.js": "/static/js/2.aa8d0641.chunk.js",
-    "static/js/2.aa8d0641.chunk.js.map": "/static/js/2.aa8d0641.chunk.js.map",
-    "static/js/3.5e6d3b37.chunk.js": "/static/js/3.5e6d3b37.chunk.js",
-    "static/js/3.5e6d3b37.chunk.js.map": "/static/js/3.5e6d3b37.chunk.js.map",
+    "main.css": "/static/css/main.f742b712.chunk.css",
+    "main.js": "/static/js/main.4f46082e.chunk.js",
+    "main.js.map": "/static/js/main.4f46082e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.371e10d1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.371e10d1.js.map",
+    "static/js/2.8716e395.chunk.js": "/static/js/2.8716e395.chunk.js",
+    "static/js/2.8716e395.chunk.js.map": "/static/js/2.8716e395.chunk.js.map",
+    "static/js/3.49dacc26.chunk.js": "/static/js/3.49dacc26.chunk.js",
+    "static/js/3.49dacc26.chunk.js.map": "/static/js/3.49dacc26.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.7753e62c.chunk.css.map": "/static/css/main.7753e62c.chunk.css.map",
-    "static/js/2.aa8d0641.chunk.js.LICENSE.txt": "/static/js/2.aa8d0641.chunk.js.LICENSE.txt",
+    "static/css/main.f742b712.chunk.css.map": "/static/css/main.f742b712.chunk.css.map",
+    "static/js/2.8716e395.chunk.js.LICENSE.txt": "/static/js/2.8716e395.chunk.js.LICENSE.txt",
+    "static/media/InportantInput.84c8015a.svg": "/static/media/InportantInput.84c8015a.svg",
     "static/media/index.css": "/static/media/Monotype.35bae48c.ttf",
     "static/media/basket.8b735014.svg": "/static/media/basket.8b735014.svg",
     "static/media/basketDelete.cdd4796c.svg": "/static/media/basketDelete.cdd4796c.svg",
@@ -26,9 +27,9 @@
     "static/media/telegram.1602b6b3.svg": "/static/media/telegram.1602b6b3.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.ae9c8de9.js",
-    "static/js/2.aa8d0641.chunk.js",
-    "static/css/main.7753e62c.chunk.css",
-    "static/js/main.c6d8c120.chunk.js"
+    "static/js/runtime-main.371e10d1.js",
+    "static/js/2.8716e395.chunk.js",
+    "static/css/main.f742b712.chunk.css",
+    "static/js/main.4f46082e.chunk.js"
   ]
 }

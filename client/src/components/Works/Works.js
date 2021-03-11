@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../Button/Button'
 import PictureItem from '../PictureItem/PictureItem'
-import { fetchPictures } from '../../redux/action/picturesAction'
+import { fetchPictures, setStateTipe } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPictures } from '../../redux/selector/picturesSelector'
+import { getPictures, getStateTipe } from '../../redux/selector/picturesSelector'
 import './Works.scss'
 
 export default function Works() {
-  const [activeItem, setActiveItem] = useState('trousers')
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
-
+  const stateTipe = useSelector(getStateTipe)
 
 
   useEffect(() => {
-    dispatch(fetchPictures(activeItem))
-  }, [activeItem])
+    dispatch(fetchPictures(stateTipe))
+  }, [stateTipe])
 
   return (
     <div className='works'>
       <div className="works__btns">
-        <Button text={'Штаны'} active={activeItem === 'trousers'} onClick={() => setActiveItem('trousers')} />
-        <Button text={'Футболки'} active={activeItem === 't-shirts'} onClick={() => setActiveItem('t-shirts')} />
-        <Button text={'Куртки'} active={activeItem === 'jackets'} onClick={() => setActiveItem('jackets')} />
-        <Button text={'Комбинизоны'} active={activeItem === 'jumpsuits'} onClick={() => setActiveItem('jumpsuits')} />
+        <Button text={'Штаны'} active={stateTipe === 'trousers'} onClick={() => dispatch(setStateTipe('trousers'))} />
+        <Button text={'Футболки'} active={stateTipe === 't-shirts'} onClick={() => dispatch(setStateTipe('t-shirts'))} />
+        <Button text={'Куртки'} active={stateTipe === 'jackets'} onClick={() => dispatch(setStateTipe('jackets'))} />
+        <Button text={'Комбинизоны'} active={stateTipe === 'jumpsuits'} onClick={() => dispatch(setStateTipe('jumpsuits'))} />
       </div>
       <div className="works__content">
         {

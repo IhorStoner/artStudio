@@ -90,8 +90,10 @@ export default function NewPictureForm() {
 
   const onSubmit = useCallback(async (ev) => {
     const resultImg = await submitAxios(ev)
+    // const  sek= parseInt(+new Date()/1000);
     let finnalyData = result
     finnalyData.images = resultImg
+    finnalyData.vendorCode = parseInt(+new Date() / 1000)
 
     const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setReset())
 
@@ -102,7 +104,6 @@ export default function NewPictureForm() {
   }
 
   const swithSizes = e => {
-    console.log(result)
     setResult({ ...result, chart: { ...result.chart, [e.target.name]: { in: e.target.checked } } })
   }
 

@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchPictures, fetchOnePicture, setStateEdditPicture } from '../action/picturesAction'
+import { fetchPictures, fetchOnePicture, setStateEdditPicture, setOrderedGoods, setStateTipe, deleteOrderedGoods } from '../action/picturesAction'
 
 const initialState = {
   loading: false,
@@ -7,7 +7,9 @@ const initialState = {
   picture: {},
   pages: 0,
   error: null,
-  stateEdditPicture: {}
+  stateEdditPicture: {},
+  stateOrder: [],
+  stateTipe: 'trousers'
 };
 
 const picturesReducer = createReducer(initialState, {
@@ -39,6 +41,17 @@ const picturesReducer = createReducer(initialState, {
   [setStateEdditPicture.type]: (state, action) => {
     state.stateEdditPicture = action.payload;
   },
+  [setOrderedGoods.type]: (state, action) => {
+    state.stateOrder.push(action.payload)
+  },
+  [setStateTipe.type]: (state, action) => {
+    state.stateTipe = action.payload
+  },
+  [deleteOrderedGoods.type]: (state, action) => {
+    console.log(action)
+    console.log(state)
+    state.stateOrder = action.payload
+  }
 });
 
 export default picturesReducer

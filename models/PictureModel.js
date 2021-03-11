@@ -24,6 +24,9 @@ const PictureSchema = new Schema({
   onSite: {
     type: String
   },
+  vendorCode: {
+    type: Number
+  },
   chart: {
     xxxs: {
       "in": Boolean,

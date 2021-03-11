@@ -14,3 +14,12 @@ export const getStateEdditPicture = createSelector(
   state => state.pictures.stateEdditPicture,
   stateEdditPicture => stateEdditPicture
 )
+
+export const getOrderList = createSelector(
+  state => state.pictures.stateOrder,
+  stateOrder => stateOrder
+)
+export const getStateTipe = createSelector(
+  state => state.pictures.stateTipe,
+  stateTipe => stateTipe
+)

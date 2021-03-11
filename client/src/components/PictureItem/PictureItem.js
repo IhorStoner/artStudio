@@ -20,7 +20,8 @@ export default function PictureItem({ picture, className }) {
       </Link>
       <div className="picture__footer">
         <p className="picture__price">{picture.price} грн</p>
-        <button className="picture__btn" onMouseDown={{ backgroundColor: 'red' }} onClick={(e) => push(`/home/works/${picture._id}`)}>
+        <button className="picture__btn" onClick={(e) => push(`/home/works/${picture._id}`)}>
+          {/* <button className="picture__btn" onMouseDown={{ backgroundColor: 'red' }} onClick={(e) => push(`/home/works/${picture._id}`)}> //не понятный  onMouseDown ??? */}
           Заказать
           </button>
       </div>
