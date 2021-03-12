@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './OpenPicture.scss'
 import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
@@ -20,18 +20,22 @@ const conditions = {
 export default function OpenPicture({ picture }) {
   const [stateAmount, setStateAmount] = useState(1)
   const [stateNavList, setStateNavList] = useState('Доставка')
-  const [selectedSize, setSelectedSize] = useState('')
+  const [selectedSize, setSelectedSize] = useState(null)
   const [sentToBasket, setSentToBasket] = useState(false)
   const { push } = useHistory()
   const dispatch = useDispatch()
   const stateOrder = useSelector(getOrderList)
 
 
+  useEffect(() => {
+    picture.chart && setSelectedSize(Object.keys(picture.chart)[0])
+  }, [picture.chart])
+
   const setToBasket = () => {
     if (stateAmount < 1) { alert('укажите количество товара'); return }
     const { price, _id, vendorCode, images, title } = picture
     const checkId = stateOrder.findIndex(elem => elem._id === _id)
-    //здесь еще можно добавить проверку на наличие размера 
+
     if (checkId !== -1) { alert('эта позиция уже есть в корзине '); return }
 
     dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
@@ -75,7 +79,7 @@ export default function OpenPicture({ picture }) {
           </div>
           <div className='sent-to-basket__foot'>
             <button onClick={() => { push('/home/works') }}> Вернуться к покупкам </button>
-            <button onClick={() => { setToBasket(); push('/home/works') }}> Добавить в корзину </button>
+            <button onClick={() => { setToBasket(); push('/home/orderForm') }}> Оформить заказ </button>
           </div>
         </div>
       </div>}
@@ -126,9 +130,9 @@ export default function OpenPicture({ picture }) {
             <div>
               <nav className="open-picture__nav">
                 <ul>
-                  <li onClick={() => setStateNavList('Доставка')} className={stateNavList === 'Доставка' && `open-picture__nav--active`}>Доставка</li>
-                  <li onClick={() => setStateNavList('Оплата')} className={stateNavList === 'Оплата' && `open-picture__nav--active`}>Оплата</li>
-                  <li onClick={() => setStateNavList('Гарантия')} className={stateNavList === 'Гарантия' && `open-picture__nav--active`}>Гарантия</li>
+                  <li onClick={() => setStateNavList('Доставка')} className={stateNavList === 'Доставка' ? `open-picture__nav--active` : ' '}>Доставка</li>
+                  <li onClick={() => setStateNavList('Оплата')} className={stateNavList === 'Оплата' ? `open-picture__nav--active` : ' '}>Оплата</li>
+                  <li onClick={() => setStateNavList('Гарантия')} className={stateNavList === 'Гарантия' ? `open-picture__nav--active` : ' '}>Гарантия</li>
                 </ul>
               </nav>
               <div className="open-picture__conditions">

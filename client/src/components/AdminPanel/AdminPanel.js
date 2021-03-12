@@ -17,6 +17,7 @@ export default function AdminPanel() {
         <Button className='adminPanel__btn' text='Заказы' active={false} onClick={() => setActiveItem('newPicture')} />
         <Button className='adminPanel__btn' text='Добавить товар' active={activeItem === 'newPicture'} onClick={() => setActiveItem('newPicture')} />
         <Button className='adminPanel__btn' text='Список товаров' active={activeItem === 'picturesList'} onClick={() => setActiveItem('picturesList')} />
+        <Button className='adminPanel__btn' text='Добавить категорию' active={activeItem === 'picturesCategories'} onClick={() => setActiveItem('picturesCategories')} />
         <input />
         <MagnifierSVG />
       </div>

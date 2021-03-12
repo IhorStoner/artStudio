@@ -1,6 +1,5 @@
 import React from 'react'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
-import OpenPicture from '../OpenPicture/OpenPicture'
 
 export const PictureOrder = () => {
 

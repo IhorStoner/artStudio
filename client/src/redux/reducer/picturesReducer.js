@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchPictures, fetchOnePicture, setStateEdditPicture, setOrderedGoods, setStateTipe, deleteOrderedGoods } from '../action/picturesAction'
+import { fetchPictures, fetchOnePicture, setStateEdditPicture, setOrderedGoods, setStateTipe, refreshOrderedGoods } from '../action/picturesAction'
 
 const initialState = {
   loading: false,
@@ -47,9 +47,7 @@ const picturesReducer = createReducer(initialState, {
   [setStateTipe.type]: (state, action) => {
     state.stateTipe = action.payload
   },
-  [deleteOrderedGoods.type]: (state, action) => {
-    console.log(action)
-    console.log(state)
+  [refreshOrderedGoods.type]: (state, action) => {
     state.stateOrder = action.payload
   }
 });

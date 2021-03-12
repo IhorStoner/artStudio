@@ -17,4 +17,4 @@ export const fetchOnePicture = createAsyncThunk('pictures/fetchOnePicture', asyn
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')
 export const setStateTipe = createAction('SET_STATE_TIPE')
-export const deleteOrderedGoods = createAction('DELETE_ORDERED_GOODS')
+export const refreshOrderedGoods = createAction('DELETE_ORDERED_GOODS')

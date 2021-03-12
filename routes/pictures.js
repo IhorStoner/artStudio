@@ -29,6 +29,11 @@ pictureRouter.get('/all/all', async (req, res) => {
   const pictures = await PictureModel.find({});
   res.status(200).json(pictures)
 })
+pictureRouter.get('/categories', async (req, res) => {
+  const pictures = await PictureModel.distinct('type');
+  res.status(200).json(pictures)
+})
+
 
 
 pictureRouter.get('/:pictureId', async (req, res) => {

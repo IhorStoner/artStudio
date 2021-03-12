@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback } from 'react'
 import './NewPictureForm.scss'
 import axios from 'axios'
 import config from '../../config/default.json'

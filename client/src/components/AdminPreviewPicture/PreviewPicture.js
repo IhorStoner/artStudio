@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './PreviewPicture.scss'
 import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
+import { fetchOnePicture } from '../../redux/action/picturesAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { getOnePicture } from '../../redux/selector/picturesSelector'
 
-export default function PreviewPicture({ picture }) {
+export default function PreviewPicture({ id }) {
+    const dispatch = useDispatch()
+    const picture = useSelector(getOnePicture)
+
+
+    useEffect(() => {
+        dispatch(fetchOnePicture(id))
+    }, [id])
 
     return (
         <div className='container'>

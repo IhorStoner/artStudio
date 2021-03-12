@@ -12,16 +12,17 @@ export default function Routes() {
         <Route path="/home/admin">
           <AdminAuthPage />
         </Route>
-        <Route path="/home/works/:pictureId">
+        {/* <Route path="/home/works/:pictureId">
           <OpenPicturePage />
-        </Route>
+        </Route> */}
         <Route path="/home/:nav">
           <Homepage />
         </Route>
         <Route path="/home/admin/pictures/:id">
           <Homepage />
         </Route>
-        <Redirect to='/home/aboutUs' />
+
+        <Redirect to='/home/works' />
       </Switch>
     </Router>
   )

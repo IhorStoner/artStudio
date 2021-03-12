@@ -4,12 +4,13 @@ import { useEmblaCarousel } from "embla-carousel/react";
 import config from '../../config/default.json'
 import { Thumb } from "./Thumbs";
 import './embla.scss'
+import { useHistory } from "react-router";
 
-export default function OpenPictureSlider({ imgArr, thumbs = false }) {
+export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons }) {
   const [viewportRef, embla] = useEmblaCarousel({ loop: true });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
-
+  const { push } = useHistory()
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
     containScroll: "keepSnaps",
@@ -42,8 +43,6 @@ export default function OpenPictureSlider({ imgArr, thumbs = false }) {
     onSelect();
   }, [embla, onSelect]);
 
-
-
   return (
     <>
       <div className="embla embla--width">
@@ -53,6 +52,7 @@ export default function OpenPictureSlider({ imgArr, thumbs = false }) {
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner embla__slide__inner--height">
                   <img
+                    onClick={() => { push('/home/preview') }}
                     className="embla__slide__img sliderPopup__img"
                     src={`${config.serverUrl}/api/images/${img}`}
                     alt="sliderImg"
@@ -62,8 +62,12 @@ export default function OpenPictureSlider({ imgArr, thumbs = false }) {
             ))}
           </div>
         </div>
-        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+        {openButtons &&
+          <>
+            <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+            <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+          </>
+        }
       </div>
       <div>
         {

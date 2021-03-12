@@ -2,9 +2,8 @@ import React from "react";
 
 export const Thumb = ({ selected, onClick, imgSrc }) => (
   <div
-    className={`embla__slide embla__slide--thumb ${
-      selected ? "is-selected" : ""
-    }`}
+    className={`embla__slide embla__slide--thumb ${selected ? "is-selected" : ""
+      }`}
   >
     <button
       onClick={onClick}

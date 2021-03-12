@@ -10,7 +10,22 @@
         margin-bottom: 34px;
         margin-top: 34px;
     }
-
+    &__label {
+        display: flex;
+        font-size: 36px;
+        line-height: 40px;
+        & div {
+            display: flex;
+            width: 50%;
+        }
+        & > div + div {
+            padding-left: 65px;
+        }
+    }
+    &__cards-container {
+        display: flex;
+        flex-direction: column;
+    }
     &__input-container {
         display: flex;
         flex-wrap: wrap;
@@ -54,6 +69,32 @@
         box-sizing: border-box;
         box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
+        &--select {
+            width: 500px;
+            border-radius: 10px;
+            font-family: Monotype Corsiva;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 30px;
+            // &.decorated option:hover {
+            //     box-shadow: 0 0 10px 100px #bbc0c2 inset;
+            // }
+
+            & option:hover {
+                background-color: aqua;
+                outline: none;
+            }
+            & option {
+                background-color: rgba(0, 0, 0, 0.25);
+                outline: none;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    &__option:hover {
+        background-color: #ebebeb;
+        // background-color: aqua;
     }
 
     &__choose-size {
@@ -85,6 +126,7 @@
         border: none;
         background-color: inherit;
         height: 30px;
+        cursor: pointer;
     }
 
     &__goods-container {
@@ -92,7 +134,7 @@
         flex-direction: column;
         justify-content: space-between;
         width: 45%;
-        height: 370px;
+        // height: 370px;
         & > div {
             display: flex;
             width: 100%;
@@ -112,6 +154,8 @@
         }
     }
     &__card-goods {
+        display: flex;
+        margin-bottom: 10px;
         &--info {
             display: flex;
             flex-direction: column;
@@ -125,6 +169,9 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
+            & svg {
+                cursor: pointer;
+            }
         }
         &--total {
             display: flex;
@@ -138,13 +185,13 @@
 
     &__foot {
         display: flex;
-        align-items: center;
         width: 100%;
+        height: 200px;
         justify-content: center;
         & button {
             width: 294px;
             height: 85px;
-
+            cursor: pointer;
             background: #000000;
             border: 1px solid #000000;
             box-sizing: border-box;

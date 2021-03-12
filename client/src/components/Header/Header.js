@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import './Header.scss'
-import logo from '../../assets/png/logo.png'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { ReactComponent as Instagram } from '../../assets/svg/instagram.svg'

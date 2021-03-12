@@ -16,6 +16,9 @@ const OrderSchema = new Schema({
     },
     status: {
         type: String
+    },
+    client: {
+        type: Object
     }
 });
 

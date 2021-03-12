@@ -3,6 +3,7 @@ import './AdminPicturesList.scss'
 import { ReactComponent as Delete } from '../../assets/svg/delete.svg'
 import { ReactComponent as Open } from '../../assets/svg/open.svg'
 import { ReactComponent as Correct } from '../../assets/svg/correct.svg'
+import { ReactComponent as IncludesInSite } from '../../assets/svg/includesInSite.svg'
 import axios from 'axios'
 import config from '../../config/default.json'
 import { NavLink } from 'react-router-dom'
@@ -76,7 +77,7 @@ export default function AdminPicturesList({ setActiveItem }) {
               <div className='admin-pictures-list__item-text'>{elem.chart && Object.keys(elem.chart).map(v => v).join(", ").toUpperCase()}</div>
               <div className='admin-pictures-list__item-text'>{elem.date}</div>
               <div className='admin-pictures-list__item-text'>{elem.price}</div>
-              <div className='admin-pictures-list__item-text'><input type='checkbox' defaultChecked={elem.onSite}></input></div>
+              <div className='admin-pictures-list__item-text'>{elem.onSite && <input type='checkbox' checked={elem.onSite}></input>}</div>
               <div className='admin-pictures-list__item-text'>
                 <Correct onClick={() => refToCorrect(elem)} />
                 <NavLink to={`/home/works/${elem._id}`}>

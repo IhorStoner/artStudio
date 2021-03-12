@@ -6,8 +6,8 @@ import Works from '../../components/Works/Works'
 import Footer from '../../components/Footer/Footer'
 import { AuthContext } from '../../context/AuthContext'
 import AdminPanel from '../../components/AdminPanel/AdminPanel'
-import { PictureOrder } from '../../components/PictureOrder/PictureOrder'
 import { OrderForm } from '../../components/OrderForm/OrderForm'
+import BigImages from '../../components/BigImage/BigImages'
 
 export default function Homepage({ adminPanel }) {
   const { nav } = useParams()
@@ -20,6 +20,8 @@ export default function Homepage({ adminPanel }) {
       {nav === 'aboutUs' && <div>ABOUT US</div>}
       {nav === 'works' && <Works />}
       {nav === 'orderForm' && <OrderForm />}
+      {nav === 'preview' && <BigImages />}
+
       {isAuthenticated && nav === 'adminPanel' && <AdminPanel />}
       <Footer />
     </div>
