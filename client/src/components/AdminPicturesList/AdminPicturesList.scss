@@ -16,6 +16,10 @@
     }
   }
 
+  &__pointer {
+    cursor: pointer;
+  }
+
   &__popup {
     position: fixed;
     top: 0;

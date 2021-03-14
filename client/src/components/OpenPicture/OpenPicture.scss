@@ -11,6 +11,10 @@
   background-color: rgba(0, 0, 0, 0.75);
   box-sizing: border-box;
 
+  &__basket {
+    cursor: pointer;
+  }
+  
   &__diskribe-image {
     display: flex;
     align-items: center;
@@ -94,6 +98,7 @@
       // padding: 0 14px;
       font-size: 36px;
       line-height: 40px;
+      
       & span {
         font-size: 18px;
         line-height: 20px;
@@ -128,6 +133,7 @@
     display: flex;
     justify-content: space-between;
     & > button {
+      cursor: pointer;
       background: #000000;
       border: 1px solid #000000;
       color: #fff;

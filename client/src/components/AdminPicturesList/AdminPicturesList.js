@@ -79,19 +79,19 @@ export default function AdminPicturesList({ setActiveItem }) {
               <div className='admin-pictures-list__item-text'>{elem.price}</div>
               <div className='admin-pictures-list__item-text'>{elem.onSite && <input type='checkbox' checked={elem.onSite}></input>}</div>
               <div className='admin-pictures-list__item-text'>
-                <Correct onClick={() => refToCorrect(elem)} />
+                <Correct className='admin-pictures-list__pointer' onClick={() => refToCorrect(elem)} />
                 <NavLink to={`/home/works/${elem._id}`}>
-                  <Open /></NavLink>
-                <Delete onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
+                  <Open className='admin-pictures-list__pointer' /></NavLink>
+                <Delete className='admin-pictures-list__pointer' onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
             </div>)
         })}
 
         <div className="admin-pictures-list__pagination-container" >
-          <div><span>Первая</span></div>
-          <div><span>Предидущая</span></div>
+          <div><span className='admin-pictures-list__pointer'>Первая</span></div>
+          <div><span className='admin-pictures-list__pointer'>Предидущая</span></div>
           <div> 4 5 6 7 8 9 10 </div>
-          <div>Следующая</div>
-          <div>Последняя</div>
+          <div><span className='admin-pictures-list__pointer'>Следующая</span></div>
+          <div><span className='admin-pictures-list__pointer'>Последняя</span></div>
         </div>
 
       </div>

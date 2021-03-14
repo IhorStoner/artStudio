@@ -18,6 +18,9 @@
       }
     }
   }
+  &__basket {
+    cursor: pointer;
+  }
   &__nav-list {
     display: flex;
     justify-content: space-between;

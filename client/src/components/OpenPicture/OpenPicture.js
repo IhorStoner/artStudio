@@ -70,7 +70,7 @@ export default function OpenPicture({ picture }) {
                   </button>
                 </div>
                 <span> {picture.price} грн</span>
-                <BasketDelete onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
+                <BasketDelete className="sent-to-basket__basket" onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
               </div>
               <div className="sent-to-basket__acive-side--foot">
                 <span> Итог </span>  {picture.price * stateAmount} грн

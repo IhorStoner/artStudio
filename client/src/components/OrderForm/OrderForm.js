@@ -12,34 +12,38 @@ import { refreshOrderedGoods } from '../../redux/action/picturesAction'
 
 
 export const OrderForm = () => {
+    const dispatch = useDispatch()
+    const stateOrder = useSelector(getOrderList)
+
     const [clientInfo, setClientInfo] = useState({
         initials: '',
-        phone: '',
+        phone: '80',
         city: '',
         email: '',
         deliver: '',
         payment: '',
         coment: ''
     })
+    const [touchedControll, setTouchedControll] = useState({
+        email: { touched: false, isValid: false },
+        phone: { touched: false, isValid: false }
+    })
 
-    function validate(mail) {
-        const email = value =>
-            value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-                ? 'Invalid email address'
-                : undefined
-        const phoneNumber = value =>
-            value && !/^(0|[1-9][0-9]{9})$/i.test(value)
-                ? 'Invalid phone number, must be 10 digits'
-                : undefined
+    const onValid = (name, value) => {
+        if (name === 'email') {
+            return value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+                ? false
+                : true 
+        }
+        if (name === 'phone') {
+            // return value && !/^(0|[1-9][0-9]{11})$/i.test(value)
+            return value.length !== 11 
+                ? false
+                : true
+        }
     }
 
-    const dispatch = useDispatch()
-    const stateOrder = useSelector(getOrderList)
-
-    useEffect(() => {
-
-    }, [stateOrder])
-
+    
     const onSubmit = (e) => {
         e.preventDefault()
         console.clear()
@@ -47,12 +51,35 @@ export const OrderForm = () => {
         console.log(clientInfo)
         // const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setReset())
     }
-
+    
+    
+        const onValidHandler = (name, value) => {
+            setTouchedControll({ ...touchedControll, [name]: { touched: true, isValid: onValid(name, value) } })
+        }
     const changeHandler = (e) => {
         const { name, value } = e.target
-
+        console.log(value)
         setClientInfo({ ...clientInfo, [name]: value })
+        onValidHandler(name, value)
     }
+
+
+    
+    const check = (first, second) => {
+        return first && second ? true: !first && !second ? true : false }
+        
+    const validField = (name) => {
+        const {touched, isValid} = touchedControll[name]
+        console.log({touched, isValid})
+        return check(touched, isValid)
+    }
+
+
+    useEffect(() => { }, [stateOrder])
+    useEffect(() => {
+        // console.log(validField('email'),'email')
+        // console.log(validField('phone'), 'phone')
+    }, [touchedControll])
 
     return (
         <div className='container'>
@@ -69,27 +96,52 @@ export const OrderForm = () => {
                 <div className="order-form__input-container">
                     <div>
                         <label htmlFor="initials">ФИО</label>
-                        <input onChange={(e) => changeHandler(e)} className="order-form__input" name="initials" type='text' value={clientInfo.initials} />
+                        <input 
+                            onChange={(e) => changeHandler(e)} 
+                            className="order-form__input" 
+                            name="initials" 
+                            type='text' 
+                            value={clientInfo.initials}
+                         />
                         <InportantInputSVG />
                     </div>
                     <div>
                         <label htmlFor="phone">Телефон</label>
-                        <input onChange={(e) => changeHandler(e)} className="order-form__input" name="phone" type='number' value={clientInfo.phone} />
+                        <input 
+                            onChange={(e) => changeHandler(e)} 
+                            className={`order-form__input${!validField('phone') ? '--warning': ' '}`} 
+                            name="phone" type='number' 
+                            value={clientInfo.phone}
+                        />
                         <InportantInputSVG />
                     </div>
                     <div>
                         <label htmlFor="city">Город</label>
-                        <input onChange={(e) => changeHandler(e)} className="order-form__input" name="city" type='text' value={clientInfo.city} />
+                        <input 
+                            onChange={(e) => changeHandler(e)} 
+                            className="order-form__input" 
+                            name="city" type='text' 
+                            value={clientInfo.city}
+                        />
                         <InportantInputSVG />
                     </div>
                     <div>
                         <label htmlFor="email">Эл почта</label>
-                        <input onChange={(e) => changeHandler(e)} className="order-form__input" name="email" type='number' value={clientInfo.email} />
+                        <input 
+                            onChange={(e) => changeHandler(e)} 
+                            className={`order-form__input${!validField('email') ? '--warning': ' '}`} 
+                            name="email" type='text' 
+                            value={clientInfo.email} 
+                        />
                         <InportantInputSVG />
                     </div>
                     <div>
                         <label htmlFor='deliver'>Доставка</label>
-                        <select onChange={(e) => changeHandler(e)} className="order-form__input--select" name="deliver" value={clientInfo.deliver}>
+                        <select onChange={(e) => changeHandler(e)} 
+                            className="order-form__input--select" 
+                            name="deliver" 
+                            value={clientInfo.deliver}
+                        >
                             <option>Новая Почта</option>
                             <option>Интайм</option>
                             <option>Укрпочта</option>
@@ -99,17 +151,27 @@ export const OrderForm = () => {
                     </div>
                     <div>
                         <label htmlFor='payment'>Оплата</label>
-                        <select onChange={(e) => changeHandler(e)} className="order-form__input--select" name='payment' value={clientInfo.payment}>
-                            <option className="order-form__option" value="Наличными" >Наличными</option>
-                            <option className="order-form__option" value="Карточкой" >На карту (предоплата)</option>
-                            <option className="order-form__option" value="Карточкой" >На карту (полная оплата)</option>
-                            <option className="order-form__option" value="Карточкой" >Онлайн оплата</option>
+                        <select 
+                            onChange={(e) => changeHandler(e)} 
+                            className="order-form__input--select" 
+                            name='payment' 
+                            value={clientInfo.payment}
+                        >
+                            <option value="Наличными" >Наличными</option>
+                            <option value="Карточкой" >На карту (предоплата)</option>
+                            <option value="Карточкой" >На карту (полная оплата)</option>
+                            <option value="Карточкой" >Онлайн оплата</option>
                         </select>
                         <InportantInputSVG />
                     </div>
                     <div>
                         <label htmlFor='coment'>Комментарий к заказу</label>
-                        <input onChange={(e) => changeHandler(e)} className="order-form__textarea" name='coment' type='textarea' value={clientInfo.coment} />
+                        <input 
+                            onChange={(e) => changeHandler(e)} 
+                            className="order-form__textarea" 
+                            name='coment' type='textarea' 
+                            value={clientInfo.coment} 
+                        />
                     </div>
                 </div>
                 <div className="order-form__goods-container">
@@ -161,7 +223,8 @@ export const OrderForm = () => {
                         <span>Итог </span> {stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)}
                     </div>
                 </div>
-                <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div>
+                <div className='order-form__foot'> <button onClick={(e) => {e.preventDefault(); console.clear();console.log({touchedControll}); console.log({clientInfo}) }}>Оформить заказ</button></div>
+                {/* <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div> */}
             </form>
         </div>
     )

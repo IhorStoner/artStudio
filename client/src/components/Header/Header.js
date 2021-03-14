@@ -21,7 +21,7 @@ export default function Header() {
             <Telegram />
             <span>+(380) 66 666 66 66</span>
           </div>
-          <Basket onClick={() => push('/home/orderForm')} />
+          <Basket className="header__basket" onClick={() => push('/home/orderForm')} />
 
           {/* <NavLink to='/home/aboutUs'><img className='header__logo' src={logo} alt="" /></NavLink> */}
         </div>

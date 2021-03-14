@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "client": "npm start --prefix client",
-    "server":"nodemon server",
+    "server": "nodemon server",
     "heroku-prebuild": "npm install --prefix client",
     "client::install": "npm install --prefix client",
     "client::build": "npm run build --prefix client",
