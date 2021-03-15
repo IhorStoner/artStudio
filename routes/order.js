@@ -1,11 +1,10 @@
 const { Router } = require('express');
-const OrdereModel = require('../models/OrderModel');
 const orderRouter = Router();
 require('express-async-errors')
-// const { OrderModel } = require('../models/OrderModel')
+const { OrderModel } = require('../models/OrderModel');
 
 orderRouter.get('/', async (req, res) => {
-    const orders = await OrdereModel.find({});
+    const orders = await OrderModel.find({});
     res.status(200).json(orders)
 })
 

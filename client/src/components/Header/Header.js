@@ -5,6 +5,8 @@ import { AuthContext } from '../../context/AuthContext'
 import { ReactComponent as Instagram } from '../../assets/svg/instagram.svg'
 import { ReactComponent as Telegram } from '../../assets/svg/telegram.svg'
 import { ReactComponent as Basket } from '../../assets/svg/basket.svg'
+import logo from '../../assets/png/logo.png'
+
 
 export default function Header() {
   const { nav } = useParams()
@@ -16,6 +18,7 @@ export default function Header() {
       {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>}
       <div className="container">
         <div className="header__logo-container">
+          <img src={logo} alt="artStudio" />
           <div>
             <Instagram />
             <Telegram />

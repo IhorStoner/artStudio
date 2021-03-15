@@ -1,7 +1,5 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { getOrderList } from '../../redux/selector/picturesSelector'
 import './OrderForm.scss'
 import config from '../../config/default.json'
 import { ReactComponent as InportantInputSVG } from '../../assets/svg/InportantInput.svg'
@@ -15,29 +13,29 @@ import TextField from './TextField'
 
 
 let ContactForm = props => {
-    const { handleSubmit, pristine ,submitting} = props
+    const { handleSubmit, pristine, submitting } = props
 
     return (
         <form onSubmit={handleSubmit} className="order-form">
             <div className="order-form__input-container">
                 <div>
                     <label htmlFor="initials">ФИО</label>
-                    <Field  className="order-form__input"  component={TextField}  name="initials" type='text' />
+                    <Field className="order-form__input" component={TextField} name="initials" type='text' />
                     <InportantInputSVG />
                 </div>
                 <div>
                     <label htmlFor="phone">Телефон</label>
-                    <Field component={TextField}  className="order-form__input" name="phone" type='number' />
+                    <Field component={TextField} className="order-form__input" name="phone" type='number' />
                     <InportantInputSVG />
                 </div>
                 <div>
                     <label htmlFor="city">Город</label>
-                    <Field component={TextField}  className="order-form__input" name="city" type='text' />
+                    <Field component={TextField} className="order-form__input" name="city" type='text' />
                     <InportantInputSVG />
                 </div>
                 <div>
                     <label htmlFor="email">Эл почта</label>
-                    <Field component={TextField}  className="order-form__input" name="email" type='email' />
+                    <Field component={TextField} className="order-form__input" name="email" type='email' />
                     <InportantInputSVG />
                 </div>
                 <div>
@@ -65,7 +63,7 @@ let ContactForm = props => {
                     <input component={TextField} className="order-form__textarea" name='coment' type='textarea' />
                 </div>
             </div>
-         
+
             <div className='order-form__foot'> <button type="submit" disabled={pristine || submitting}>Оформить заказ</button></div>
         </form>
     )

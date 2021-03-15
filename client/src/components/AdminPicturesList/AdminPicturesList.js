@@ -3,7 +3,6 @@ import './AdminPicturesList.scss'
 import { ReactComponent as Delete } from '../../assets/svg/delete.svg'
 import { ReactComponent as Open } from '../../assets/svg/open.svg'
 import { ReactComponent as Correct } from '../../assets/svg/correct.svg'
-import { ReactComponent as IncludesInSite } from '../../assets/svg/includesInSite.svg'
 import axios from 'axios'
 import config from '../../config/default.json'
 import { NavLink } from 'react-router-dom'
@@ -19,7 +18,7 @@ export default function AdminPicturesList({ setActiveItem }) {
 
   const fetchData = useCallback(async (ev) => {
 
-    const { data } = await axios.get(`${config.serverUrl}/api/pictures/all/all`)
+    const { data } = await axios.get(`${config.serverUrl}/api/pictures/`)
     const freshDate = data.map(elem => ({ ...elem, date: elem.date.slice(0, 10).replace(/-/g, '.') }))
     setState(freshDate)
   }, [])

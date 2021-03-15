@@ -1,0 +1,60 @@
+.order-list {
+    &__orders-container {
+        color: #000000;
+    }
+    &__option {
+        width: 1440px;
+        height: 45px;
+        background: #ffffff;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+    }
+    &__orders-header {
+        display: grid;
+        grid-template-columns: 309px 543px 296px 292px;
+        width: 1440px;
+        height: 45px;
+        background: #ffffff;
+        box-sizing: border-box;
+        font-family: Monotype Corsiva;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 27px;
+    }
+    &__options-list {
+        width: 1440px;
+        height: 45px;
+        display: grid;
+        background: #ffffff;
+        grid-template-columns: 309px 543px 296px 292px;
+        background: #ffffff;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        font-family: Monotype Corsiva;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 27px;
+        margin-bottom: 1%;
+        & div {
+            display: flex;
+            align-items: center;
+            border-right: 1px solid #000000;
+            &:nth-child(4) {
+                border-right: none;
+                justify-content: center;
+            }
+            &:nth-child(2) {
+                justify-content: center;
+            }
+            &:nth-child(odd) {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

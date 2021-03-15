@@ -1,6 +1,6 @@
 import React from 'react'
 import './Footer.scss'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import logo from '../../assets/png/logo.png'
 
 export default function Footer() {

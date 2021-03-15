@@ -2,8 +2,15 @@
   background-color: #000;
 
   &__logo-container {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
+    & img {
+      position: absolute;
+      left: 0;
+      top: -50px;
+    }
     & div {
       display: flex;
       align-items: flex-end;
@@ -19,6 +26,7 @@
     }
   }
   &__basket {
+    margin-left: 1%;
     cursor: pointer;
   }
   &__nav-list {

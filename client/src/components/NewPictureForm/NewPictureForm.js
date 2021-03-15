@@ -2,8 +2,12 @@ import React, { useState, useCallback } from 'react'
 import './NewPictureForm.scss'
 import axios from 'axios'
 import config from '../../config/default.json'
+import { getTypesOfClothing } from '../../redux/selector/picturesSelector'
+import { useSelector } from 'react-redux'
 
 export default function NewPictureForm() {
+  const stateTypes = useSelector(getTypesOfClothing)
+
   const [result, setResult] = useState({
     chart: {
       xxxs: { in: false, include: false },
@@ -164,12 +168,16 @@ export default function NewPictureForm() {
           <span>Тип </span>
 
           <div className='newPictureForm__labelContainer'>
+            {
+              stateTypes.map(typeClothes => (
 
-            <label htmlFor="trousers" className='newPictureForm__radioContainer'>
-              <input type='radio' id='trousers' name='type' value="trousers" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-              <span>Штаны</span>
-            </label>
-            <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
+                <label htmlFor={typeClothes} className='newPictureForm__radioContainer'>
+                  <input type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => setResult({ ...result, type: e.target.value })} />
+                  <span>{typeClothes} </span>
+                </label>
+              ))
+            }
+            {/* <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
               <input type='radio' id='t-shirts' name='type' value="t-shirts" onChange={(e) => setResult({ ...result, type: e.target.value })} />
               <span>Футболки</span>
             </label>
@@ -180,7 +188,7 @@ export default function NewPictureForm() {
             <label htmlFor="jumpsuits" className='newPictureForm__radioContainer'>
               <input type='radio' id='jumpsuits' name='type' value="jumpsuits" onChange={(e) => setResult({ ...result, type: e.target.value })} />
               <span >Комбинизоны</span>
-            </label>
+            </label> */}
 
           </div>
         </div>

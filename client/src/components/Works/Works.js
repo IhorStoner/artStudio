@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Button from '../Button/Button'
 import PictureItem from '../PictureItem/PictureItem'
-import { fetchPictures, setStateTipe } from '../../redux/action/picturesAction'
+import { fetchPictures, setStateType } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPictures, getStateTipe } from '../../redux/selector/picturesSelector'
+import { getPictures, getStateType, getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import './Works.scss'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
 import config from '../../config/default.json'
@@ -13,11 +13,13 @@ import axios from 'axios'
 
 export default function Works() {
   const [picturePage, setPicturePage] = useState(false)
+  const stateTypes = useSelector(getTypesOfClothing)
   const [picturePreview, setPicturePreview] = useState(false)
   const [id, setId] = useState()
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
-  const stateTipe = useSelector(getStateTipe)
+  const stateType = useSelector(getStateType)
+
 
   const handleOpeningPicture = id => {
     if (picturePage) {
@@ -30,30 +32,28 @@ export default function Works() {
   }
   useEffect(() => {
 
-    dispatch(fetchPictures(stateTipe))
-  }, [stateTipe])
+    dispatch(fetchPictures(stateType))
+    setStateType(stateType[0])
+  }, [stateType])
 
   const handleOpenPreview = (picture) => {
     setPicturePreview(picture)
   }
 
-  const fetchTypes = async (activeItem) => { // получение из базы данных коллекцию уникальных типов
-    const data = axios.get(`${config.serverUrl}/api/pictures/categories`).then(
-      res => console.log(res.data))
-    console.log(data)
-    return data;
-  };
-
-
-
   return (
     <div className='works'>
       <div className="works__btns">
-        <Button text={'Штаны'} active={stateTipe === 'trousers'} onClick={() => { dispatch(setStateTipe('trousers')); setPicturePage(false) }} />
-        <Button text={'Футболки'} active={stateTipe === 't-shirts'} onClick={() => { dispatch(setStateTipe('t-shirts')); setPicturePage(false) }} />
-        <Button text={'Куртки'} active={stateTipe === 'jackets'} onClick={() => { dispatch(setStateTipe('jackets')); setPicturePage(false) }} />
-        <Button text={'Комбинизоны'} active={stateTipe === 'jumpsuits'} onClick={() => { dispatch(setStateTipe('jumpsuits'));; setPicturePage(false) }} />
-        {/* <Button text={'types'} active={stateTipe === 'jumpsuits'} onClick={() => fetchTypes()} /> */}
+        {stateTypes.map(typeClothes => (
+          <Button
+            key={typeClothes}
+            text={typeClothes}
+            active={stateType === typeClothes}
+            onClick={() => {
+              dispatch(setStateType([typeClothes]));
+              setPicturePage(false)
+            }} />
+        ))}
+
       </div>
       {
         picturePage

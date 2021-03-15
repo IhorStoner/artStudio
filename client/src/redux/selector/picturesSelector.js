@@ -15,11 +15,15 @@ export const getStateEdditPicture = createSelector(
   stateEdditPicture => stateEdditPicture
 )
 
-export const getOrderList = createSelector(
+export const getStateOrder = createSelector(
   state => state.pictures.stateOrder,
   stateOrder => stateOrder
 )
-export const getStateTipe = createSelector(
-  state => state.pictures.stateTipe,
-  stateTipe => stateTipe
+export const getStateType = createSelector(
+  state => state.pictures.stateType,
+  stateType => stateType
+)
+export const getTypesOfClothing = createSelector(
+  state => state.pictures.typeOfClothing,
+  typeOfClothing => typeOfClothing
 )

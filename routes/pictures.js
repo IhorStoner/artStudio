@@ -8,33 +8,17 @@ pictureRouter.get('/', async (req, res) => {
   res.status(200).json(pictures)
 })
 
-pictureRouter.get('/trousers', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 'trousers' });
+pictureRouter.get('/types/:type', async (req, res) => {
+  const pictures = await PictureModel.find({ type: req.params.type });
   res.status(200).json(pictures)
 })
 
-pictureRouter.get('/t-shirts', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 't-shirts' });
-  res.status(200).json(pictures)
-})
-pictureRouter.get('/jackets', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 'jackets' });
-  res.status(200).json(pictures)
-})
-pictureRouter.get('/jumpsuits', async (req, res) => {
-  const pictures = await PictureModel.find({ type: 'jumpsuits' });
-  res.status(200).json(pictures)
-})
-pictureRouter.get('/all/all', async (req, res) => {
-  const pictures = await PictureModel.find({});
-  res.status(200).json(pictures)
-})
+
 pictureRouter.get('/categories', async (req, res) => {
+  console.log(req)
   const pictures = await PictureModel.distinct('type');
   res.status(200).json(pictures)
 })
-
-
 
 pictureRouter.get('/:pictureId', async (req, res) => {
   const picture = await PictureModel.find({ _id: req.params.pictureId });
@@ -66,3 +50,29 @@ pictureRouter.post('/', async (req, res) => {
 })
 
 module.exports = pictureRouter;
+
+
+// pictureRouter.get('/trousers', async (req, res) => {
+//   const pictures = await PictureModel.find({ type: 'trousers' });
+//   res.status(200).json(pictures)
+// })
+
+// pictureRouter.get('/t-shirts', async (req, res) => {
+//   const pictures = await PictureModel.find({ type: 't-shirts' });
+//   res.status(200).json(pictures)
+// })
+
+// pictureRouter.get('/jackets', async (req, res) => {
+//   const pictures = await PictureModel.find({ type: 'jackets' });
+//   res.status(200).json(pictures)
+// })
+
+// pictureRouter.get('/jumpsuits', async (req, res) => {
+//   const pictures = await PictureModel.find({ type: 'jumpsuits' });
+//   res.status(200).json(pictures)
+// })
+
+// pictureRouter.get('/all/all', async (req, res) => {
+//   const pictures = await PictureModel.find({});
+//   res.status(200).json(pictures)
+// })

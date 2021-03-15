@@ -3,10 +3,12 @@ import './EdditPicturesForm.scss'
 import axios from 'axios'
 import config from '../../config/default.json'
 import { useDispatch, useSelector } from 'react-redux'
-import { getStateEdditPicture } from '../../redux/selector/picturesSelector'
+import { getStateEdditPicture, getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import { setStateEdditPicture } from '../../redux/action/picturesAction'
 
 export default function EdditPictureForm() {
+    const stateTypes = useSelector(getTypesOfClothing)
+
     const [result, setResult] = useState({})
     const [images, setImages] = useState([])
     const [currentImages, setCurrentImages] = useState([])
@@ -188,22 +190,15 @@ export default function EdditPictureForm() {
 
                     <div className='newPictureForm__labelContainer'>
 
-                        <label htmlFor="trousers" className='newPictureForm__radioContainer'>
-                            <input type='radio' id='trousers' name='type' value="trousers" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-                            <span>Штаны</span>
-                        </label>
-                        <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
-                            <input type='radio' id='t-shirts' name='type' value="t-shirts" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-                            <span>Футболки</span>
-                        </label>
-                        <label htmlFor="jackets" className='newPictureForm__radioContainer'>
-                            <input type='radio' id='jackets' name='type' value="jackets" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-                            <span >Куртки</span>
-                        </label>
-                        <label htmlFor="jumpsuits" className='newPictureForm__radioContainer'>
-                            <input type='radio' id='jumpsuits' name='type' value="jumpsuits" onChange={(e) => setResult({ ...result, type: e.target.value })} />
-                            <span >Комбинизоны</span>
-                        </label>
+                        {
+                            stateTypes.map(typeClothes => (
+
+                                <label htmlFor={typeClothes} className='newPictureForm__radioContainer'>
+                                    <input type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => setResult({ ...result, type: e.target.value })} />
+                                    <span>{typeClothes} </span>
+                                </label>
+                            ))
+                        }
 
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import config from '../../config/default.json'
 
 export const fetchPictures = createAsyncThunk('pictures/fetchPictures', async (activeItem) => {
-  const data = axios.get(`${config.serverUrl}/api/pictures/${activeItem}`).then(
+  const data = axios.get(`${config.serverUrl}/api/pictures/types/${activeItem}`).then(
     res => res.data)
   return data;
 });
@@ -14,7 +14,14 @@ export const fetchOnePicture = createAsyncThunk('pictures/fetchOnePicture', asyn
   return data;
 });
 
+export const fetchTypesOfClothing = createAsyncThunk('pictures/fetchTypes', async () => {
+  const data = axios.get(`${config.serverUrl}/api/pictures/categories`).then(
+    res => res.data)
+  return data;
+})
+
+export const setTypesOfClothing = createAction('SET_TYPES_OF_CLOTHING')
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')
-export const setStateTipe = createAction('SET_STATE_TIPE')
+export const setStateType = createAction('SET_STATE_TIPE')
 export const refreshOrderedGoods = createAction('DELETE_ORDERED_GOODS')

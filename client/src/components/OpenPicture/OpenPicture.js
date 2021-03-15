@@ -8,7 +8,7 @@ import config from '../../config/default.json'
 import { useHistory } from 'react-router'
 import { setOrderedGoods } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrderList } from '../../redux/selector/picturesSelector'
+import { getStateOrder } from '../../redux/selector/picturesSelector'
 
 
 const conditions = {
@@ -24,7 +24,7 @@ export default function OpenPicture({ picture }) {
   const [sentToBasket, setSentToBasket] = useState(false)
   const { push } = useHistory()
   const dispatch = useDispatch()
-  const stateOrder = useSelector(getOrderList)
+  const stateOrder = useSelector(getStateOrder)
 
 
   useEffect(() => {

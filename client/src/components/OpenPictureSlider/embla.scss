@@ -45,7 +45,7 @@
   height: 375px;
 
   &--height {
-    height: 900px;
+    height: 568px;
   }
 }
 
@@ -54,10 +54,11 @@
   display: block;
   top: 50%;
   left: 50%;
-  width: auto;
-  min-height: 100%;
-  min-width: 100%;
-  max-width: none;
+  width: 658px;
+  height: 658px;
+  // min-height: 100%;
+  // min-width: 100%;
+  // max-width: none;
   transform: translate(-50%, -50%);
 }
 
