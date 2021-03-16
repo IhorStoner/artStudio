@@ -3,6 +3,23 @@
   margin: 0 auto;
   padding: 10px 0;
 
+  &__popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    opacity: 0.95;
+    z-index: 1000;
+    & div {
+      opacity: 1;
+    }
+  }
+
   &__btns {
     display: flex;
     justify-content: space-between;
@@ -11,8 +28,6 @@
       width: 24%;
       margin-bottom: 1%;
     }
-    // grid-template-columns: repeat(4, 1fr);
-    // grid-row: auto;
   }
 
   &__content {
@@ -26,16 +41,10 @@
   }
 
   &__item {
-    // margin-right: 2.3%;
     margin-bottom: 2%;
-
-    // &:nth-child(1n) {
-    //   align-self: flex-start;
-    // }
 
     &:nth-child(2n) {
       margin-right: 0;
-      // align-self: flex-end;
     }
   }
 }

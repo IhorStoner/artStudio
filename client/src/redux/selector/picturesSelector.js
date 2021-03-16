@@ -27,3 +27,7 @@ export const getTypesOfClothing = createSelector(
   state => state.pictures.typeOfClothing,
   typeOfClothing => typeOfClothing
 )
+export const getPicturePreview = createSelector(
+  state => state.pictures.picturePreview,
+  picturePreview => picturePreview
+)

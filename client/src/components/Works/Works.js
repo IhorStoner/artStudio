@@ -1,20 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from '../Button/Button'
 import PictureItem from '../PictureItem/PictureItem'
 import { fetchPictures, setStateType } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPictures, getStateType, getTypesOfClothing } from '../../redux/selector/picturesSelector'
+import { getPicturePreview, getPictures, getStateType, getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import './Works.scss'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
-import config from '../../config/default.json'
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
 
 
 export default function Works() {
   const [picturePage, setPicturePage] = useState(false)
   const stateTypes = useSelector(getTypesOfClothing)
-  const [picturePreview, setPicturePreview] = useState(false)
+  const picturePreview = useSelector(getPicturePreview)
   const [id, setId] = useState()
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
@@ -30,34 +28,38 @@ export default function Works() {
       setPicturePage(true)
     }
   }
+
   useEffect(() => {
 
     dispatch(fetchPictures(stateType))
-    setStateType(stateType[0])
+
   }, [stateType])
 
-  const handleOpenPreview = (picture) => {
-    setPicturePreview(picture)
-  }
 
   return (
     <div className='works'>
+      {
+        picturePreview && <div className='works__popup'>
+          <OpenPictureSlider imgArr={picturePreview} thumbs={true} />
+        </div>
+      }
       <div className="works__btns">
-        {stateTypes.map(typeClothes => (
+        {stateTypes.map(type => (
           <Button
-            key={typeClothes}
-            text={typeClothes}
-            active={stateType === typeClothes}
+            key={type}
+            text={type}
+            active={stateType[0] === type}
             onClick={() => {
-              dispatch(setStateType([typeClothes]));
+              dispatch(setStateType([type]));
               setPicturePage(false)
             }} />
-        ))}
+        )
+        )}
 
       </div>
       {
         picturePage
-          ? <OpenPicturePage handleOpenPreview={handleOpenPreview} id={id} />
+          ? <OpenPicturePage id={id} />
           : <div className="works__content">
             {pictures?.map((picture, index) => (
               <PictureItem

@@ -1,11 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchOrders } from "../action/orderAction";
+import { fetchOrders, setIndexOfList } from "../action/orderAction";
 
 const initialState = {
     loading: false,
     data: [],
     error: [],
-    orders: []
+    orders: [],
+    indexOfList: null
 };
 
 const ordersReducer = createReducer(initialState, {
@@ -22,7 +23,9 @@ const ordersReducer = createReducer(initialState, {
         state.loading = false;
         state.error = action.payload;
     },
-
+    [setIndexOfList.type]: (state, action) => {
+        state.indexOfList = action.payload
+    },
 });
 
 export default ordersReducer

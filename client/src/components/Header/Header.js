@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <div className='header'>
-      {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>}
+      {isAuthenticated && <center> <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink> </center>}
       <div className="container">
         <div className="header__logo-container">
           <img src={logo} alt="artStudio" />
@@ -31,10 +31,10 @@ export default function Header() {
         <nav className='header__nav'>
           <ul className="header__nav-list">
             <li>
-              <NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
+              <NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
             </li>
             <li>
-              <NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
+              <NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
             </li>
             <li >
               <NavLink to='/home/masters' className={`header__nav-item ${nav === 'masters' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>

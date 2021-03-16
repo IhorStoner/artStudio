@@ -48,7 +48,6 @@ export default function BigImages({ thumbs = true }) {
     }, [embla, onSelect]);
 
     useEffect(() => {
-        console.log(picture)
     }, [picture])
 
     return (

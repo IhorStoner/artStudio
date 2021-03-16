@@ -23,5 +23,7 @@ export const fetchTypesOfClothing = createAsyncThunk('pictures/fetchTypes', asyn
 export const setTypesOfClothing = createAction('SET_TYPES_OF_CLOTHING')
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')
+export const resetOrderedGoods = createAction('RESET_ORDERED_GOODS')
 export const setStateType = createAction('SET_STATE_TIPE')
 export const refreshOrderedGoods = createAction('DELETE_ORDERED_GOODS')
+export const setPicturePreview = createAction('SET_PICTURE_PREVIEW')

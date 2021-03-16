@@ -8,7 +8,6 @@ import { setStateEdditPicture } from '../../redux/action/picturesAction'
 
 export default function EdditPictureForm() {
     const stateTypes = useSelector(getTypesOfClothing)
-
     const [result, setResult] = useState({})
     const [images, setImages] = useState([])
     const [currentImages, setCurrentImages] = useState([])
@@ -16,17 +15,14 @@ export default function EdditPictureForm() {
     const dispatch = useDispatch()
     const stateEdditPicture = useSelector(getStateEdditPicture)
 
-
-    async function wrap(ev, cb) {
+    async function wrap(ev, callback) {
         const btn = ev.target;
-
         ev.preventDefault();
         btn.setAttribute('disabled', true);
-
         const formData = getFormData();
         let json;
         try {
-            json = await cb(formData);
+            json = await callback(formData);
         } catch (err) {
             console.error(err);
         }
@@ -73,10 +69,9 @@ export default function EdditPictureForm() {
 
     const onSubmit = useCallback(async (ev) => {
         const resultImg = await submitAxios(ev)
-        let finnalyData = result
-        finnalyData.images = resultImg
+        let { _id, chart, onSite, price, text, type, title } = result
 
-        const adId = await axios.post(`${config.serverUrl}/api/pictures`, finnalyData).then(res => setReset())
+        await axios.put(`${config.serverUrl}/api/pictures/${_id}`, { images: resultImg, chart, onSite, price, text, type, title }).then(res => setReset())
 
     }, [result])
 
@@ -108,7 +103,7 @@ export default function EdditPictureForm() {
 
     useEffect(() => {
         const { chart, type, onSite, price, text, _id, images } = stateEdditPicture
-        setResult({ chart, type, onSite, price, text })
+        setResult({ chart, type, onSite, price, text, _id })
         images.forEach(elem => setCurrentImages(currentImages => [...currentImages, `${config.serverUrl}/api/images/${elem}`]))
         return () => { resetState() }
     }, [])

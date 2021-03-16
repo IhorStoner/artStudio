@@ -4,14 +4,22 @@ import { useEmblaCarousel } from "embla-carousel/react";
 import config from '../../config/default.json'
 import { Thumb } from "./Thumbs";
 import './embla.scss'
-import { useHistory } from "react-router";
+import { ReactComponent as CloseSliderSVG } from '../../assets/svg/closeSlider.svg'
+import { useDispatch, useSelector } from "react-redux";
+import { getPicturePreview } from "../../redux/selector/picturesSelector";
+import { setPicturePreview } from "../../redux/action/picturesAction";
+
+
+
 
 export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons }) {
   const [viewportRef, embla] = useEmblaCarousel({ loop: true });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
-  const { push } = useHistory()
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const dispatch = useDispatch()
+
+  const picturePreview = useSelector(getPicturePreview)
   const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
     containScroll: "keepSnaps",
     selectedClass: ""
@@ -44,15 +52,15 @@ export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons 
   }, [embla, onSelect]);
 
   return (
-    <>
+    <div >
       <div className="embla embla--width">
+        {picturePreview && <CloseSliderSVG onClick={() => dispatch(setPicturePreview(null))} className="embla embla--svg" />}
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
             {imgArr.map((img, index) => (
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner embla__slide__inner--height">
                   <img
-                    onClick={() => { push('/home/preview') }}
                     className="embla__slide__img sliderPopup__img"
                     src={`${config.serverUrl}/api/images/${img}`}
                     alt="sliderImg"
@@ -88,6 +96,6 @@ export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons 
           </div>
         }
       </div>
-    </>
+    </div>
   )
 }

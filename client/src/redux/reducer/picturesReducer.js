@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { fetchPictures, fetchOnePicture, setStateEdditPicture, setOrderedGoods, setStateType, refreshOrderedGoods, fetchTypesOfClothing, setTypesOfClothing } from '../action/picturesAction'
+import { fetchPictures, fetchOnePicture, setStateEdditPicture, setOrderedGoods, setStateType, refreshOrderedGoods, fetchTypesOfClothing, setTypesOfClothing, resetOrderedGoods, setPicturePreview } from '../action/picturesAction'
 
 const initialState = {
   loading: false,
@@ -10,8 +10,8 @@ const initialState = {
   stateEdditPicture: {},
   stateOrder: [],
   stateType: 'trousers',
-  typeOfClothing: []
-
+  typeOfClothing: [],
+  picturePreview: null
 };
 
 const picturesReducer = createReducer(initialState, {
@@ -54,11 +54,17 @@ const picturesReducer = createReducer(initialState, {
   [setOrderedGoods.type]: (state, action) => {
     state.stateOrder.push(action.payload)
   },
+  [resetOrderedGoods.type]: (state, action) => {
+    state.stateOrder = action.payload
+  },
   [setStateType.type]: (state, action) => {
     state.stateType = action.payload
   },
   [refreshOrderedGoods.type]: (state, action) => {
     state.stateOrder = action.payload
+  },
+  [setPicturePreview.type]: (state, action) => {
+    state.picturePreview = action.payload
   }
 });
 

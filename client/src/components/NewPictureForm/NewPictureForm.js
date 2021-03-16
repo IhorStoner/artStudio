@@ -45,7 +45,6 @@ export default function NewPictureForm() {
   function getFormData() {
     const formData = new FormData();
     [...images].map(img => formData.append('pictures', img))
-    console.log(formData)
     return formData;
   }
 
@@ -127,7 +126,7 @@ export default function NewPictureForm() {
           </p>
           <div className='newPictureForm__images'>
             <label htmlFor="files" className="newPictureForm__labelFile">
-              <input className='newPictureForm__inputFile' id='files' name='files' type="file" multiple onChange={(e) => { setImages((images) => [...images, ...e.target.files]); console.log(images) }} />
+              <input className='newPictureForm__inputFile' id='files' name='files' type="file" multiple onChange={(e) => { setImages((images) => [...images, ...e.target.files]) }} />
             </label>
             {[...images].map((file, i) =>
               <div key={i} className="newPictureForm__imgContainer">

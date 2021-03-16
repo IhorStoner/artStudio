@@ -1,0 +1,160 @@
+.order-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &__header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 42px;
+        margin: 30px;
+        &--status {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &__main-container {
+        display: flex;
+    }
+    &__goods-info {
+        display: flex;
+        width: 45%;
+        flex-direction: column;
+        &--total {
+            display: flex;
+            width: 100%;
+            align-items: flex-end;
+            justify-content: flex-end;
+            font-family: Monotype Corsiva;
+            font-style: italic;
+            font-weight: normal;
+            font-size: 18px;
+            & > span {
+                display: flex;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    &__popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        opacity: 0.85;
+        z-index: 1000;
+        & > div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 608px;
+            height: 322px;
+            font-weight: normal;
+            font-size: 48px;
+            line-height: 54px;
+            text-align: center;
+            color: #000000;
+            background: #ffffff;
+            border: 1px solid #000000;
+            box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            & div {
+                display: flex;
+                justify-content: space-between;
+                padding: 0 35px 35px 35px;
+                & button {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 242px;
+                    height: 82px;
+                    border: 1px solid #000000;
+                    box-sizing: border-box;
+                    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+                    border-radius: 10px;
+                    font-family: Monotype Corsiva;
+                    font-weight: normal;
+                    font-size: 30px;
+                    line-height: 34px;
+                    &:hover {
+                        background: #000000;
+                        border: 1px solid #000000;
+                        box-sizing: border-box;
+                        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+                        border-radius: 10px;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    &__button {
+        cursor: pointer;
+        width: 345px;
+        height: 54px;
+
+        background: #000000;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        color: #ffffff;
+        font-family: Monotype Corsiva;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 48px;
+        line-height: 54px;
+    }
+
+    &__client-info {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        font-family: Monotype Corsiva;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 34px;
+        &--option {
+            display: flex;
+            margin-bottom: 20px;
+            & > div {
+                width: 40%;
+            }
+            & > div + div {
+                margin-left: 15px;
+                width: 55%;
+            }
+        }
+    }
+    &__card-goods {
+        margin-left: 70px;
+        display: flex;
+        margin-bottom: 10px;
+        &--info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 350px;
+            height: 101px;
+            font-size: 22px;
+            line-height: 25px;
+        }
+        &--img {
+            width: 101px;
+            height: 101px;
+            border: 1px solid #ffffff;
+            box-sizing: border-box;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+    }
+}

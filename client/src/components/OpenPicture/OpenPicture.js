@@ -78,7 +78,7 @@ export default function OpenPicture({ picture }) {
             </div>
           </div>
           <div className='sent-to-basket__foot'>
-            <button onClick={() => { push('/home/works') }}> Вернуться к покупкам </button>
+            <button onClick={() => { push('/home/') }}> Вернуться к покупкам </button>
             <button onClick={() => { setToBasket(); push('/home/orderForm') }}> Оформить заказ </button>
           </div>
         </div>

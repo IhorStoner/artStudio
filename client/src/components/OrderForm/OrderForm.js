@@ -8,21 +8,23 @@ import { ReactComponent as DeleteSVG } from '../../assets/svg/basketDelete.svg'
 
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
-import { refreshOrderedGoods } from '../../redux/action/picturesAction'
+import { refreshOrderedGoods, resetOrderedGoods } from '../../redux/action/picturesAction'
 import axios from 'axios'
+import { useHistory } from 'react-router'
 
 
 export const OrderForm = () => {
     const dispatch = useDispatch()
     const stateOrder = useSelector(getStateOrder)
-
+    const [confirm, setConfirm] = useState(false)
+    const { push } = useHistory()
     const [clientInfo, setClientInfo] = useState({
         initials: '',
-        phone: '80',
+        phone: '380',
         city: '',
         email: '',
-        deliver: '',
-        payment: '',
+        deliver: 'Новая Почта',
+        payment: 'Наличными',
         coment: ''
     })
     const [touchedControll, setTouchedControll] = useState({
@@ -36,9 +38,10 @@ export const OrderForm = () => {
                 ? false
                 : true
         }
+
         if (name === 'phone') {
             // return value && !/^(0|[1-9][0-9]{11})$/i.test(value)
-            return value.length !== 11
+            return value.length !== 12
                 ? false
                 : true
         }
@@ -46,6 +49,7 @@ export const OrderForm = () => {
 
 
     const onSubmit = async (e) => {
+        e.preventDefault()
         const model = {
             comment: clientInfo.comment,
             price: stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0),
@@ -54,12 +58,9 @@ export const OrderForm = () => {
             status: 'Новый',
             client: clientInfo
         }
-
-        e.preventDefault()
-        console.clear()
-        console.log(stateOrder)
-        console.log(clientInfo)
         const adId = await axios.post(`${config.serverUrl}/api/order`, model).then(res => console.log(res.data))
+        setConfirm(model.orderNumber)
+
     }
 
 
@@ -85,6 +86,12 @@ export const OrderForm = () => {
 
     return (
         <div className='container'>
+            {confirm && <div className='order-form__popup'>
+                <div className='order-form__modal'>Ваш заказ (№ {confirm}) принят, в ближайшее время с вами свяжется оператор.<div>
+                    <button onClick={() => { setConfirm(false); push('/home/works'); dispatch(resetOrderedGoods([])) }}>Хорошо :)</button>
+                </div>
+                </div>
+            </div>}
             <div className="order-form__head">Оформление заказа</div>
             <div className="order-form__label">
                 <div>
@@ -187,7 +194,6 @@ export const OrderForm = () => {
                                         <p>Размер - {elem.size?.toUpperCase()}</p>
                                     </span>
                                     <div className="order-form__choose-size">
-                                        {/* <button className="order-form__choose-btn" > */}
                                         <button
                                             className="order-form__choose-btn"
                                             onClick={(e) => {
@@ -200,7 +206,6 @@ export const OrderForm = () => {
                                             <Discreate />
                                         </button>
                                         {elem.amount}
-                                        {/* <button className="order-form__choose-btn"> */}
                                         <button
                                             className="order-form__choose-btn"
                                             onClick={(e) => {
@@ -215,18 +220,17 @@ export const OrderForm = () => {
                                     </div>
                                 </div>
                                 <div className='order-form__card-goods--amount'>
-                                    <DeleteSVG onClick={() => { dispatch(refreshOrderedGoods(stateOrder.filter(el => el._id !== elem._id))); console.log(elem._id) }} />
+                                    <DeleteSVG onClick={() => { dispatch(refreshOrderedGoods(stateOrder.filter(el => el._id !== elem._id))) }} />
                                     <p>{elem.price} грн</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                     <div className="order-form__card-goods--total">
-                        <span>Итог </span> {stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)}
+                        <span> Итог </span> {stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)}
                     </div>
                 </div>
                 <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div>
-                {/* <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div> */}
             </form>
         </div>
     )

@@ -15,7 +15,6 @@ pictureRouter.get('/types/:type', async (req, res) => {
 
 
 pictureRouter.get('/categories', async (req, res) => {
-  console.log(req)
   const pictures = await PictureModel.distinct('type');
   res.status(200).json(pictures)
 })
@@ -31,9 +30,20 @@ pictureRouter.get('/:pictureId', async (req, res) => {
   }
 })
 
+pictureRouter.put('/:pictureId', async (req, res) => {
+  console.log("req:BODY :", req.body)
+  const picture = await PictureModel.findByIdAndUpdate(req.params.pictureId, req.body, { new: true });
+
+  if (!picture) {
+    res.status(400).send({ error: 'Picture not found' });
+    return
+  } else {
+    res.status(200).send(picture);
+  }
+})
+
 
 pictureRouter.delete('/:pictureId', async (req, res) => {
-  console.log(req.data)
   const picture = await PictureModel.deleteOne({ _id: req.params.pictureId });
   if (!picture) {
     res.status(400).send({ error: 'Picture not found' });
@@ -50,29 +60,3 @@ pictureRouter.post('/', async (req, res) => {
 })
 
 module.exports = pictureRouter;
-
-
-// pictureRouter.get('/trousers', async (req, res) => {
-//   const pictures = await PictureModel.find({ type: 'trousers' });
-//   res.status(200).json(pictures)
-// })
-
-// pictureRouter.get('/t-shirts', async (req, res) => {
-//   const pictures = await PictureModel.find({ type: 't-shirts' });
-//   res.status(200).json(pictures)
-// })
-
-// pictureRouter.get('/jackets', async (req, res) => {
-//   const pictures = await PictureModel.find({ type: 'jackets' });
-//   res.status(200).json(pictures)
-// })
-
-// pictureRouter.get('/jumpsuits', async (req, res) => {
-//   const pictures = await PictureModel.find({ type: 'jumpsuits' });
-//   res.status(200).json(pictures)
-// })
-
-// pictureRouter.get('/all/all', async (req, res) => {
-//   const pictures = await PictureModel.find({});
-//   res.status(200).json(pictures)
-// })

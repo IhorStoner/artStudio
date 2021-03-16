@@ -5,6 +5,15 @@
   margin-left: auto;
   margin-right: auto;
 
+  &--svg {
+    position: absolute;
+    left: 580px;
+    top: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    background: black;
+    opacity: 0.95;
+  }
   &--width {
     max-width: 900px;
   }
@@ -26,6 +35,7 @@
 
 .embla__container {
   display: flex;
+  width: 600px;
   user-select: none;
   -webkit-touch-callout: none;
   -khtml-user-select: none;

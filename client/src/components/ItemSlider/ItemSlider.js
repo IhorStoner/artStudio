@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { PrevButton, NextButton } from "./SliderBtns";
 import { useEmblaCarousel } from "embla-carousel/react";
-import "./embla.scss";
 import config from '../../config/default.json'
+import { setPicturePreview } from "../../redux/action/picturesAction";
+import { useDispatch } from "react-redux";
+import "./embla.scss";
 
 
 export default function ItemSlider({ imgArr }) {
   const [viewportRef, embla] = useEmblaCarousel({ loop: true });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
-
+  const dispatch = useDispatch()
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
   const onSelect = useCallback(() => {
@@ -34,6 +36,7 @@ export default function ItemSlider({ imgArr }) {
             <div className="embla__slide" key={index}>
               <div className="embla__slide__inner">
                 <img
+                  onClick={() => dispatch(setPicturePreview(imgArr))}
                   className="embla__slide__img sliderPopup__img"
                   src={`${config.serverUrl}/api/images/${img}`}
                   alt="sliderImg"
