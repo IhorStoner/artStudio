@@ -15,20 +15,21 @@ import { setStateEdditPicture } from '../../redux/action/picturesAction'
 export default function AdminPicturesList({ setActiveItem }) {
   const [deletePicture, setDeletePicture] = useState(false)
   const [idDeletePicture, setIdDeletePicture] = useState(null)
+  const [currentPage, setcurrentPage] = useState(1)
+  const [numberOfPage, setNumberOfPage] = useState(8)
   const [state, setState] = useState()
   const dispatch = useDispatch()
 
   const fetchData = useCallback(async (ev) => {
-
-    const { data } = await axios.get(`${config.serverUrl}/api/pictures/`)
-    const freshDate = data.map(elem => ({ ...elem, date: elem.date.slice(0, 10).replace(/-/g, '.') }))
+    const { data } = await axios.get(`${config.serverUrl}/api/pictures/pagination/${currentPage}`,)
+    const freshDate = data[0].map(elem => ({ ...elem, date: elem.date.slice(0, 10).replace(/-/g, '.') }))
+    setNumberOfPage(data[1])
     setState(freshDate)
   }, [])
 
   useEffect(() => {
     fetchData()
-  }, [])
-
+  }, [currentPage])
 
   const deleteObj = useCallback(async (imgId) => {
     await axios.delete(`${config.serverUrl}/api/pictures/${imgId}`).then(res => console.log('res ', res))
@@ -38,13 +39,11 @@ export default function AdminPicturesList({ setActiveItem }) {
   const refToCorrect = (obj) => {
     setActiveItem('edditPicture')
     dispatch(setStateEdditPicture(obj))
-
   }
 
   const handleDeleteObj = (id) => {
     deleteObj(id)
   }
-
 
   return (
     <div className="container">
@@ -90,7 +89,7 @@ export default function AdminPicturesList({ setActiveItem }) {
         <div className="admin-pictures-list__pagination-container" >
           <div><span className='admin-pictures-list__pointer'>Первая</span></div>
           <div><span className='admin-pictures-list__pointer'>Предидущая</span></div>
-          <div> 4 5 6 7 8 9 10 </div>
+          <div className='admin-pictures-list__pages'>{new Array(numberOfPage).fill(1).map((_, i) => (<div className='admin-pictures-list__number'> {i + 1} </div>))}</div>
           <div><span className='admin-pictures-list__pointer'>Следующая</span></div>
           <div><span className='admin-pictures-list__pointer'>Последняя</span></div>
         </div>

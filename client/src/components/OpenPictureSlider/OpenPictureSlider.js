@@ -53,8 +53,8 @@ export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons 
 
   return (
     <div >
-      <div className="embla embla--width">
-        {picturePreview && <CloseSliderSVG onClick={() => dispatch(setPicturePreview(null))} className="embla embla--svg" />}
+      <div className="embla--width">
+
         <div className="embla__viewport" ref={viewportRef}>
           <div className="embla__container">
             {imgArr.map((img, index) => (

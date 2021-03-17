@@ -9,7 +9,7 @@ const initialState = {
   error: null,
   stateEdditPicture: {},
   stateOrder: [],
-  stateType: 'trousers',
+  stateType: '',
   typeOfClothing: [],
   picturePreview: null
 };

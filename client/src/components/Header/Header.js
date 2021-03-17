@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Header.scss'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
@@ -6,27 +6,40 @@ import { ReactComponent as Instagram } from '../../assets/svg/instagram.svg'
 import { ReactComponent as Telegram } from '../../assets/svg/telegram.svg'
 import { ReactComponent as Basket } from '../../assets/svg/basket.svg'
 import logo from '../../assets/png/logo.png'
-
+import { useSelector } from 'react-redux'
+import { getStateOrder } from '../../redux/selector/picturesSelector'
 
 export default function Header() {
+
+  const stateOrder = useSelector(getStateOrder)
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
   const { push } = useHistory()
+  const [amount, setAmount] = useState(null)
+
+  useEffect(() => {
+    const count = stateOrder.reduce((accum, elem) => { return accum + elem.amount }, 0)
+    setAmount(count)
+  }, [stateOrder])
+
+  // doubleClickHandler = (url) => {
+  //   const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+  //   if (newWindow) newWindow.opener = null
+  // }
+
 
   return (
     <div className='header'>
       {isAuthenticated && <center> <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink> </center>}
       <div className="container">
         <div className="header__logo-container">
-          <img src={logo} alt="artStudio" />
+          <img src={logo} alt="artStudio" onClick={() => push('/home/works')} />
           <div>
             <Instagram />
             <Telegram />
             <span>+(380) 66 666 66 66</span>
           </div>
-          <Basket className="header__basket" onClick={() => push('/home/orderForm')} />
-
-          {/* <NavLink to='/home/aboutUs'><img className='header__logo' src={logo} alt="" /></NavLink> */}
+          <Basket className="header__basket" onClick={() => push('/home/orderForm')} /> <span>Корзина: {amount}</span>
         </div>
         <nav className='header__nav'>
           <ul className="header__nav-list">
@@ -41,9 +54,6 @@ export default function Header() {
             </li>
             <li>
               <NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
-            </li>
-            <li>
-              <NavLink to='/home/garants' className={`header__nav-item ${nav === 'garants' && 'header__nav-item--active'}`}>Гарантии качества</NavLink>
             </li>
           </ul>
         </nav>

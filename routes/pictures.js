@@ -3,11 +3,6 @@ const pictureRouter = Router();
 require('express-async-errors')
 const { PictureModel } = require('../models/PictureModel')
 
-pictureRouter.get('/', async (req, res) => {
-  const pictures = await PictureModel.find({});
-  res.status(200).json(pictures)
-})
-
 pictureRouter.get('/types/:type', async (req, res) => {
   const pictures = await PictureModel.find({ type: req.params.type });
   res.status(200).json(pictures)
@@ -31,7 +26,6 @@ pictureRouter.get('/:pictureId', async (req, res) => {
 })
 
 pictureRouter.put('/:pictureId', async (req, res) => {
-  console.log("req:BODY :", req.body)
   const picture = await PictureModel.findByIdAndUpdate(req.params.pictureId, req.body, { new: true });
 
   if (!picture) {
@@ -52,6 +46,27 @@ pictureRouter.delete('/:pictureId', async (req, res) => {
     res.status(200).send(picture);
   }
 })
+
+pictureRouter.get('/pagination/:params', async (req, res) => {
+  console.log(req.params.params)
+  const page = req.query.page || 1;
+  const pagesize = 1000;
+
+  let result = []
+  let pages = 'not found';
+  const items = await PictureModel.aggregate([{ $skip: ((page || 1) - 1) * pagesize }, { $limit: pagesize }])
+
+
+  if (items.length) {
+    const countAds = await PictureModel.aggregate([{ $count: 'ads' }])
+    pages = Math.ceil((Number(countAds[0].ads) / Number(pagesize)))
+    result = items
+    console.log('countAds ', countAds)
+  }
+
+  res.json([result, pages])
+})
+
 
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);

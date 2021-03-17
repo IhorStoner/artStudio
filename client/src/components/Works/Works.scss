@@ -12,12 +12,8 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background: black;
-    opacity: 0.95;
-    z-index: 1000;
-    & div {
-      opacity: 1;
-    }
+    background: rgba($color: #000000, $alpha: 0.7);
+    z-index: 100;
   }
 
   &__btns {

@@ -40,7 +40,6 @@ export const OrderForm = () => {
         }
 
         if (name === 'phone') {
-            // return value && !/^(0|[1-9][0-9]{11})$/i.test(value)
             return value.length !== 12
                 ? false
                 : true
@@ -199,7 +198,7 @@ export const OrderForm = () => {
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 elem.amount > 1 && dispatch(refreshOrderedGoods(stateOrder.map(
-                                                    el => el._id === elem._id ? { ...el, amount: el.amount - 1, price: el.amount * el.price } : el
+                                                    el => el._id === elem._id ? { ...el, amount: el.amount - 1 } : el
                                                 )))
                                             }}
                                         >

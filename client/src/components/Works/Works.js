@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPicturePreview, getPictures, getStateType, getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import './Works.scss'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
-import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
+import BigImages from '../BigImage/BigImages'
 
 
 export default function Works() {
@@ -17,7 +17,6 @@ export default function Works() {
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
   const stateType = useSelector(getStateType)
-
 
   const handleOpeningPicture = id => {
     if (picturePage) {
@@ -30,17 +29,19 @@ export default function Works() {
   }
 
   useEffect(() => {
-
     dispatch(fetchPictures(stateType))
-
   }, [stateType])
+
+  useEffect(() => {
+    dispatch(setStateType(stateTypes[0]))
+  }, [stateTypes])
 
 
   return (
     <div className='works'>
       {
-        picturePreview && <div className='works__popup'>
-          <OpenPictureSlider imgArr={picturePreview} thumbs={true} />
+        picturePreview && <div className='works__popup' >
+          <BigImages imgArr={picturePreview} thumbs={true} />
         </div>
       }
       <div className="works__btns">
@@ -48,9 +49,9 @@ export default function Works() {
           <Button
             key={type}
             text={type}
-            active={stateType[0] === type}
+            active={stateType === type}
             onClick={() => {
-              dispatch(setStateType([type]));
+              dispatch(setStateType(type));
               setPicturePage(false)
             }} />
         )

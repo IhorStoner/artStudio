@@ -4,6 +4,7 @@ import OpenPictureSlider from '../OpenPictureSlider/OpenPictureSlider'
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
 import { ReactComponent as BasketDelete } from '../../assets/svg/basketDelete.svg'
+import { ReactComponent as BtnClose } from '../../assets/svg/btnClose.svg'
 import config from '../../config/default.json'
 import { useHistory } from 'react-router'
 import { setOrderedGoods } from '../../redux/action/picturesAction'
@@ -45,7 +46,11 @@ export default function OpenPicture({ picture }) {
     <div className='container'>
       {sentToBasket && <div className="sent-to-basket">
         <div className="sent-to-basket__form">
-          <div className="sent-to-basket__head"><h2>Корзина</h2> <div> <span>Количество</span> <span>Стоимость</span></div></div>
+          <div className="sent-to-basket__head">
+            <h2>Корзина</h2>
+            <div> <span>Количество</span> <span>Стоимость</span></div>
+            <BtnClose className="sent-to-basket__btn-close" onClick={() => setSentToBasket(false)} />
+          </div>
           <div className="sent-to-basket__main">
             <div className="sent-to-basket__diskribe-image">
               {picture.images && <img src={`${config.serverUrl}/api/images/${picture.images[0]}`} className="sent-to-basket__img"></img >}

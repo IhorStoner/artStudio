@@ -144,11 +144,18 @@
       &:nth-child(1) {
         display: flex;
         justify-self: end;
-        padding-right: 10px;
       }
       &:nth-child(2) {
         margin: 0 auto;
       }
     }
+  }
+  &__pages {
+    display: flex;
+    justify-self: center;
+  }
+  &__number {
+    display: flex;
+    margin: 0 8px;
   }
 }

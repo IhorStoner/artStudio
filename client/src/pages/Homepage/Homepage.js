@@ -28,8 +28,6 @@ export default function Homepage({ adminPanel }) {
       {nav === 'aboutUs' && <div>ABOUT US</div>}
       {nav === 'works' && <Works />}
       {nav === 'orderForm' && <OrderForm />}
-      {nav === 'preview' && <BigImages />}
-
       {isAuthenticated && nav === 'adminPanel' && <AdminPanel />}
       <Footer />
     </div>

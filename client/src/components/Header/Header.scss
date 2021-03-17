@@ -1,11 +1,14 @@
 .header {
   background-color: #000;
-
+  font-size: 36px;
   &__logo-container {
+    width: 1200px;
     position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    color: #fff;
+    margin: 0 auto;
     & img {
       position: absolute;
       left: 0;
@@ -31,8 +34,11 @@
   }
   &__nav-list {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
+    :nth-child(4) {
+      margin-right: 80px;
+    }
   }
   &__nav-item {
     list-style-type: none;
@@ -40,7 +46,7 @@
     font-family: "Monotype Corsiva";
     cursor: pointer;
     text-decoration: none;
-
+    margin-right: 80px;
     &:hover {
       text-decoration: underline;
     }

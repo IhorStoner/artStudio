@@ -11,6 +11,12 @@
   background-color: rgba(0, 0, 0, 0.75);
   box-sizing: border-box;
 
+  &__btn-close {
+    position: absolute;
+    left: 700px;
+    top: -20px;
+  }
+
   &__basket {
     cursor: pointer;
   }
@@ -46,6 +52,7 @@
     // padding-bottom: 0;
   }
   &__head {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;

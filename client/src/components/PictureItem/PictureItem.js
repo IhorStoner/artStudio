@@ -1,14 +1,13 @@
 import React from 'react'
 import './PictureItem.scss'
-import ItemSlider from '../ItemSlider/ItemSlider'
-import { Link } from 'react-router-dom'
+import ItemsSlider from './ItemsSlider/ItemsSlider'
 
 export default function PictureItem({ picture, className, handleOpeningPicture }) {
 
   return (
     <div className={`picture ${className}`}>
       <div className="picture__slider">
-        <ItemSlider imgArr={picture.images} />
+        <ItemsSlider imgArr={picture.images} />
       </div>
       <span className="picture__text" title='открыть в новом окне'>
         {picture.text}
