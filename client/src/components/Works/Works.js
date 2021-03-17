@@ -29,7 +29,7 @@ export default function Works() {
   }
 
   useEffect(() => {
-    dispatch(fetchPictures(stateType))
+    stateType && dispatch(fetchPictures(stateType))
   }, [stateType])
 
   useEffect(() => {
