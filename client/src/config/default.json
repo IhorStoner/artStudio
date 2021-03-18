@@ -1,9 +1,7 @@
 {
   "mongoUri": "mongodb+srv://Ihor_S:123456789q@cluster01.hfdor.mongodb.net/usersAuth",
-  "serverUrl": "http://localhost:80",
-  "url": "http://localhost:3000/home/orderFrom",
-  "ur": "http://xlia.vip/home/orderFrom",
-  "serverUr": "http://xlia.vip"
+  "serverUr": "http://localhost:80",
+  "serverUrl": "http://xlia.vip"
 }
 
 

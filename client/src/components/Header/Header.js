@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <div className='header'>
-      {isAuthenticated && <center> <NavLink to='/home/adminPanel' className={`header__nav-item  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink> </center>}
+      {isAuthenticated && <center> <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink> </center>}
       <div className="container">
         <div className="header__logo-container">
           <img src={logo} alt="artStudio" onClick={() => push('/home/works')} />

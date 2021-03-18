@@ -10,10 +10,10 @@
     color: #fff;
     margin: 0 auto;
     & img {
-      height: 152px;
+      height: 120px;
       position: absolute;
       left: 0;
-      top: -38px;
+      top: 2px;
     }
     & div {
       display: flex;
@@ -52,6 +52,11 @@
     margin-right: 80px;
     &:hover {
       text-decoration: underline;
+    }
+
+    &--admin {
+      position: absolute;
+      left: 0;
     }
 
     &--active {
