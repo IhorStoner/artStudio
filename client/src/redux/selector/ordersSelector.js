@@ -12,3 +12,4 @@ export const getIndexOfList = createSelector(
     state => state.order.indexOfList,
     indexOfList => indexOfList
 )
+

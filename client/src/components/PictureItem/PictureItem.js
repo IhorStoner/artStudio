@@ -15,7 +15,7 @@ export default function PictureItem({ picture, className, handleOpeningPicture }
       <div className="picture__footer">
         <p className="picture__price">{picture.price} грн</p>
         <button className="picture__btn" onClick={(e) => handleOpeningPicture(picture._id)}>
-          Заказать
+          Подробнее
           </button>
       </div>
     </div >

@@ -27,3 +27,4 @@ export const resetOrderedGoods = createAction('RESET_ORDERED_GOODS')
 export const setStateType = createAction('SET_STATE_TIPE')
 export const refreshOrderedGoods = createAction('DELETE_ORDERED_GOODS')
 export const setPicturePreview = createAction('SET_PICTURE_PREVIEW')
+

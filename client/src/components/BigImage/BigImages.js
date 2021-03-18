@@ -17,6 +17,7 @@ export default function BigImages({ imgArr, thumbs = true }) {
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
     const dispatch = useDispatch()
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [isBigImage, setIsBigImage] = useState(null)
     const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
         containScroll: "keepSnaps",
         selectedClass: ""
@@ -51,6 +52,14 @@ export default function BigImages({ imgArr, thumbs = true }) {
     useEffect(() => {
     }, [picture])
 
+    if (isBigImage) {
+        return (
+            <div className="big-picure">
+                <img src={`${config.serverUrl}/api/images/${isBigImage}`} alt="sliderImg" onClick={() => setIsBigImage(null)} />
+            </div>
+        )
+    }
+
     return (
         <div className='embl__wrapper'>
             <div className="embl embl--width">
@@ -61,6 +70,7 @@ export default function BigImages({ imgArr, thumbs = true }) {
                             <div className="embl__slide" key={index}>
                                 <div className="embl__slide__inner embl__slide__inner--height">
                                     <img
+                                        onClick={() => setIsBigImage(img)}
                                         className="embl__slide__img "
                                         src={`${config.serverUrl}/api/images/${img}`}
                                         alt="sliderImg"

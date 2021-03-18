@@ -17,18 +17,18 @@
     }
     & div {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       & span {
         color: #ffffff;
       }
-      & svg {
+      & a {
         &:nth-child(even) {
           margin: 0 15px;
         }
       }
-      & a {
-        margin-left: 20px;
-      }
+    }
+    & > a {
+      padding-left: 20px;
     }
   }
   &__basket {

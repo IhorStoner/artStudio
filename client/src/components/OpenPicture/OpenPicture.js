@@ -10,16 +10,14 @@ import { useHistory } from 'react-router'
 import { setOrderedGoods } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStateOrder } from '../../redux/selector/picturesSelector'
+import { addProduct } from '../../redux/action/storageAction'
 
 
 const conditions = {
-  "Доставка": ' доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка доставка <br/> ljljljljljl',
-  "Оплата": 'оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата оплата ',
-  "Гарантия": " Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия "
+  "Доставка": "Условия доставки  ".repeat(20),
+  "Оплата": "Способы оплаты  ".repeat(20),
+  "Гарантия": "Наша качества ".repeat(20)
 }
-
-const storage = window.localStorage
-
 
 export default function OpenPicture({ picture }) {
   const [stateAmount, setStateAmount] = useState(1)
@@ -30,6 +28,9 @@ export default function OpenPicture({ picture }) {
   const dispatch = useDispatch()
   const stateOrder = useSelector(getStateOrder)
 
+  const handleSelectedSizi = (elem) => {
+    setSelectedSize(elem)
+  }
 
   useEffect(() => {
     picture.chart && setSelectedSize(Object.keys(picture.chart)[0])
@@ -37,61 +38,62 @@ export default function OpenPicture({ picture }) {
 
   const setToBasket = () => {
     if (stateAmount < 1) { alert('укажите количество товара'); return }
-
     const { price, _id, vendorCode, images, title } = picture
     const checkId = stateOrder.findIndex(elem => elem._id === _id)
 
     if (checkId !== -1) { alert('эта позиция уже есть в корзине '); return }
-
+    dispatch(addProduct({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
     dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
   }
 
   return (
     <div className='container'>
-      {sentToBasket && <div className="sent-to-basket">
-        <div className="sent-to-basket__form">
-          <div className="sent-to-basket__head">
-            <h2>Корзина</h2>
-            <div> <span>Количество</span> <span>Стоимость</span></div>
-            <BtnClose className="sent-to-basket__btn-close" onClick={() => setSentToBasket(false)} />
-          </div>
-          <div className="sent-to-basket__main">
-            <div className="sent-to-basket__diskribe-image">
-              {picture.images && <img src={`${config.serverUrl}/api/images/${picture.images[0]}`} className="sent-to-basket__img"></img >}
-              <div>
-                <p>
-                  {picture.title}
-                </p>
-                <p>
-                  Размер - {selectedSize.toUpperCase()}
-                </p>
-              </div>
+      {
+        sentToBasket && <div className="sent-to-basket">
+          <div className="sent-to-basket__form">
+            <div className="sent-to-basket__head">
+              <h2>Корзина</h2>
+              <div> <span>Количество</span> <span>Стоимость</span></div>
+              <BtnClose className="sent-to-basket__btn-close" onClick={() => setSentToBasket(false)} />
             </div>
-            <div className="sent-to-basket__acive-side">
-              <div className="sent-to-basket__acive-side--head">
-                <div className="sent-to-basket__choose-size">
-                  <button onClick={() => stateAmount > 1 && setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
-                    <Discreate />
-                  </button>
-                  {stateAmount}
-                  <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
-                    <Increate />
-                  </button>
+            <div className="sent-to-basket__main">
+              <div className="sent-to-basket__diskribe-image">
+                {picture.images && <img src={`${config.serverUrl}/api/images/${picture.images[0]}`} className="sent-to-basket__img"></img >}
+                <div>
+                  <p>
+                    {picture.title}
+                  </p>
+                  <p>
+                    Размер - {selectedSize.toUpperCase()}
+                  </p>
                 </div>
-                <span> {picture.price} грн</span>
-                <BasketDelete className="sent-to-basket__basket" onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
               </div>
-              <div className="sent-to-basket__acive-side--foot">
-                <span> Итог </span>  {picture.price * stateAmount} грн
+              <div className="sent-to-basket__acive-side">
+                <div className="sent-to-basket__acive-side--head">
+                  <div className="sent-to-basket__choose-size">
+                    <button onClick={() => stateAmount > 1 && setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
+                      <Discreate />
+                    </button>
+                    {stateAmount}
+                    <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
+                      <Increate />
+                    </button>
+                  </div>
+                  <span> {picture.price} грн</span>
+                  <BasketDelete className="sent-to-basket__basket" onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
+                </div>
+                <div className="sent-to-basket__acive-side--foot">
+                  <span> Итог </span>  {picture.price * stateAmount} грн
+              </div>
               </div>
             </div>
-          </div>
-          <div className='sent-to-basket__foot'>
-            <button onClick={() => { push('/home/') }}> Вернуться к покупкам </button>
-            <button onClick={() => { setToBasket(); push('/home/orderForm') }}> Оформить заказ </button>
+            <div className='sent-to-basket__foot'>
+              <button onClick={() => { push('/home/') }}> Вернуться к покупкам </button>
+              <button onClick={() => { setToBasket(); push('/home/orderForm') }}> Оформить заказ </button>
+            </div>
           </div>
         </div>
-      </div>}
+      }
       <div className="open-picture">
         <div className="open-picture__articul">
           {picture.title}
@@ -113,17 +115,19 @@ export default function OpenPicture({ picture }) {
             <div className="open-picture__chart-container">
               {picture.chart &&
                 Object.keys(picture.chart).map(
-                  (elem, i) => picture.chart[elem] &&
-                    <div
-                      key={i}
-                      onClick={() => setSelectedSize(elem)}
-                      className={`open-picture__chart${selectedSize === elem ? '--active' : ' '}`}
-                    >
-                      {elem.toUpperCase()}
-                    </div>)
+                  (elem, i) => {
+                    return (picture.chart[elem].in ?
+                      <div
+                        key={i}
+                        onClick={() => handleSelectedSizi(elem)}
+                        className={`open-picture__chart${selectedSize === elem ? '--active' : ''}`}
+                      >
+                        {elem.toUpperCase()}
+                      </div> : null)
+                  })
               }
             </div>
-            <span>Есть в наличии</span>
+            {picture.chart && picture.chart[selectedSize]?.include ? <span>Есть в наличии</span> : <span> Нет в наличии</span>}
             <div className="open-picture__buy-container">
               <div className="open-picture__choose-size">
                 <button onClick={() => setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
@@ -134,7 +138,7 @@ export default function OpenPicture({ picture }) {
                   <Increate />
                 </button>
               </div>
-              <button onClick={() => selectedSize ? setSentToBasket(true) : alert('Выбирите размер')} className="open-picture__buy-btn"> Купить </button>
+              {picture.chart && <button disabled={!picture.chart[selectedSize]?.include} onClick={() => selectedSize ? setSentToBasket(true) : alert('Выбирите размер')} className="open-picture__buy-btn"> Купить </button>}
             </div>
             <div>
               <nav className="open-picture__nav">

@@ -24,8 +24,19 @@ a {
   color: #fff;
 }
 
+input, select {
+  outline: none;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 input[type="checkbox"] {
   cursor: pointer;
+  
 }
 
 .container {

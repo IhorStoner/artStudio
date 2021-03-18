@@ -1,3 +1,15 @@
+.big-picure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  & img {
+    width: 950px;
+    height: 950px;
+  }
+}
+
 .embl {
   position: relative;
   max-width: 560px;
@@ -112,7 +124,6 @@
 }
 
 .embl__container--thumb {
-  background: rgba(0, 0, 0, 0.5);
   cursor: default;
   margin-left: -8px;
 }

@@ -19,16 +19,16 @@
   z-index: 1111;
 }
 
-.modal_container {
+.modal-container {
   max-width: 1000px;
 }
 
-.authPopup {
+.auth-popup {
   padding: 10px;
   background-color: #fff;
   border-radius: 10px;
 
-  &__inputContainer {
+  &__input-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,21 +45,21 @@
     outline: none;
   }
 
-  &__submitContainer {
+  &__submit-container {
     text-align: center;
   }
 
-  &__btnSubmit {
+  &__btn-submit {
     background: #000000;
     border-radius: 10px;
     color: #fff;
     padding: 2% 4%;
-    font-family: 'Monotype Corsiva';
+    font-family: "Monotype Corsiva";
     font-size: 0.6rem;
     cursor: pointer;
     border: none;
     outline: none;
-    
+
     &:hover {
       background: #353535;
     }

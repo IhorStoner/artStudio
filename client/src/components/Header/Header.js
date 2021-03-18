@@ -10,11 +10,7 @@ import { useSelector } from 'react-redux'
 import { getStateOrder } from '../../redux/selector/picturesSelector'
 
 
-
-const storage = window.localStorage
-const orderList = storage.getItem('orderList')
 export default function Header() {
-
   const stateOrder = useSelector(getStateOrder)
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
@@ -26,9 +22,6 @@ export default function Header() {
     setAmount(count)
   }, [stateOrder])
 
-  useEffect(() => {
-    'ORDER_LIST'
-  }, [orderList])
 
   return (
     <div className='header'>
@@ -37,9 +30,15 @@ export default function Header() {
         <div className="header__logo-container">
           <img src={logo} alt="artStudio" onClick={() => push('/home/works')} />
           <div>
-            <Instagram />
-            <Telegram />
-            <span>+(380) 66 666 66 66</span>
+            <NavLink to="/home/works">
+              <Instagram />
+            </NavLink>
+            <NavLink to="/home/works">
+              <Telegram />
+            </NavLink>
+            <NavLink to="/home/works">
+              <span>+(380) 66 666 66 66</span>
+            </NavLink>
           </div>
           <NavLink to='/home/orderForm'>
             <Basket className="header__basket" />

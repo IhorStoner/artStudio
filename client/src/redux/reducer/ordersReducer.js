@@ -10,7 +10,6 @@ const initialState = {
 };
 
 const ordersReducer = createReducer(initialState, {
-
     [fetchOrders.fulfilled]: (state, action) => {
         state.orders = action.payload;
         state.loading = false;

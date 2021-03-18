@@ -5,16 +5,12 @@ import './OrderForm.scss'
 import config from '../../config/default.json'
 import { ReactComponent as InportantInputSVG } from '../../assets/svg/InportantInput.svg'
 import { ReactComponent as DeleteSVG } from '../../assets/svg/basketDelete.svg'
-
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
 import { refreshOrderedGoods, resetOrderedGoods } from '../../redux/action/picturesAction'
 import axios from 'axios'
 import { useHistory } from 'react-router'
-
-
-
-const storage = window.localStorage
+import { removeProduct, rewriteOrderItem } from '../../redux/action/storageAction'
 
 
 export const OrderForm = () => {
@@ -24,7 +20,7 @@ export const OrderForm = () => {
     const { push } = useHistory()
     const [clientInfo, setClientInfo] = useState({
         initials: '',
-        phone: '380',
+        phone: '+380',
         city: '',
         email: '',
         deliver: 'Новая Почта',
@@ -44,7 +40,7 @@ export const OrderForm = () => {
         }
 
         if (name === 'phone') {
-            return value.length !== 12
+            return value.length !== 13
                 ? false
                 : true
         }
@@ -72,7 +68,6 @@ export const OrderForm = () => {
 
     }
 
-
     const onValidHandler = (name, value) => {
         setTouchedControll({ ...touchedControll, [name]: { touched: true, isValid: onValid(name, value) } })
     }
@@ -90,8 +85,6 @@ export const OrderForm = () => {
         const { touched, isValid } = touchedControll[name]
         return check(touched, isValid)
     }
-
-    useEffect(() => { }, [stateOrder])
 
     return (
         <div className='container'>
@@ -128,7 +121,7 @@ export const OrderForm = () => {
                         <input
                             onChange={(e) => changeHandler(e)}
                             className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
-                            name="phone" type='number'
+                            name="phone" type='phone'
                             value={clientInfo.phone}
                         />
                         <InportantInputSVG />
@@ -207,9 +200,7 @@ export const OrderForm = () => {
                                             className="order-form__choose-btn"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                elem.amount > 1 && dispatch(refreshOrderedGoods(stateOrder.map(
-                                                    el => el._id === elem._id ? { ...el, amount: el.amount - 1 } : el
-                                                )))
+                                                elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount - 1 }))
                                             }}
                                         >
                                             <Discreate />
@@ -219,9 +210,7 @@ export const OrderForm = () => {
                                             className="order-form__choose-btn"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                dispatch(refreshOrderedGoods(stateOrder.map(
-                                                    el => el._id === elem._id ? { ...el, amount: el.amount + 1 } : el
-                                                )))
+                                                dispatch(rewriteOrderItem({ ...elem, amount: elem.amount + 1 }))
                                             }}
                                         >
                                             <Increate />
@@ -229,7 +218,7 @@ export const OrderForm = () => {
                                     </div>
                                 </div>
                                 <div className='order-form__card-goods--amount'>
-                                    <DeleteSVG onClick={() => { dispatch(refreshOrderedGoods(stateOrder.filter(el => el._id !== elem._id))) }} />
+                                    <DeleteSVG onClick={() => { dispatch(removeProduct(elem._id)) }} />
                                     <p>{elem.price} грн</p>
                                 </div>
                             </div>
