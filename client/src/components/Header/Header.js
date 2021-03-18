@@ -22,10 +22,10 @@ export default function Header() {
     setAmount(count)
   }, [stateOrder])
 
-  // doubleClickHandler = (url) => {
-  //   const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-  //   if (newWindow) newWindow.opener = null
-  // }
+  const doubleClickHandler = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
 
 
   return (
@@ -39,7 +39,10 @@ export default function Header() {
             <Telegram />
             <span>+(380) 66 666 66 66</span>
           </div>
-          <Basket className="header__basket" onClick={() => push('/home/orderForm')} /> <span>Корзина: {amount}</span>
+          <Basket className="header__basket"
+            onClick={() => push('/home/orderForm')}
+            onDoubleClick={() => doubleClickHandler()}
+          /> <span>Корзина: {amount}</span>
         </div>
         <nav className='header__nav'>
           <ul className="header__nav-list">
