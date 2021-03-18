@@ -9,6 +9,10 @@ import logo from '../../assets/png/logo.png'
 import { useSelector } from 'react-redux'
 import { getStateOrder } from '../../redux/selector/picturesSelector'
 
+
+
+const storage = window.localStorage
+const orderList = storage.getItem('orderList')
 export default function Header() {
 
   const stateOrder = useSelector(getStateOrder)
@@ -22,11 +26,9 @@ export default function Header() {
     setAmount(count)
   }, [stateOrder])
 
-  const doubleClickHandler = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    if (newWindow) newWindow.opener = null
-  }
-
+  useEffect(() => {
+    'ORDER_LIST'
+  }, [orderList])
 
   return (
     <div className='header'>
@@ -39,10 +41,10 @@ export default function Header() {
             <Telegram />
             <span>+(380) 66 666 66 66</span>
           </div>
-          <Basket className="header__basket"
-            onClick={() => push('/home/orderForm')}
-            onDoubleClick={() => doubleClickHandler()}
-          /> <span>Корзина: {amount}</span>
+          <NavLink to='/home/orderForm'>
+            <Basket className="header__basket" />
+          </NavLink>
+          <span>Корзина: {amount}</span>
         </div>
         <nav className='header__nav'>
           <ul className="header__nav-list">

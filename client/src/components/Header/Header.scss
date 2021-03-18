@@ -25,7 +25,9 @@
         &:nth-child(even) {
           margin: 0 15px;
         }
-        // margin-left: 15px;
+      }
+      & a {
+        margin-left: 20px;
       }
     }
   }

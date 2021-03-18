@@ -18,6 +18,9 @@ const conditions = {
   "Гарантия": " Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия Гарантия гарантия "
 }
 
+const storage = window.localStorage
+
+
 export default function OpenPicture({ picture }) {
   const [stateAmount, setStateAmount] = useState(1)
   const [stateNavList, setStateNavList] = useState('Доставка')
@@ -34,6 +37,7 @@ export default function OpenPicture({ picture }) {
 
   const setToBasket = () => {
     if (stateAmount < 1) { alert('укажите количество товара'); return }
+
     const { price, _id, vendorCode, images, title } = picture
     const checkId = stateOrder.findIndex(elem => elem._id === _id)
 

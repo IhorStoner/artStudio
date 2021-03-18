@@ -13,6 +13,10 @@ import axios from 'axios'
 import { useHistory } from 'react-router'
 
 
+
+const storage = window.localStorage
+
+
 export const OrderForm = () => {
     const dispatch = useDispatch()
     const stateOrder = useSelector(getStateOrder)
@@ -46,6 +50,12 @@ export const OrderForm = () => {
         }
     }
 
+    // const setdGoods = () => {
+    //     storage.setItem('orderList')
+    //     dispatch(refreshOrderedGoods(stateOrder.map(
+    //         el => el._id === elem._id ? { ...el, amount: el.amount - 1 } : el
+    //     )))
+    // }
 
     const onSubmit = async (e) => {
         e.preventDefault()

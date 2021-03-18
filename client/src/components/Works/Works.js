@@ -18,6 +18,7 @@ export default function Works() {
   const pictures = useSelector(getPictures)
   const stateType = useSelector(getStateType)
 
+  // по клику "заказать" открывает форму заказа (OpenPicturePage) и передает в нее id товара
   const handleOpeningPicture = id => {
     if (picturePage) {
       setId('')
