@@ -7,7 +7,6 @@ import Footer from '../../components/Footer/Footer'
 import { AuthContext } from '../../context/AuthContext'
 import AdminPanel from '../../components/AdminPanel/AdminPanel'
 import { OrderForm } from '../../components/OrderForm/OrderForm'
-import BigImages from '../../components/BigImage/BigImages'
 import { fetchTypesOfClothing } from '../../redux/action/picturesAction'
 import { useDispatch } from 'react-redux'
 

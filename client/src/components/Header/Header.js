@@ -25,39 +25,39 @@ export default function Header() {
 
   return (
     <div className='header'>
-      {isAuthenticated && <center> <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink> </center>}
       <div className="container">
+        {/* {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>} */}
         <div className="header__logo-container">
           <img src={logo} alt="artStudio" onClick={() => push('/home/works')} />
-          <div>
-            <NavLink to="/home/works">
-              <Instagram />
-            </NavLink>
+          <span className="header__basket-span">Корзина: {amount}</span>
+          <NavLink to='/home/orderForm'>
+            <Basket className="header__basket" />
+          </NavLink>
+          <div className="header__contact">
             <NavLink to="/home/works">
               <Telegram />
+            </NavLink>
+            <NavLink to="/home/works">
+              <Instagram />
             </NavLink>
             <NavLink to="/home/works">
               <span>+(380) 66 666 66 66</span>
             </NavLink>
           </div>
-          <NavLink to='/home/orderForm'>
-            <Basket className="header__basket" />
-          </NavLink>
-          <span>Корзина: {amount}</span>
         </div>
         <nav className='header__nav'>
           <ul className="header__nav-list">
             <li>
-              <NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
-            </li>
-            <li>
-              <NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
+              <NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
             </li>
             <li >
               <NavLink to='/home/masters' className={`header__nav-item ${nav === 'masters' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
             </li>
             <li>
-              <NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
+              <NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
+            </li>
+            <li>
+              <NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
             </li>
           </ul>
         </nav>

@@ -67,9 +67,9 @@ export default function AdminPicturesList({ setActiveItem }) {
           <div></div>
         </div>
 
-        {state?.map((elem) => {
+        {state?.map((elem, i) => {
           return (
-            <div key={elem._id} className='admin-pictures-list__data'>
+            <div key={i} className='admin-pictures-list__data'>
               <div ><img src={`${config.serverUrl}/api/images/${elem.images[0]}`} alt="альтернативный текст" /></div>
               <div className='admin-pictures-list__item-text'>{elem.title}</div>
               <div className='admin-pictures-list__item-text'>{elem.type}</div>
@@ -81,7 +81,8 @@ export default function AdminPicturesList({ setActiveItem }) {
               <div className='admin-pictures-list__item-text'>
                 <Correct className='admin-pictures-list__pointer' onClick={() => refToCorrect(elem)} />
                 <NavLink to={`/home/works/${elem._id}`}>
-                  <Open className='admin-pictures-list__pointer' /></NavLink>
+                  <Open className='admin-pictures-list__pointer' />
+                </NavLink>
                 <Delete className='admin-pictures-list__pointer' onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
             </div>)
         })}

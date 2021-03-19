@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.c67275da.chunk.css",
-    "main.js": "/static/js/main.af57361d.chunk.js",
-    "main.js.map": "/static/js/main.af57361d.chunk.js.map",
+    "main.css": "/static/css/main.0fe7c548.chunk.css",
+    "main.js": "/static/js/main.27c0c18e.chunk.js",
+    "main.js.map": "/static/js/main.27c0c18e.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.c0a86de7.js",
     "runtime-main.js.map": "/static/js/runtime-main.c0a86de7.js.map",
     "static/js/2.f792b450.chunk.js": "/static/js/2.f792b450.chunk.js",
@@ -10,12 +10,12 @@
     "static/js/3.3d511baa.chunk.js": "/static/js/3.3d511baa.chunk.js",
     "static/js/3.3d511baa.chunk.js.map": "/static/js/3.3d511baa.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.c67275da.chunk.css.map": "/static/css/main.c67275da.chunk.css.map",
+    "static/css/main.0fe7c548.chunk.css.map": "/static/css/main.0fe7c548.chunk.css.map",
     "static/js/2.f792b450.chunk.js.LICENSE.txt": "/static/js/2.f792b450.chunk.js.LICENSE.txt",
     "static/media/CreateNewTypeOfClothing.0f995eac.svg": "/static/media/CreateNewTypeOfClothing.0f995eac.svg",
     "static/media/InportantInput.84c8015a.svg": "/static/media/InportantInput.84c8015a.svg",
     "static/media/index.css": "/static/media/Monotype.35bae48c.ttf",
-    "static/media/basket.8b735014.svg": "/static/media/basket.8b735014.svg",
+    "static/media/basket.7de90e87.svg": "/static/media/basket.7de90e87.svg",
     "static/media/basketDelete.cdd4796c.svg": "/static/media/basketDelete.cdd4796c.svg",
     "static/media/btnClose.12294fb7.svg": "/static/media/btnClose.12294fb7.svg",
     "static/media/checkOff.7d4dd6ec.svg": "/static/media/checkOff.7d4dd6ec.svg",
@@ -24,17 +24,18 @@
     "static/media/correct.a8622820.svg": "/static/media/correct.a8622820.svg",
     "static/media/delete.a2a88aa3.svg": "/static/media/delete.a2a88aa3.svg",
     "static/media/discreate.86b3d117.svg": "/static/media/discreate.86b3d117.svg",
+    "static/media/hamburger.68eff26e.svg": "/static/media/hamburger.68eff26e.svg",
     "static/media/increate.7284bfec.svg": "/static/media/increate.7284bfec.svg",
-    "static/media/instagram.b1987b38.svg": "/static/media/instagram.b1987b38.svg",
+    "static/media/instagram.87ea2d67.svg": "/static/media/instagram.87ea2d67.svg",
     "static/media/magnifier.bf8a6dfb.svg": "/static/media/magnifier.bf8a6dfb.svg",
     "static/media/EdditPicturesForm.scss": "/static/media/newImg.ebc5eafb.svg",
     "static/media/open.60e3a707.svg": "/static/media/open.60e3a707.svg",
-    "static/media/telegram.1602b6b3.svg": "/static/media/telegram.1602b6b3.svg"
+    "static/media/telegram.76b031b8.svg": "/static/media/telegram.76b031b8.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.c0a86de7.js",
     "static/js/2.f792b450.chunk.js",
-    "static/css/main.c67275da.chunk.css",
-    "static/js/main.af57361d.chunk.js"
+    "static/css/main.0fe7c548.chunk.css",
+    "static/js/main.27c0c18e.chunk.js"
   ]
 }

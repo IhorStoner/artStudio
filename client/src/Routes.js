@@ -12,9 +12,6 @@ export default function Routes() {
         <Route path="/home/admin">
           <AdminAuthPage />
         </Route>
-        {/* <Route path="/home/works/:pictureId">
-          <OpenPicturePage />
-        </Route> */}
         <Route path="/home/:nav">
           <Homepage />
         </Route>

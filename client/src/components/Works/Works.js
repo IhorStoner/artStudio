@@ -4,9 +4,10 @@ import PictureItem from '../PictureItem/PictureItem'
 import { fetchPictures, setStateType } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPicturePreview, getPictures, getStateType, getTypesOfClothing } from '../../redux/selector/picturesSelector'
-import './Works.scss'
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
+import { ReactComponent as Menu } from '../../assets/svg/hamburger.svg'
 import BigImages from '../BigImage/BigImages'
+import './Works.scss'
 
 
 export default function Works() {
@@ -14,6 +15,7 @@ export default function Works() {
   const stateTypes = useSelector(getTypesOfClothing)
   const picturePreview = useSelector(getPicturePreview)
   const [id, setId] = useState()
+  const [openMenu, setOpenMenu] = useState(false)
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
   const stateType = useSelector(getStateType)
@@ -37,15 +39,15 @@ export default function Works() {
     dispatch(setStateType(stateTypes[0]))
   }, [stateTypes])
 
-
   return (
-    <div className='works'>
+    <div className={`works${openMenu ? ' works--open' : ' works--close'}`}>
       {
         picturePreview && <div className='works__popup' >
           <BigImages imgArr={picturePreview} thumbs={true} />
         </div>
       }
-      <div className="works__btns">
+      <Menu onClick={() => setOpenMenu(!openMenu)} className={`works__svg ${openMenu ? 'works__svg--open' : 'works__svg--close'}`} />
+      <div className={`works__btns ${openMenu ? 'works__btns--open' : 'works__btns--close'}`}>
         {stateTypes.map(type => (
           <Button
             key={type}
@@ -57,12 +59,11 @@ export default function Works() {
             }} />
         )
         )}
-
       </div>
       {
         picturePage
           ? <OpenPicturePage id={id} />
-          : <div className="works__content">
+          : <div className={`works__content ${openMenu ? 'works__content--open' : 'works__content--close'}`}>
             {pictures?.map((picture, index) => (
               <PictureItem
                 key={index}

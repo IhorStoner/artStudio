@@ -46,13 +46,6 @@ export const OrderForm = () => {
         }
     }
 
-    // const setdGoods = () => {
-    //     storage.setItem('orderList')
-    //     dispatch(refreshOrderedGoods(stateOrder.map(
-    //         el => el._id === elem._id ? { ...el, amount: el.amount - 1 } : el
-    //     )))
-    // }
-
     const onSubmit = async (e) => {
         e.preventDefault()
         const model = {

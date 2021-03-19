@@ -25,6 +25,9 @@
       margin-bottom: 1%;
     }
   }
+  &__svg {
+    display: none;
+  }
 
   &__content {
     display: grid;
@@ -38,9 +41,106 @@
 
   &__item {
     margin-bottom: 2%;
+  }
+}
 
-    &:nth-child(2n) {
-      margin-right: 0;
+@media (max-width: 1024px) {
+  .works {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 10px 0;
+
+    &__content {
+      grid-template-columns: 49% 49%;
+      grid-column-gap: 0.5%;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .works {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0px 0;
+    &__btns {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    &__content {
+      justify-content: center;
+      grid-template-columns: 48% 48%;
+      grid-column-gap: 0.5%;
+    }
+  }
+}
+@media (max-width: 425px) {
+  .works {
+    max-width: 850px;
+    height: auto;
+    margin: 0 auto;
+    transition: transform 0.5s ease;
+
+    // &--open {
+    //   transform: translateY(0px);
+    // }
+    // &--close {
+    //   z-index: -5;
+    //   transform: translateY(-260px);
+    // }
+
+    &__svg {
+      z-index: 10;
+      position: absolute;
+      left: 5px;
+      top: 198px;
+      display: flex;
+      transition: transform 0.5s ease;
+      &--open {
+        transform: rotate(90deg);
+      }
+      &--close {
+        transform: rotate(0deg);
+      }
+    }
+
+    &__content {
+      grid-template-columns: 98%;
+      grid-column-gap: 0.5%;
+      transition: transform 0.5s ease;
+      &--close {
+        transform: translateY(-210px);
+        padding-bottom: 60px;
+      }
+      &--open {
+        transform: translateY(0px);
+        padding-bottom: 60px;
+      }
+    }
+
+    &__btns {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      min-height: 60px;
+      transition: transform 0.5s ease;
+      padding-bottom: 10px;
+      & button {
+        transition: transform 0.5s 0.2s ease;
+      }
+      &--close {
+        transform: translateY(-210px);
+        & button {
+          transform: scaleY(0);
+        }
+      }
+      &--open {
+        transform: translateY(0px);
+        & button {
+          position: relative;
+          z-index: 10;
+          transform: scaleY(1);
+        }
+      }
     }
   }
 }

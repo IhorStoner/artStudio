@@ -141,3 +141,14 @@
 .embla__slide--thumb.is-selected .embla__slide__thumbnail {
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .emblas__button--prev {
+    display: none;
+    left: 27px;
+  }
+  .emblas__button--next {
+    display: none;
+    right: 27px;
+  }
+}

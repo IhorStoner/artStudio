@@ -141,9 +141,9 @@
     justify-content: space-between;
     & > button {
       cursor: pointer;
-      background: #000000;
+      background: #8b008b;
       border: 1px solid #000000;
-      color: #fff;
+      color: #000;
       height: 40px;
       padding: 5px 21px;
       font-family: Monotype Corsiva;
@@ -152,13 +152,18 @@
       line-height: 29px;
       box-sizing: border-box;
       border-radius: 10px;
+      &:hover {
+        background: #ffcdfa;
+      }
+      &:active {
+        background: #ff8ff4;
+      }
     }
   }
 }
 
 .open-picture {
   padding: 2% 0;
-  // max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -168,10 +173,18 @@
   }
   &__chart {
     &--active {
-      background-color: #000;
-      color: #fff;
+      background-color: #8b008b;
+      color: #000;
     }
-    &--include {
+
+    &:hover {
+      background: #ffcdfa;
+    }
+    &:active {
+      background: #ff8ff4;
+    }
+    &--active {
+      background: #8b008b;
     }
   }
 
@@ -227,11 +240,11 @@
   }
 
   &__btn {
-    background: #000000;
+    background: #fff;
     border-radius: 10px;
     padding: 5px 10%;
     border: none;
-    color: #fff;
+    color: #000;
     font-family: "Monotype Corsiva";
     font-weight: normal;
     font-size: 1rem;
@@ -240,10 +253,13 @@
     cursor: pointer;
 
     &:hover {
-      background: #353535;
+      background: #ffcdfa;
     }
     &:active {
-      background: #555555;
+      background: #ff8ff4;
+    }
+    &--active {
+      background: #8b008b;
     }
   }
 
@@ -260,17 +276,36 @@
     margin: 0 5px 0 25px;
     width: 228px;
     height: 60px;
-    background: #000000;
+    background: #8b008b;
     border: 1px solid #000000;
     box-sizing: border-box;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    color: #ffffff;
+    color: #000;
     font-size: 36px;
     line-height: 40px;
     font-family: Monotype Corsiva;
     font-weight: normal;
+
+    // &:hover {
+    //   background: #ffcdfa;
+    // }
+    // &:active {
+    //   background: #ff8ff4;
+    // }
+
+    &--active {
+      background-color: #8b008b;
+      color: #000000;
+      &:hover {
+        background: #c600c6;
+      }
+      &:active {
+        background: #e200e2;
+      }
+    }
   }
+
   &__choose-btn {
     border: none;
     background-color: inherit;

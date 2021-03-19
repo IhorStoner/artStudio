@@ -16,20 +16,64 @@
   width: 100%;
 
   &:hover {
-    background: #e2e2e2;
+    background: #ffcdfa;
   }
   &:active {
-    background: #d1d1d1;
+    background: #ff8ff4;
   }
 
   &--active {
-    background-color: #000;
-    color: #fff;
+    background-color: #8b008b;
+    color: #000000;
     &:hover {
-      background: #353535;
+      background: #c600c6;
     }
     &:active {
-      background: #555;
+      background: #e200e2;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    position: relative;
+    background: none;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+    width: auto;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background-color: #000;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    &--active {
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background-color: #000;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+      background: none;
+      &:hover {
+        background: none;
+        &::before {
+          background: none;
+          transform: scaleX(1);
+          background-color: #000;
+        }
+      }
     }
   }
 }
