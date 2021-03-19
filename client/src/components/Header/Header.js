@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <div className='header'>
       <div className="container">
-        {/* {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>} */}
+        {isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>}
         <div className="header__logo-container">
           <img src={logo} alt="artStudio" onClick={() => push('/home/works')} />
           <span className="header__basket-span">Корзина: {amount}</span>
