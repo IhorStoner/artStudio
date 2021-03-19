@@ -1,6 +1,9 @@
 .header {
   background-color: #8b008b;
   font-size: 36px;
+  height: 190px;
+  display: flex;
+  justify-content: space-between;
   &__logo-container {
     width: 90% !important;
     position: relative;
@@ -9,10 +12,11 @@
     flex-direction: row-reverse;
     margin: 0 auto;
     color: #000;
+    height: 150px;
     & img {
-      height: 120px;
+      height: 160px;
       position: absolute;
-      left: 0;
+      left: -300px;
       top: 2px;
     }
     & div {
