@@ -50,7 +50,7 @@ let ContactForm = props => {
                 </div>
                 <div>
                     <label htmlFor='payment'>Оплата</label>
-                    <select component="s" className="order-form__input--select" name='payment'>
+                    <select component="select" className="order-form__input--select" name='payment'>
                         <option className="order-form__option" value="Наличными" >Наличными</option>
                         <option className="order-form__option" value="Карточкой" >На карту (предоплата)</option>
                         <option className="order-form__option" value="Карточкой" >На карту (полная оплата)</option>
