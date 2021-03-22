@@ -45,9 +45,15 @@ async function start() {
       useCreateIndex: true
     })
 
+<<<<<<< HEAD
     // redirectHttp.listen(HTTP_PORT, () => {
     //   console.log(`http server run in ${HTTP_PORT} port`);
     // })
+=======
+//     redirectHttp.listen(HTTP_PORT, () => {
+//       console.log(`http server run in ${HTTP_PORT} port`);
+//     })
+>>>>>>> 4bb0a98949a775e0c112d575c37328b21f0e5f8b
 
     app.listen(PORT, () => {
       console.log(`Server is running on ${PORT} port`)
