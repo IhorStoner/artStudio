@@ -38,6 +38,17 @@ orderRouter.put('/:id', async (req, res) => {
     }
 })
 
+orderRouter.post('/rename/', async (req, res) => {
+    const { oldType, newType } = req.body
+    const order = await OrderModel.updateMany({ type: oldType }, { type: newType });
+    if (!order) {
+        res.status(400).send({ error: 'Order not found' });
+        return
+    } else {
+        res.status(200).send(order);
+    }
+})
+
 orderRouter.post('/', async (req, res) => {
     const newOrder = new OrderModel(req.body);
     const { _id } = await newOrder.save();
@@ -45,17 +56,3 @@ orderRouter.post('/', async (req, res) => {
 })
 
 module.exports = orderRouter;
-
-// heroesRouter.put('/quest/:heroId', async (req, res) => {
-//     const quests = req.body[0]
-//     const completedQuests = req.body[1]
-//     let hero;
-
-//     if (!completedQuests) {
-//       hero = await HeroModel.findByIdAndUpdate(req.params.heroId, { quests: quests }, { new: true })
-//     } else {
-//       hero = await HeroModel.findByIdAndUpdate(req.params.heroId, { quests: quests, completedQuests: completedQuests }, { new: true })
-//     }
-
-//     res.status(200).send(hero);
-//   })

@@ -13,7 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', apiRouter);
 
-
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, './client/build')))
 
@@ -29,7 +28,7 @@ app.use((err, req, res, next) => {
 });
 
 
-const PORT = process.env.PORT || config.get('port') || 443
+const PORT = process.env.PORT || config.get('port') || 5000
 const HTTP_PORT = 80
 
 const redirectHttp = express();

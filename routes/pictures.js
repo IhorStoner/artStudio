@@ -67,6 +67,17 @@ pictureRouter.get('/pagination/:params', async (req, res) => {
   res.json([result, pages])
 })
 
+pictureRouter.post('/rename/', async (req, res) => {
+  const { oldType, newType } = req.body
+  const order = await PictureModel.update({ type: oldType }, { $set: { type: newType } }, false, true);
+  if (!order) {
+    res.status(400).send({ error: 'Order not found' });
+    return
+  } else {
+    res.status(200).send(order);
+  }
+})
+
 
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);
