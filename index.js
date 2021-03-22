@@ -31,10 +31,6 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || config.get('port') || 5000
 const HTTP_PORT = 80
 
-// const redirectHttp = express();
-// redirectHttp.get('*', (req, res) => {
-//   res.redirect('https://xlia.vip')
-// })
 
 async function start() {
   try {
@@ -45,15 +41,6 @@ async function start() {
       useCreateIndex: true
     })
 
-<<<<<<< HEAD
-    // redirectHttp.listen(HTTP_PORT, () => {
-    //   console.log(`http server run in ${HTTP_PORT} port`);
-    // })
-=======
-//     redirectHttp.listen(HTTP_PORT, () => {
-//       console.log(`http server run in ${HTTP_PORT} port`);
-//     })
->>>>>>> 4bb0a98949a775e0c112d575c37328b21f0e5f8b
 
     app.listen(PORT, () => {
       console.log(`Server is running on ${PORT} port`)
