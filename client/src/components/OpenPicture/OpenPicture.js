@@ -10,7 +10,8 @@ import { useHistory } from 'react-router'
 import { setOrderedGoods } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStateOrder } from '../../redux/selector/picturesSelector'
-import { addProduct } from '../../redux/action/storageAction'
+import { addProduct, rewriteOrderItem } from '../../redux/action/storageAction'
+import { GoodsContainer } from './GoodsContainer'
 
 
 const conditions = {
@@ -37,13 +38,18 @@ export default function OpenPicture({ picture }) {
   }, [picture.chart])
 
   const setToBasket = () => {
+    setSentToBasket(true)
     if (stateAmount < 1) { alert('укажите количество товара'); return }
     const { price, _id, vendorCode, images, title } = picture
     const checkId = stateOrder.findIndex(elem => elem._id === _id)
 
-    if (checkId !== -1) { alert('эта позиция уже есть в корзине '); return }
+    if (checkId !== -1) {
+
+      dispatch(rewriteOrderItem({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
+        ; return
+    }
     dispatch(addProduct({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
-    dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
+    // dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
   }
 
   return (
@@ -57,39 +63,11 @@ export default function OpenPicture({ picture }) {
               <BtnClose className="sent-to-basket__btn-close" onClick={() => setSentToBasket(false)} />
             </div>
             <div className="sent-to-basket__main">
-              <div className="sent-to-basket__diskribe-image">
-                {picture.images && <img src={`${config.serverUrl}/api/images/${picture.images[0]}`} className="sent-to-basket__img"></img >}
-                <div>
-                  <p>
-                    {picture.title}
-                  </p>
-                  <p>
-                    Размер - {selectedSize.toUpperCase()}
-                  </p>
-                </div>
-              </div>
-              <div className="sent-to-basket__acive-side">
-                <div className="sent-to-basket__acive-side--head">
-                  <div className="sent-to-basket__choose-size">
-                    <button onClick={() => stateAmount > 1 && setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
-                      <Discreate />
-                    </button>
-                    {stateAmount}
-                    <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
-                      <Increate />
-                    </button>
-                  </div>
-                  <span> {picture.price} грн</span>
-                  <BasketDelete className="sent-to-basket__basket" onClick={() => { setSentToBasket(false); setSelectedSize(''); setStateAmount(0) }} />
-                </div>
-                <div className="sent-to-basket__acive-side--foot">
-                  <span> Итог </span>  {picture.price * stateAmount} грн
-              </div>
-              </div>
+              <GoodsContainer />
             </div>
             <div className='sent-to-basket__foot'>
               <button onClick={() => { push('/home/') }}> Вернуться к покупкам </button>
-              <button onClick={() => { setToBasket(); push('/home/orderForm') }}> Оформить заказ </button>
+              <button onClick={() => { push('/home/orderForm') }}> Оформить заказ </button>
             </div>
           </div>
         </div>
@@ -138,7 +116,7 @@ export default function OpenPicture({ picture }) {
                   <Increate />
                 </button>
               </div>
-              {picture.chart && <button disabled={!picture.chart[selectedSize]?.include} onClick={() => selectedSize ? setSentToBasket(true) : alert('Выбирите размер')} className="open-picture__buy-btn"> Купить </button>}
+              {picture.chart && <button disabled={!picture.chart[selectedSize]?.include} onClick={() => selectedSize ? setToBasket() : alert('Выбирите размер')} className="open-picture__buy-btn"> Купить </button>}
             </div>
             <div>
               <nav className="open-picture__nav">

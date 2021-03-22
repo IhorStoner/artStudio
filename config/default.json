@@ -1,5 +1,5 @@
 {
-    "port": 5000,
+    "port": 5006,
     "mongoUri": "mongodb+srv://IhorSakhno:123456789q@images.hs9xp.mongodb.net/Pictures",
     "serverUrl": "https://xlia.vip"
 }

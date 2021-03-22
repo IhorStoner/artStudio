@@ -305,7 +305,7 @@ export default function EdditPictureForm() {
                     <input className="newPictureForm__input" type="number" value={result.price} onChange={(e) => setResult({ ...result, price: e.target.value })} />
                 </div>
                 <div className="newPictureForm__submitContainer">
-                    <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => onSubmit(ev)}> Добавить </button>
+                    <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => onSubmit(ev)}> Обновить </button>
                 </div>
             </form>
         </div>

@@ -14,7 +14,7 @@
   &__btn-close {
     position: absolute;
     left: 700px;
-    top: -20px;
+    top: -12px;
   }
 
   &__basket {
@@ -49,7 +49,6 @@
     box-sizing: border-box;
     border-radius: 10px;
     padding: 14px;
-    // padding-bottom: 0;
   }
   &__head {
     position: relative;
@@ -77,8 +76,13 @@
 
   &__main {
     display: flex;
-    height: 70%;
-    align-items: start;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  &__card {
+    display: flex;
+    width: 100%;
   }
 
   &__acive-side {
@@ -134,6 +138,8 @@
       width: 17px;
       height: 17px;
       cursor: pointer;
+      border: none;
+      background: inherit;
     }
   }
   &__foot {
@@ -157,6 +163,67 @@
       }
       &:active {
         background: #ff8ff4;
+      }
+    }
+  }
+
+  &__goods-container {
+    display: flex;
+    flex-direction: column;
+    // width: 45%;
+    & > div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      font-family: Monotype Corsiva;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 25px;
+      margin-bottom: 12px;
+      & img {
+        width: 101px;
+        height: 101px;
+        border: 1px solid #ffffff;
+        box-sizing: border-box;
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+  &__card-goods {
+    display: flex;
+    margin-bottom: 10px;
+
+    padding-right: 20px;
+    &--info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 350px;
+      height: 101px;
+    }
+    &--amount {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      & svg {
+        cursor: pointer;
+      }
+    }
+    &--total {
+      display: flex;
+      width: 100%;
+      // justify-content: flex-end;
+      margin-top: 50px;
+      margin-right: auto;
+      & > span {
+        margin-left: auto;
+        margin-right: 20px;
+        & > span {
+          margin-left: 30px;
+        }
       }
     }
   }
@@ -191,7 +258,6 @@
   &__chart-container {
     display: flex;
     flex-wrap: wrap;
-
     & div {
       cursor: pointer;
       display: flex;
@@ -287,13 +353,6 @@
     font-family: Monotype Corsiva;
     font-weight: normal;
 
-    // &:hover {
-    //   background: #ffcdfa;
-    // }
-    // &:active {
-    //   background: #ff8ff4;
-    // }
-
     &--active {
       background-color: #8b008b;
       color: #000000;
@@ -304,13 +363,6 @@
         background: #e200e2;
       }
     }
-  }
-
-  &__choose-btn {
-    border: none;
-    background-color: inherit;
-    height: 30px;
-    cursor: pointer;
   }
 
   &__choose-size {

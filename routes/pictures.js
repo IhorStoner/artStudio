@@ -56,20 +56,18 @@ pictureRouter.get('/pagination/:params', async (req, res) => {
   let pages = 'not found';
   const items = await PictureModel.aggregate([{ $skip: ((page || 1) - 1) * pagesize }, { $limit: pagesize }])
 
-
   if (items.length) {
     const countAds = await PictureModel.aggregate([{ $count: 'ads' }])
     pages = Math.ceil((Number(countAds[0].ads) / Number(pagesize)))
     result = items
     console.log('countAds ', countAds)
   }
-
   res.json([result, pages])
 })
 
 pictureRouter.post('/rename/', async (req, res) => {
   const { oldType, newType } = req.body
-  const order = await PictureModel.update({ type: oldType }, { $set: { type: newType } });
+  const order = await PictureModel.updateMany({ type: req.body.oldType }, { $set: { type: req.body.newType } });
   if (!order) {
     res.status(400).send({ error: 'Order not found' });
     return

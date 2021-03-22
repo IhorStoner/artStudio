@@ -90,7 +90,13 @@ export default function AdminPicturesList({ setActiveItem }) {
         <div className="admin-pictures-list__pagination-container" >
           <div><span className='admin-pictures-list__pointer'>Первая</span></div>
           <div><span className='admin-pictures-list__pointer'>Предидущая</span></div>
-          <div className='admin-pictures-list__pages'>{new Array(numberOfPage).fill(1).map((_, i) => (<div className='admin-pictures-list__number'> {i + 1} </div>))}</div>
+          <div className='admin-pictures-list__pages'>
+            {
+              new Array(numberOfPage).fill(1).map((_, i) => (
+                <div className='admin-pictures-list__number'> {i + 1} </div>
+              ))
+            }
+          </div>
           <div><span className='admin-pictures-list__pointer'>Следующая</span></div>
           <div><span className='admin-pictures-list__pointer'>Последняя</span></div>
         </div>
