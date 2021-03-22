@@ -48,20 +48,25 @@ pictureRouter.delete('/:pictureId', async (req, res) => {
 })
 
 pictureRouter.get('/pagination/:params', async (req, res) => {
-  console.log(req.params.params)
-  const page = req.query.page || 1;
-  const pagesize = 1000;
+  console.log(req.params)
+  const page = req.params.params ;
+  // console.log(req.params)
+  const pagesize = 3;
 
   let result = []
   let pages = 'not found';
   const items = await PictureModel.aggregate([{ $skip: ((page || 1) - 1) * pagesize }, { $limit: pagesize }])
 
   if (items.length) {
+    //получаем общее кол-во 
     const countAds = await PictureModel.aggregate([{ $count: 'ads' }])
+    // определяем возможное кол-во страниц
     pages = Math.ceil((Number(countAds[0].ads) / Number(pagesize)))
     result = items
-    console.log('countAds ', countAds)
+
+    // console.log('countAds ', countAds)
   }
+  // result - актуальные соотв. странице, pages - кол-во страниц
   res.json([result, pages])
 })
 

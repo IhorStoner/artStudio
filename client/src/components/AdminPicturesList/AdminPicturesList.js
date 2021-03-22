@@ -10,24 +10,28 @@ import config from '../../config/default.json'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setStateEdditPicture } from '../../redux/action/picturesAction'
+import { Pagination } from '../Pugination/Pagination'
 
 
 export default function AdminPicturesList({ setActiveItem }) {
   const [deletePicture, setDeletePicture] = useState(false)
   const [idDeletePicture, setIdDeletePicture] = useState(null)
-  const [currentPage, setcurrentPage] = useState(1)
-  const [numberOfPage, setNumberOfPage] = useState(8)
+  const [currentPage, setcurrentPage] = useState(null)
+  const [allPages, setAllPages] = useState(8)
   const [state, setState] = useState()
   const dispatch = useDispatch()
 
   const fetchData = useCallback(async (ev) => {
-    const { data } = await axios.get(`${config.serverUrl}/api/pictures/pagination/${currentPage}`,)
+    console.log({currentPage})
+    const { data } = await axios.get(`${config.serverUrl}/api/pictures/pagination/${currentPage? currentPage : 1}`,)
     const freshDate = data[0].map(elem => ({ ...elem, date: elem.date.slice(0, 10).replace(/-/g, '.') }))
-    setNumberOfPage(data[1])
+    console.log("freshDate ", {data})
+    setAllPages(data[1])
     setState(freshDate)
   }, [])
 
   useEffect(() => {
+    console.log({currentPage})
     fetchData()
   }, [currentPage])
 
@@ -86,21 +90,7 @@ export default function AdminPicturesList({ setActiveItem }) {
                 <Delete className='admin-pictures-list__pointer' onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
             </div>)
         })}
-
-        <div className="admin-pictures-list__pagination-container" >
-          <div><span className='admin-pictures-list__pointer'>Первая</span></div>
-          <div><span className='admin-pictures-list__pointer'>Предидущая</span></div>
-          <div className='admin-pictures-list__pages'>
-            {
-              new Array(numberOfPage).fill(1).map((_, i) => (
-                <div className='admin-pictures-list__number'> {i + 1} </div>
-              ))
-            }
-          </div>
-          <div><span className='admin-pictures-list__pointer'>Следующая</span></div>
-          <div><span className='admin-pictures-list__pointer'>Последняя</span></div>
-        </div>
-
+        <Pagination allPages={allPages} currentPage={currentPage} setcurrentPage={setcurrentPage}/>
       </div>
     </div>
   )

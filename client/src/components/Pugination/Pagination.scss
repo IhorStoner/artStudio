@@ -1,0 +1,28 @@
+.pagination-container {
+    display: grid;
+    grid-template-columns: 240px 240px 256px 240px 240px;
+    width: 1224px;
+    height: 56px;
+    margin: 0 auto;
+    & div {
+      &:nth-child(1) {
+        display: flex;
+        justify-self: end;
+      }
+      &:nth-child(2) {
+        margin: 0 auto;
+      }
+    }
+    &__pages {
+        display: flex;
+        justify-self: center;
+      }
+      &__number {
+        display: flex;
+        margin: 0 8px;
+      }
+
+      &__pointer {
+        cursor: pointer;
+      }
+  }
