@@ -127,7 +127,7 @@ export default function OpenPicture({ picture }) {
                   })
               }
             </div>
-            {picture.chart && picture.chart[selectedSize]?.include ? <span>Есть в наличии</span> : <span> Нет в наличии</span>}
+            <span className="open-picture__order-container--includes-span">{picture.chart && picture.chart[selectedSize]?.include ? 'Есть в наличии' : ' Нет в наличии'}</span>
             <div className="open-picture__buy-container">
               <div className="open-picture__choose-size">
                 <button onClick={() => setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >

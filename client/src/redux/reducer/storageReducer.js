@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addProduct, removeProduct, rewriteOrderItem } from "../action/storageAction";
+import { addProduct, removeProduct, rewriteOrderItem, setEmptyBasket } from "../action/storageAction";
 
 let initialState;
 
@@ -20,6 +20,9 @@ export const storageReducer = createReducer(initialState, {
     [rewriteOrderItem.type]: (state, action) => {
         const basketClothesIndex = state.findIndex(clothes => clothes._id == action.payload._id)
         state.splice(basketClothesIndex, 1, action.payload)
+    },
+    [setEmptyBasket.type]: (state, action) => {
+        state.splice(0, state.length)
     }
 });
 

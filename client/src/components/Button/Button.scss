@@ -49,10 +49,11 @@
       right: 0;
       bottom: 0;
       height: 1px;
-      background-color: #000;
+      background-color: #fff;
       transform: scaleX(0);
       transition: transform 0.25s ease;
     }
+
     &--active {
       &::before {
         content: "";
@@ -61,7 +62,7 @@
         right: 0;
         bottom: 0;
         height: 1px;
-        background-color: #000;
+        background-color: #fff;
         transform: scaleX(0);
         transition: transform 0.25s ease;
       }
@@ -71,7 +72,7 @@
         &::before {
           background: none;
           transform: scaleX(1);
-          background-color: #000;
+          background-color: #fff;
         }
       }
     }

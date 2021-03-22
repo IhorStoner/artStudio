@@ -1,7 +1,13 @@
 .order-form {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     height: 1072px;
+
+    &--main {
+        display: flex;
+        height: auto;
+    }
+
     &__head {
         display: flex;
         font-size: 48px;
@@ -25,12 +31,13 @@
     &__cards-container {
         display: flex;
         flex-direction: column;
+        height: auto;
     }
     &__input-container {
         display: flex;
         flex-wrap: wrap;
         width: 55%;
-        height: 370px;
+        height: auto;
         & p {
             font-size: 36px;
             line-height: 40px;
@@ -59,7 +66,7 @@
         box-sizing: border-box;
         box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
-        // margin-left: 11px;
+        padding: 20px;
     }
     &__input {
         width: 500px;
@@ -82,7 +89,7 @@
             font-weight: normal;
             font-size: 25px;
             line-height: 30px;
-
+            background: url("../../assets/png/arrowSelect.png") no-repeat right;
             & option:hover {
                 background-color: aqua;
                 outline: none;
@@ -104,8 +111,7 @@
         justify-content: center;
         width: 100vw;
         height: 100vh;
-        background: black;
-        opacity: 0.85;
+        background: rgba(0, 0, 0, 0.85);
         z-index: 1000;
         & > div {
             display: flex;
@@ -120,12 +126,13 @@
             color: #000000;
             background: #ffffff;
             border: 1px solid #000000;
-            box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
             border-radius: 10px;
             & div {
+                border-radius: 10px;
                 display: flex;
                 justify-content: center;
                 padding: 0 35px 35px 35px;
+                background-color: #fff;
                 & button {
                     cursor: pointer;
                     display: flex;
@@ -141,14 +148,13 @@
                     font-weight: normal;
                     font-size: 30px;
                     line-height: 34px;
-                    &:hover {
-                        background: #ffcdfa;
-                    }
+                    background: #8b008b;
+
                     &:active {
-                        background: #ff8ff4;
+                        background: #c600c6;
                     }
                     &:hover {
-                        background: #ffcdfa;
+                        background: #e200e2;
                         border: 1px solid #000000;
                         box-sizing: border-box;
                         box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
@@ -200,7 +206,6 @@
     &__goods-container {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         width: 45%;
         & > div {
             display: flex;
@@ -244,6 +249,8 @@
             display: flex;
             width: 100%;
             justify-content: flex-end;
+            margin-top: 50px;
+
             & > span {
                 margin-right: 56px;
             }

@@ -60,7 +60,7 @@ let ContactForm = props => {
                 </div>
                 <div>
                     <label htmlFor='coment'>Комментарий к заказу</label>
-                    <input component={TextField} className="order-form__textarea" name='coment' type='textarea' />
+                    <textarea component={TextField} className="order-form__textarea" name='coment' type='textarea' ></textarea>
                 </div>
             </div>
 

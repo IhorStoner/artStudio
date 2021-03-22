@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStateOrder } from '../../redux/selector/picturesSelector'
 import './OrderForm.scss'
@@ -7,10 +7,9 @@ import { ReactComponent as InportantInputSVG } from '../../assets/svg/InportantI
 import { ReactComponent as DeleteSVG } from '../../assets/svg/basketDelete.svg'
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
-import { refreshOrderedGoods, resetOrderedGoods } from '../../redux/action/picturesAction'
 import axios from 'axios'
 import { useHistory } from 'react-router'
-import { removeProduct, rewriteOrderItem } from '../../redux/action/storageAction'
+import { removeProduct, rewriteOrderItem, setEmptyBasket } from '../../redux/action/storageAction'
 
 
 export const OrderForm = () => {
@@ -25,7 +24,7 @@ export const OrderForm = () => {
         email: '',
         deliver: 'Новая Почта',
         payment: 'Наличными',
-        coment: ''
+        comment: ''
     })
     const [touchedControll, setTouchedControll] = useState({
         email: { touched: false, isValid: false },
@@ -83,7 +82,7 @@ export const OrderForm = () => {
         <div className='container'>
             {confirm && <div className='order-form__popup'>
                 <div className='order-form__modal'>Ваш заказ (№ {confirm}) принят, в ближайшее время с вами свяжется оператор.<div>
-                    <button onClick={() => { setConfirm(false); push('/home/works'); dispatch(resetOrderedGoods([])) }}>Хорошо :)</button>
+                    <button onClick={() => { setConfirm(false); push('/home/works'); dispatch(setEmptyBasket([])) }}> Хорошо </button>
                 </div>
                 </div>
             </div>}
@@ -97,128 +96,130 @@ export const OrderForm = () => {
                 </div>
             </div>
             <form className="order-form">
-                <div className="order-form__input-container">
-                    <div>
-                        <label htmlFor="initials">ФИО</label>
-                        <input
-                            onChange={(e) => changeHandler(e)}
-                            className="order-form__input"
-                            name="initials"
-                            type='text'
-                            value={clientInfo.initials}
-                        />
-                        <InportantInputSVG />
+                <div className="order-form--main">
+                    <div className="order-form__input-container">
+                        <div>
+                            <label htmlFor="initials">ФИО</label>
+                            <input
+                                onChange={(e) => changeHandler(e)}
+                                className="order-form__input"
+                                name="initials"
+                                type='text'
+                                value={clientInfo.initials}
+                            />
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor="phone">Телефон</label>
+                            <input
+                                onChange={(e) => changeHandler(e)}
+                                className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
+                                name="phone" type='phone'
+                                value={clientInfo.phone}
+                            />
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor="city">Город</label>
+                            <input
+                                onChange={(e) => changeHandler(e)}
+                                className="order-form__input"
+                                name="city" type='text'
+                                value={clientInfo.city}
+                            />
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor="email">Эл почта</label>
+                            <input
+                                onChange={(e) => changeHandler(e)}
+                                className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
+                                name="email" type='text'
+                                value={clientInfo.email}
+                            />
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor='deliver'>Доставка</label>
+                            <select onChange={(e) => changeHandler(e)}
+                                className="order-form__input--select"
+                                name="deliver"
+                                value={clientInfo.deliver}
+                            >
+                                <option>Новая Почта</option>
+                                <option>Интайм</option>
+                                <option>Укрпочта</option>
+                                <option>Самовывоз</option>
+                            </select>
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor='payment'>Оплата</label>
+                            <select
+                                onChange={(e) => changeHandler(e)}
+                                className="order-form__input--select"
+                                name='payment'
+                                value={clientInfo.payment}
+                            >
+                                <option value="Наличными" >Наличными</option>
+                                <option value="На карту (предоплата)" >На карту (предоплата)</option>
+                                <option value="На карту (полная оплата)" >На карту (полная оплата)</option>
+                                <option value="Онлайн оплата" >Онлайн оплата</option>
+                            </select>
+                            <InportantInputSVG />
+                        </div>
+                        <div>
+                            <label htmlFor='comment'>Комментарий к заказу</label>
+                            <textarea
+                                onChange={(e) => changeHandler(e)}
+                                className="order-form__textarea"
+                                name='comment' type='textarea'
+                                value={clientInfo.comment}
+                            ></textarea >
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="phone">Телефон</label>
-                        <input
-                            onChange={(e) => changeHandler(e)}
-                            className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
-                            name="phone" type='phone'
-                            value={clientInfo.phone}
-                        />
-                        <InportantInputSVG />
-                    </div>
-                    <div>
-                        <label htmlFor="city">Город</label>
-                        <input
-                            onChange={(e) => changeHandler(e)}
-                            className="order-form__input"
-                            name="city" type='text'
-                            value={clientInfo.city}
-                        />
-                        <InportantInputSVG />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Эл почта</label>
-                        <input
-                            onChange={(e) => changeHandler(e)}
-                            className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
-                            name="email" type='text'
-                            value={clientInfo.email}
-                        />
-                        <InportantInputSVG />
-                    </div>
-                    <div>
-                        <label htmlFor='deliver'>Доставка</label>
-                        <select onChange={(e) => changeHandler(e)}
-                            className="order-form__input--select"
-                            name="deliver"
-                            value={clientInfo.deliver}
-                        >
-                            <option>Новая Почта</option>
-                            <option>Интайм</option>
-                            <option>Укрпочта</option>
-                            <option>Самовывоз</option>
-                        </select>
-                        <InportantInputSVG />
-                    </div>
-                    <div>
-                        <label htmlFor='payment'>Оплата</label>
-                        <select
-                            onChange={(e) => changeHandler(e)}
-                            className="order-form__input--select"
-                            name='payment'
-                            value={clientInfo.payment}
-                        >
-                            <option value="Наличными" >Наличными</option>
-                            <option value="На карту (предоплата)" >На карту (предоплата)</option>
-                            <option value="На карту (полная оплата)" >На карту (полная оплата)</option>
-                            <option value="Онлайн оплата" >Онлайн оплата</option>
-                        </select>
-                        <InportantInputSVG />
-                    </div>
-                    <div>
-                        <label htmlFor='coment'>Комментарий к заказу</label>
-                        <input
-                            onChange={(e) => changeHandler(e)}
-                            className="order-form__textarea"
-                            name='coment' type='textarea'
-                            value={clientInfo.coment}
-                        />
-                    </div>
-                </div>
-                <div className="order-form__goods-container">
-                    <div className="order-form__cards-container">
-                        {stateOrder.map((elem, i) => (
-                            <div key={i} className='order-form__card-goods'>
-                                <img className='order-form__card-goods--img' src={`${config.serverUrl}/api/images/${elem.image}`}></img>
-                                <div className='order-form__card-goods--info'>
-                                    <span>
-                                        <p>{elem.title}</p>
-                                        <p>Размер - {elem.size?.toUpperCase()}</p>
-                                    </span>
-                                    <div className="order-form__choose-size">
-                                        <button
-                                            className="order-form__choose-btn"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount - 1 }))
-                                            }}
-                                        >
-                                            <Discreate />
-                                        </button>
-                                        {elem.amount}
-                                        <button
-                                            className="order-form__choose-btn"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                dispatch(rewriteOrderItem({ ...elem, amount: elem.amount + 1 }))
-                                            }}
-                                        >
-                                            <Increate />
-                                        </button>
+                    <div className="order-form__goods-container">
+                        <div className="order-form__cards-container">
+                            {stateOrder.map((elem, i) => (
+                                <div key={i} className='order-form__card-goods'>
+                                    <img className='order-form__card-goods--img' src={`${config.serverUrl}/api/images/${elem.image}`}></img>
+                                    <div className='order-form__card-goods--info'>
+                                        <span>
+                                            <p>{elem.title}</p>
+                                            <p>Размер - {elem.size?.toUpperCase()}</p>
+                                        </span>
+                                        <div className="order-form__choose-size">
+                                            <button
+                                                className="order-form__choose-btn"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount - 1 }))
+                                                }}
+                                            >
+                                                <Discreate />
+                                            </button>
+                                            {elem.amount}
+                                            <button
+                                                className="order-form__choose-btn"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(rewriteOrderItem({ ...elem, amount: elem.amount + 1 }))
+                                                }}
+                                            >
+                                                <Increate />
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div className='order-form__card-goods--amount'>
+                                        <DeleteSVG onClick={() => { dispatch(removeProduct(elem._id)) }} />
+                                        <p>{elem.price} грн</p>
                                     </div>
                                 </div>
-                                <div className='order-form__card-goods--amount'>
-                                    <DeleteSVG onClick={() => { dispatch(removeProduct(elem._id)) }} />
-                                    <p>{elem.price} грн</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="order-form__card-goods--total">
-                        <span> Итог </span> {stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)}
+                            ))}
+                        </div>
+                        <div className="order-form__card-goods--total">
+                            <span> Итог </span> <span>{stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)} грн</span>
+                        </div>
                     </div>
                 </div>
                 <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div>

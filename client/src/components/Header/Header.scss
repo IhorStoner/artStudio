@@ -128,6 +128,12 @@
       position: absolute;
       display: none;
     }
+
+    &__nav-item {
+      &--admin {
+        display: none;
+      }
+    }
   }
 }
 
@@ -140,7 +146,8 @@
       justify-content: center;
       & img {
         left: 50px;
-       }
+        margin-top: 0px;
+      }
       & a {
         display: none;
       }
