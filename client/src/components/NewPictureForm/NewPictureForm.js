@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import './NewPictureForm.scss'
 import axios from 'axios'
 import config from '../../config/default.json'
@@ -6,7 +6,9 @@ import { getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import { useSelector } from 'react-redux'
 
 export default function NewPictureForm() {
-  const stateTypes = useSelector(getTypesOfClothing)
+  const stateTypes = useSelector(getTypesOfClothing);
+  const checkedInput = useRef(null);
+  const inputVal = useRef(null);
 
   const [result, setResult] = useState({
     chart: {
@@ -92,9 +94,15 @@ export default function NewPictureForm() {
   }
 
   const onSubmit = useCallback(async (ev) => {
+
     const resultImg = await submitAxios(ev)
+    const InpNewCategory = inputVal.current
+    const checkNewCategory = checkedInput.current
+
+    if(checkNewCategory.checked === true && InpNewCategory.value === "") return undefined
     // const  sek= parseInt(+new Date()/1000);
     let finnalyData = result
+
     finnalyData.images = resultImg
     finnalyData.vendorCode = parseInt(+new Date() / 1000)
 
@@ -168,12 +176,11 @@ export default function NewPictureForm() {
 
           <div className='newPictureForm__labelContainer'>
             {
-              stateTypes.map(typeClothes => (
-
-                <label htmlFor={typeClothes} className='newPictureForm__radioContainer'>
-                  <input type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => setResult({ ...result, type: e.target.value })} />
-                  <span>{typeClothes} </span>
-                </label>
+              stateTypes.map((typeClothes,i) => (
+                <><label key={i} htmlFor={typeClothes} className='newPictureForm__radioContainer'></label>
+                  <input type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => {setResult({ ...result, type: e.target.value })}} />
+                  <span>{typeClothes} </span> </>
+                
               ))
             }
             {/* <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
@@ -188,9 +195,15 @@ export default function NewPictureForm() {
               <input type='radio' id='jumpsuits' name='type' value="jumpsuits" onChange={(e) => setResult({ ...result, type: e.target.value })} />
               <span >Комбинизоны</span>
             </label> */}
-
           </div>
         </div>
+        <div className="newPictureForm__container newPictureForm__container__override-shift">
+          <span>Добавить</span>
+          <label className='newPictureForm__radioContainer  newPictureForm__center'></label>
+            <input ref={checkedInput} value="newCategory" name='type' type='radio' checked="checked" />
+            <input ref={inputVal} onInput = {(e) => {setResult({ ...result, type: e.target.value }); checkedInput.current.checked = true}} className="newPictureForm__new-category" name="newCategory" type="text" placeholder="Новую Категорию" />
+        </div>
+
 
 
         <div className="newPictureForm__sizes">
@@ -198,40 +211,40 @@ export default function NewPictureForm() {
           <div className="newPictureForm__checkboxContainer">
             <div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" id="xxxs" onChange={(e) => swithSizes(e)} name="xxxs" checked={result.chart.xxxs.in} />
-                <label htmlFor="xxxs">XXXS</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.xxs.in} id="xxs" onChange={(e) => swithSizes(e)} name="xxs" />
-                <label htmlFor="xxs">XXS</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.xs.in} id="xs" onChange={(e) => swithSizes(e)} name="xs" />
-                <label htmlFor="xs">XS</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.s.in} id="s" onChange={(e) => swithSizes(e)} name="s" />
-                <label htmlFor="s">S</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.m.in} id="m" onChange={(e) => swithSizes(e)} name="m" />
-                <label htmlFor="m">M</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.l.in} id="l" onChange={(e) => swithSizes(e)} name="l" />
-                <label htmlFor="l">L</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.xl.in} id="xl" onChange={(e) => swithSizes(e)} name="xl" />
-                <label htmlFor="xl">XL</label>
+                <input type="checkbox" checked={result.chart.xxxl.in} id="xxxl" onChange={(e) => swithSizes(e)} name="xxxl" />
+                <label htmlFor="xxxl">XXXL</label>
               </div>
               <div className="newPictureForm__boxContainer">
                 <input type="checkbox" checked={result.chart.xxl.in} id="xxl" onChange={(e) => swithSizes(e)} name="xxl" />
                 <label htmlFor="xxl">XXL</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" checked={result.chart.xxxl.in} id="xxxl" onChange={(e) => swithSizes(e)} name="xxxl" />
-                <label htmlFor="xxxl">XXXL</label>
+                <input type="checkbox" checked={result.chart.xl.in} id="xl" onChange={(e) => swithSizes(e)} name="xl" />
+                <label htmlFor="xl">XL</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" checked={result.chart.l.in} id="l" onChange={(e) => swithSizes(e)} name="l" />
+                <label htmlFor="l">L</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" checked={result.chart.m.in} id="m" onChange={(e) => swithSizes(e)} name="m" />
+                <label htmlFor="m">M</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" checked={result.chart.s.in} id="s" onChange={(e) => swithSizes(e)} name="s" />
+                <label htmlFor="s">S</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" checked={result.chart.xs.in} id="xs" onChange={(e) => swithSizes(e)} name="xs" />
+                <label htmlFor="xs">XS</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" checked={result.chart.xxs.in} id="xxs" onChange={(e) => swithSizes(e)} name="xxs" />
+                <label htmlFor="xxs">XXS</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" id="xxxs" onChange={(e) => swithSizes(e)} name="xxxs" checked={result.chart.xxxs.in} />
+                <label htmlFor="xxxs">XXXS</label>
               </div>
             </div>
 
@@ -296,7 +309,10 @@ export default function NewPictureForm() {
         </div>
         <div className="newPictureForm__text newPictureForm__container">
           <span>Цена</span>
-          <input className="newPictureForm__input" type="number" value={result.price} onChange={(e) => setResult({ ...result, price: e.target.value })} />
+          <input className="newPictureForm__input" type="number" value={result.price} onChange={(e) => {
+            console.log(e.target.value)
+            setResult({ ...result, price: e.target.value })
+          }} />
         </div>
         <div className="newPictureForm__submitContainer">
           <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => { onSubmit(ev) }}> Добавить </button>

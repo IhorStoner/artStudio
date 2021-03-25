@@ -102,7 +102,7 @@ export default function OpenPicture({ picture }) {
                       >
                         {elem.toUpperCase()}
                       </div> : null)
-                  })
+                  }).reverse()
               }
             </div>
             <span className="open-picture__order-container--includes-span">{picture.chart && picture.chart[selectedSize]?.include ? 'Есть в наличии' : ' Нет в наличии'}</span>

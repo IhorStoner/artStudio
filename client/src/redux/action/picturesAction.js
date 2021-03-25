@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
-import config from '../../config/default.json'
+import config from '../../config/default.json';
 
 export const fetchPictures = createAsyncThunk('pictures/fetchPictures', async (activeItem) => {
   const data = axios.get(`${config.serverUrl}/api/pictures/types/${activeItem}`).then(
@@ -20,7 +20,15 @@ export const fetchTypesOfClothing = createAsyncThunk('pictures/fetchTypes', asyn
   return data;
 })
 
-export const setTypesOfClothing = createAction('SET_TYPES_OF_CLOTHING')
+export const setTypesOfClothingRename = createAction('SET_TYPES_OF_CLOTHING')
+
+export const setTypesOfClothing = createAsyncThunk('pictures/setTypesOfClothing', async (obj) => {
+  const data = axios.put(`${config.serverUrl}/api/pictures/update/category`,obj).then(
+    res => res.data);
+  return data;
+})
+
+
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')
 export const resetOrderedGoods = createAction('RESET_ORDERED_GOODS')

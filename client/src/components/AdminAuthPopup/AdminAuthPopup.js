@@ -19,7 +19,7 @@ function AdminAuthPopup({ handleSubmit, authError }) {
                 </div>
                 <div className="auth-popup__input-container">
                   <p>Password:</p>
-                  <Field className='auth-popup__input auth-popup__input--password' name='password' component={TextField} placeholder=''></Field>
+                  <Field className='auth-popup__input auth-popup__input--password' type="password" name='password' component={TextField} placeholder=''></Field>
                 </div>
               </div>
               {authError && <div className='auth-popup__warning'>Не правильное имя или пароль</div>}

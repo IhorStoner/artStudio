@@ -48,9 +48,7 @@ pictureRouter.delete('/:pictureId', async (req, res) => {
 })
 
 pictureRouter.get('/pagination/:params', async (req, res) => {
-  console.log(req.params)
   const page = req.params.params ;
-  // console.log(req.params)
   const pagesize = 3;
 
   let result = []
@@ -63,8 +61,6 @@ pictureRouter.get('/pagination/:params', async (req, res) => {
     // определяем возможное кол-во страниц
     pages = Math.ceil((Number(countAds[0].ads) / Number(pagesize)))
     result = items
-
-    // console.log('countAds ', countAds)
   }
   // result - актуальные соотв. странице, pages - кол-во страниц
   res.json([result, pages])
@@ -78,6 +74,18 @@ pictureRouter.post('/rename/', async (req, res) => {
     return
   } else {
     res.status(200).send(order);
+  }
+})
+
+pictureRouter.put('/update/category', async (req, res) => {
+  try{
+    const {oldName, newType} = req.body;
+    await PictureModel.updateMany({type: oldName},{type: newType});
+    const types = await PictureModel.distinct('type');
+    const newArr = await PictureModel.find();
+    res.status(200).json({types, newArr});
+  }catch(e){
+     res.status(404).send(e.name);
   }
 })
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTypesOfClothing, setTypesOfClothing } from '../../redux/action/picturesAction'
 import { getTypesOfClothing } from '../../redux/selector/picturesSelector'
@@ -16,9 +16,9 @@ export const EdditCategories = () => {
     const [oldType, setOldType] = useState('')
     const stateTypes = useSelector(getTypesOfClothing)
     const dispatch = useDispatch()
+    const renameInput = useRef();
 
     const handleRename = async () => {
-
         await axios.post(`${config.serverUrl}/api/pictures/rename/`, { oldType, newType }).then(response => { setOldType(null); console.log('it\'s ok') })
     }
 
@@ -27,18 +27,19 @@ export const EdditCategories = () => {
     }, [])
 
     const addNewType = () => {
-        if (newType.length < 3) { return }
-        if (stateTypes.includes(newType)) { alert('Такой тип уже существует'); return }
-        if (oldType) {
-            handleRename()
-        }
-        dispatch(setTypesOfClothing([...stateTypes, newType]))
+        // if (newType.length < 3) { return }
+        // if (stateTypes.includes(newType)) { alert('Такой тип уже существует'); return }
+        // if (oldType) {
+        //     handleRename()
+        // }
+        dispatch(setTypesOfClothing({oldName: oldType, newType: newType}))
     }
 
     const handleCorrect = (elem) => {
         dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
         setNewType(elem)
         setOldType(elem)
+    
     }
 
     const handleDelete = (elem) => {
@@ -48,7 +49,7 @@ export const EdditCategories = () => {
     return (
         <div className="container">
             <div className='eddit-categories'>
-                {stateTypes.map(elem => (
+                {stateTypes.map(elem => {  return(
                     <div className='eddit-categories__select'>
                         <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div >
                         <div className='eddit-categories__select--svg'>
@@ -56,10 +57,10 @@ export const EdditCategories = () => {
                             <DeleteSVG onClick={() => handleDelete(elem)} />
                         </div>
                     </div>
-                )
+                )}
                 )}
                 <div className="eddit-categories__input">
-                    <input type='text' onChange={(e) => setNewType(e.target.value)} value={newType} />
+                    <input ref={renameInput} type='text' onChange={(e) => setNewType(e.target.value)} value={newType} />
                     <CreateNewSVG onClick={() => addNewType()} />
                 </div>
             </div>
