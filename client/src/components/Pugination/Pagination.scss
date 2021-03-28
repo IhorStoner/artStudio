@@ -2,17 +2,30 @@
     display: grid;
     grid-template-columns: 240px 240px 256px 240px 240px;
     width: 1224px;
-    height: 56px;
     margin: 0 auto;
-    & div {
-      &:nth-child(1) {
-        display: flex;
-        justify-self: end;
-      }
-      &:nth-child(2) {
-        margin: 0 auto;
-      }
-    }
+		&__number, &__number--active{
+			min-width: 20px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 36px;
+			height: 45px;
+			min-width: 45px;
+			cursor: pointer;
+		}
+		&__number--active{
+			border: 1px solid;
+			border-radius: 10px;
+		}
+    // & div {
+    //   &:nth-child(1) {
+    //     display: flex;
+    //     justify-self: end;
+    //   }
+    //   &:nth-child(2) {
+    //     margin: 0 auto;
+    //   }
+    // }
     &__pages {
         display: flex;
         justify-self: center;

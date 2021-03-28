@@ -16,13 +16,15 @@
   margin-left: auto;
   margin-right: auto;
   height: auto;
+	z-index: 2;
   &--width {
     max-width: 1000px;
+		
   }
   &--svg {
     position: absolute;
-    left: 650px;
-    top: -50px;
+    left: 370px;
+    top: -35px;
     cursor: pointer;
     margin-left: auto;
     background: inherit;
@@ -37,7 +39,6 @@
 .embl__viewport.is-draggable {
   cursor: move;
   cursor: grab;
-  border-radius: 10px;
 }
 
 .embl__viewport.is-dragging {
@@ -48,10 +49,7 @@
   display: flex;
   user-select: none;
   width: auto;
-  width: 680px;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+	max-height: 450px;
 }
 
 .embl__slide {
@@ -65,20 +63,39 @@
   width: auto;
 
   &--height {
-    height: 658px;
+    // height: 658px;
   }
 }
 
 .embl__wrapper {
   background: none;
-  width: 658px;
+  // width: 658px;
 }
 
-.embl__slide__img {
-  position: absolute;
-  display: block;
-  width: 658px;
-  height: 658px;
+// .embl__slide__img {
+//   position: absolute;
+//   display: block;
+//   width: 658px;
+//   height: 658px;
+// }
+
+.big-picure{
+	max-width: 80%;
+	img{
+		max-width: 100%;
+		width: auto;
+		height: auto;
+		object-fit: cover;
+		max-height: 100vh;
+	}
+	&__layers{
+		background-color: transparent;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
 }
 
 .embl__button {
@@ -167,4 +184,71 @@
 
 .embl__slide--thumb.is-selected .embl__slide__thumbnail {
   opacity: 1;
+}
+
+.embl__slide__inner--height{
+	// width: 100%;
+	// height: auto;
+}
+
+.embl__slide__img {
+	max-width: 100%;
+	max-width: 400px;
+	height: auto;
+}
+
+@media screen and (max-width: 998px){
+	.embl__slide__img {
+		max-width: 400px;
+		height: auto;
+	}
+	.embl__container{
+		max-width: 400px;
+	}
+	.embl--svg{
+		left: 370px;
+	}
+	.embla__slide__inner--thumb{
+		max-width: 150px;
+		max-height: 150px;
+	}
+}
+
+@media screen and (max-width: 768px){
+	.embl__slide__img {
+		max-width: 300px;
+		height: auto;
+	}
+	.embl__container{
+		max-width: 300px;
+	}
+	.embl--svg{
+		left: 280px;
+		top: -20px;
+		width: 40px;
+	}
+	.embla__slide__inner--thumb{
+		max-width: 100px;
+		max-height: 100px;
+	}
+}
+
+
+@media screen and (max-width: 480px){
+	.embl__slide__img {
+		max-width: 250px;
+		height: auto;
+	}
+	.embl__container{
+		max-width: 250px;
+	}
+	.embl--svg{
+		left: 230px;
+		top: -20px;
+		width: 40px;
+	}
+	.embla__slide__inner--thumb{
+		max-width: 70px;
+		max-height: 70px;
+	}
 }

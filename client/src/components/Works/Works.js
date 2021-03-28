@@ -7,6 +7,7 @@ import { getPicturePreview, getPictures, getStateType, getTypesOfClothing } from
 import OpenPicturePage from '../../pages/OpenPicturePage/OpenPicturePage'
 import { ReactComponent as Menu } from '../../assets/svg/hamburger.svg'
 import BigImages from '../BigImage/BigImages'
+import { setPicturePreview } from "../../redux/action/picturesAction";
 import './Works.scss'
 
 
@@ -33,16 +34,16 @@ export default function Works() {
 
   useEffect(() => {
     stateType && dispatch(fetchPictures(stateType))
-  }, [stateType])
+  }, [dispatch, stateType])
 
   useEffect(() => {
     dispatch(setStateType(stateTypes[0]))
-  }, [stateTypes])
+  }, [dispatch, stateTypes])
 
   return (
-    <div className={`works${openMenu ? ' works--open' : ' works--close'}`}>
+    <div className={`works${openMenu ? ' works--open' : ' works--close'}`} >
       {
-        picturePreview && <div className='works__popup' >
+        picturePreview && <div className='works__popup' onClick={(e) => {if(e.target.classList.contains("works__popup")) dispatch(setPicturePreview(null)) }} >
           <BigImages imgArr={picturePreview} thumbs={true} />
         </div>
       }
@@ -63,7 +64,7 @@ export default function Works() {
       {
         picturePage
           ? <OpenPicturePage id={id} />
-          : <div className={`works__content ${openMenu ? 'works__content--open' : 'works__content--close'}`}>
+          : <div className={`works__content ${openMenu ? 'works__content--open' : 'works__content--close'}`} >
             {pictures?.map((picture, index) => (
               <PictureItem
                 key={index}

@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.3fc89379.chunk.css",
-    "main.js": "/static/js/main.fea14293.chunk.js",
-    "main.js.map": "/static/js/main.fea14293.chunk.js.map",
+    "main.css": "/static/css/main.cc24feae.chunk.css",
+    "main.js": "/static/js/main.9860ba27.chunk.js",
+    "main.js.map": "/static/js/main.9860ba27.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.788bc986.js",
     "runtime-main.js.map": "/static/js/runtime-main.788bc986.js.map",
-    "static/js/2.e9b9bfa0.chunk.js": "/static/js/2.e9b9bfa0.chunk.js",
-    "static/js/2.e9b9bfa0.chunk.js.map": "/static/js/2.e9b9bfa0.chunk.js.map",
+    "static/js/2.e94b27ce.chunk.js": "/static/js/2.e94b27ce.chunk.js",
+    "static/js/2.e94b27ce.chunk.js.map": "/static/js/2.e94b27ce.chunk.js.map",
     "static/js/3.55f922ce.chunk.js": "/static/js/3.55f922ce.chunk.js",
     "static/js/3.55f922ce.chunk.js.map": "/static/js/3.55f922ce.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.3fc89379.chunk.css.map": "/static/css/main.3fc89379.chunk.css.map",
-    "static/js/2.e9b9bfa0.chunk.js.LICENSE.txt": "/static/js/2.e9b9bfa0.chunk.js.LICENSE.txt",
+    "static/css/main.cc24feae.chunk.css.map": "/static/css/main.cc24feae.chunk.css.map",
+    "static/js/2.e94b27ce.chunk.js.LICENSE.txt": "/static/js/2.e94b27ce.chunk.js.LICENSE.txt",
     "static/media/CreateNewTypeOfClothing.04eb4b98.svg": "/static/media/CreateNewTypeOfClothing.04eb4b98.svg",
     "static/media/InportantInput.99782f65.svg": "/static/media/InportantInput.99782f65.svg",
     "static/media/index.css": "/static/media/Monotype.35bae48c.ttf",
@@ -24,7 +24,7 @@
     "static/media/correct.66662251.svg": "/static/media/correct.66662251.svg",
     "static/media/delete.a498b82e.svg": "/static/media/delete.a498b82e.svg",
     "static/media/discreate.4c8854aa.svg": "/static/media/discreate.4c8854aa.svg",
-    "static/media/hamburger.abafc3a9.svg": "/static/media/hamburger.abafc3a9.svg",
+    "static/media/hamburger.32d6bb0b.svg": "/static/media/hamburger.32d6bb0b.svg",
     "static/media/increate.70bc4a0c.svg": "/static/media/increate.70bc4a0c.svg",
     "static/media/instagram.744f45cb.svg": "/static/media/instagram.744f45cb.svg",
     "static/media/magnifier.e2313f9c.svg": "/static/media/magnifier.e2313f9c.svg",
@@ -34,8 +34,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.788bc986.js",
-    "static/js/2.e9b9bfa0.chunk.js",
-    "static/css/main.3fc89379.chunk.css",
-    "static/js/main.fea14293.chunk.js"
+    "static/js/2.e94b27ce.chunk.js",
+    "static/css/main.cc24feae.chunk.css",
+    "static/js/main.9860ba27.chunk.js"
   ]
 }

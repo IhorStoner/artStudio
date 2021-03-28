@@ -27,7 +27,7 @@ export default function ItemsSlider({ imgArr }) {
   }, [embla, onSelect]);
 
 
-
+	// console.log(imgArr)
   return (
     <div className="emblas">
       <div className="emblas__viewport" ref={viewportRef}>

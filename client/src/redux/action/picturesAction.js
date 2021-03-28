@@ -28,6 +28,12 @@ export const setTypesOfClothing = createAsyncThunk('pictures/setTypesOfClothing'
   return data;
 })
 
+export const setDeleteOfClothing = createAsyncThunk("pictures/setDeleteOfClothing", async (name) => {
+	const data = axios.get(`${config.serverUrl}/api/pictures/delete/category/${name}`).then(
+		res => res.data)
+	return data;
+})
+
 
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')

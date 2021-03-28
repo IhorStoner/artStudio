@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTypesOfClothing, setTypesOfClothing } from '../../redux/action/picturesAction'
+import { fetchTypesOfClothing, setTypesOfClothing, setDeleteOfClothing } from '../../redux/action/picturesAction'
 import { getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import { ReactComponent as DeleteSVG } from '../../assets/svg/delete.svg'
 import { ReactComponent as CreateNewSVG } from '../../assets/svg/CreateNewTypeOfClothing.svg'
@@ -27,11 +27,9 @@ export const EdditCategories = () => {
     }, [])
 
     const addNewType = () => {
-        // if (newType.length < 3) { return }
-        // if (stateTypes.includes(newType)) { alert('Такой тип уже существует'); return }
-        // if (oldType) {
-        //     handleRename()
-        // }
+        if (newType.length < 3) { return }
+        if (stateTypes.includes(newType)) { alert('Такой тип уже существует'); return }
+        // if (oldType) {handleRename()}
         dispatch(setTypesOfClothing({oldName: oldType, newType: newType}))
     }
 
@@ -39,18 +37,18 @@ export const EdditCategories = () => {
         dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
         setNewType(elem)
         setOldType(elem)
-    
     }
 
-    const handleDelete = (elem) => {
-        dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
+    const handleDelete = (name) => {
+				dispatch(setDeleteOfClothing(name))
+        // dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
     }
 
     return (
         <div className="container">
             <div className='eddit-categories'>
-                {stateTypes.map(elem => {  return(
-                    <div className='eddit-categories__select'>
+                {stateTypes.map((elem,i) => {  return(
+                    <div key = {i} className='eddit-categories__select'>
                         <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div >
                         <div className='eddit-categories__select--svg'>
                             <CorrectSVG onClick={() => handleCorrect(elem)} />

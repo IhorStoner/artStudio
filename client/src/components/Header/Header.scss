@@ -2,49 +2,54 @@
   position: relative;
   background-color: #8b008b;
   font-size: 36px;
-  height: 190px;
-  &__logo-container {
-    width: 100% !important;
-    position: relative;
+	padding: 24px 0;
+	&__logo{
+		position: static;
+	}
+	&__info{
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		margin-bottom: 10px;
+	}
+	&__telephone{
+		color: #000;
+		margin-left: 25px;
+	}
+	&__interaction{
+		display: flex;
+		flex-direction: column;
+	}
+  &__container {
     display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+		justify-content: space-between;
+    align-items: flex-end;
     margin: 0 auto;
     color: #000;
-    height: 150px;
-    padding-right: 104px;
-    & img {
-      height: 162px;
-      position: absolute;
-      left: 100px;
-      top: 14px;
-      cursor: pointer;
-    }
-    & div {
-      display: flex;
-      align-items: center;
-      & span {
-        color: #000;
-      }
-      & a {
-        &:nth-child(even) {
-          margin: 0 15px;
-        }
-      }
-    }
-    & > a {
-      padding-left: 20px;
-    }
   }
+	&__contact{
+		display: flex;
+		align-items: center;
+	}
+	&__wrap-basket{
+		margin-left: 25px;
+	}
+	&__social{
+		margin-left: 25px;
+	}
   &__basket {
     margin-left: 1%;
     cursor: pointer;
   }
+	&__basket-span{
+		margin-left: 20px;
+	}
+	&__course{
+		margin-left: 40px;
+	}
   &__nav-list {
     display: flex;
-    flex-direction: row-reverse;
     align-items: center;
-    padding-right: 22px;
   }
   &__nav-item {
     list-style-type: none;
@@ -52,13 +57,6 @@
     font-family: "Monotype Corsiva";
     cursor: pointer;
     text-decoration: none;
-    margin-right: 80px;
-    // ::before {
-    //   content: "next";
-    //   width: 100%;
-    //   height: 2px;
-    //   color: red;
-    // }
     &:hover {
       text-decoration: underline;
     }
@@ -73,93 +71,112 @@
       text-decoration: underline;
     }
   }
+	&__numburger{
+		position: absolute;
+		left: 5px;
+		bottom: -5px;
+		cursor: pointer;
+		display: none;
+	}
+	&__picture-numburger{
+		transform: rotate(0);
+		&--open{
+			transform: rotate(90deg);
+		}
+	}
+	&__cart-mobile{
+		position: absolute;
+		right: 10px;
+		bottom: -3px;
+		display: none;
+	}
+	&__count-span{
+		position: absolute;
+		right: 30px;
+		bottom: 27px;
+		color: #fff;
+	}
 }
 
-@media (max-width: 1024px) {
-  .header {
-    height: 190px;
-    &__basket {
-      margin-right: 40px;
-    }
-    &__basket-span {
-      display: none;
-    }
-    &__logo-container {
-      position: relative;
-      height: 180px;
-      & > img {
-        margin-top: 20px;
-        height: 152px;
-      }
-    }
-    &__contact {
-      display: none;
-      & a {
-        display: none;
-      }
-    }
-
-    &__img {
-      position: absolute;
-      display: flex;
-    }
-    &__nav-list {
-      display: none;
-    }
-  }
+.mobile-menu{
+	display: none;
+	background-color: #C580C5;
+	&__category-item{
+		text-align: center;
+	}
 }
-@media (max-width: 768px) {
-  .header {
-    &__logo-container {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: row;
-      & img {
-        position: relative;
-      }
-    }
-    &__contact {
-      position: absolute;
-    }
-
-    &__img {
-      position: absolute;
-      display: flex;
-    }
-    &__nav-list {
-      position: absolute;
-      display: none;
-    }
-
-    &__nav-item {
-      &--admin {
-        display: none;
-      }
-    }
-  }
+.mobile{
+	padding-bottom: 10px;
+	&__nav-list{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		&::before{
+			content: "";
+			left: 5%;
+			right: 0;
+			bottom: 0;
+			width: 90%;
+			height: 1px;
+			position: absolute;
+			background-color: #000;
+		}
+	}
+	&__course{
+		text-align: center;
+	}
+	&__link{
+		width: 100%;
+		font-size: 36px;
+		font-weight: 400;
+		cursor: pointer;
+		&--active{
+			text-decoration: underline;
+		}
+	}
 }
 
-@media (max-width: 425px) {
-  .header {
-    position: relative;
-    z-index: 10;
-    &__logo-container {
-      display: flex;
-      justify-content: center;
-      & img {
-        left: 50px;
-        margin-top: 0px;
-      }
-      & a {
-        display: none;
-      }
-    }
-  }
+.logo{
+	&__img{
+		width: 160px;
+		max-width: 100%;
+		height: auto;
+	}
 }
 
-@media (max-width: 320px) {
-  .header {
-    &__logo-container {
-    }
-  }
+@media screen and (max-width: 1220px) {
+	.container{
+		padding: 0 20px;
+	}
+}
+
+@media screen and (max-width: 998px) {
+	.header__logo{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.logo__img{
+		width: 120px;
+		height: auto;
+	}
+	.header__interaction{
+		display: none;
+	}
+	.mobile-menu{
+		display: block;
+	}
+	.header__numburger{
+		display: block;
+	}
+	.header__cart-mobile{
+		display: block;
+	}
+}
+
+@media screen and (max-width: 480px){
+	.mobile__link{
+		font-size: 30px;
+	}
 }

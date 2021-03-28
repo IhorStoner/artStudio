@@ -21,7 +21,9 @@ export default function NewPictureForm() {
       xl: { in: false, include: false },
       xxl: { in: false, include: false },
       xxxl: { in: false, include: false },
-    }
+    },
+		type: "newCategory",
+		newVal: ""
   })
   const [images, setImages] = useState([])
   const [successForm, setSuccessForm] = useState(false)
@@ -100,7 +102,7 @@ export default function NewPictureForm() {
     const checkNewCategory = checkedInput.current
 
     if(checkNewCategory.checked === true && InpNewCategory.value === "") return undefined
-    // const  sek= parseInt(+new Date()/1000);
+
     let finnalyData = result
 
     finnalyData.images = resultImg
@@ -165,23 +167,29 @@ export default function NewPictureForm() {
         </div>
         <div className="newPictureForm__text newPictureForm__container">
           <span>Название</span>
-          <input className="newPictureForm__input" type="text" value={result.title} onChange={(e) => setResult({ ...result, title: e.target.value })} />
+          <input className="newPictureForm__input" type="text" value={result.title} onInput={(e) => setResult({ ...result, title: e.target.value })} />
         </div>
         <div className="newPictureForm__text newPictureForm__container">
           <span>Описание</span>
-          <textarea className="newPictureForm__input" type="text" value={result.text} onChange={(e) => setResult({ ...result, text: e.target.value })} ></textarea>
+          <textarea className="newPictureForm__input" type="text" value={result.text} onInput={(e) => setResult({ ...result, text: e.target.value })} ></textarea>
         </div>
         <div className="newPictureForm__container">
-          <span>Тип </span>
+          <span>Тип</span>
 
           <div className='newPictureForm__labelContainer'>
+						<span className="newPictureForm__checkbox" onClick = {() => {setResult({ ...result, type: inputVal.current.value })}}>
+							<input className="newPictureForm__dote" ref={checkedInput} id="update" value={result.newVal} name='type' type='radio' checked = {result.type === result.newVal ? true : false} />
+							<label  htmlFor="update" className='newPictureForm__radioContainer'>
+								<input  ref={inputVal} onInput = {(e) => { setResult({ ...result, type: e.target.value, newVal: e.target.value }); checkedInput.current.checked = true; checkedInput.current.value = e.target.value}} className="newPictureForm__new-category" name="newCategory" type="text" placeholder="Добавить новую категорию" />
+							</label>
+            </span>
             {
-              stateTypes.map((typeClothes,i) => (
-                <><label key={i} htmlFor={typeClothes} className='newPictureForm__radioContainer'></label>
-                  <input type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => {setResult({ ...result, type: e.target.value })}} />
-                  <span>{typeClothes} </span> </>
-                
-              ))
+              stateTypes.map((typeClothes,i) => {	return (
+                <span key={typeClothes+i} className="newPictureForm__checkbox">
+                  <input className="newPictureForm__dote" type='radio' id={typeClothes} name='type' value={typeClothes} onChange={(e) => {setResult({ ...result, type: e.target.value })}} />
+									<label key={i} htmlFor={typeClothes} className='newPictureForm__radioContainer'>{typeClothes}</label>
+                </span>
+              )})
             }
             {/* <label htmlFor="t-shirts" className='newPictureForm__radioContainer'>
               <input type='radio' id='t-shirts' name='type' value="t-shirts" onChange={(e) => setResult({ ...result, type: e.target.value })} />
@@ -197,12 +205,12 @@ export default function NewPictureForm() {
             </label> */}
           </div>
         </div>
-        <div className="newPictureForm__container newPictureForm__container__override-shift">
+        {/* <div className="newPictureForm__container newPictureForm__container__override-shift">
           <span>Добавить</span>
           <label className='newPictureForm__radioContainer  newPictureForm__center'></label>
             <input ref={checkedInput} value="newCategory" name='type' type='radio' checked="checked" />
             <input ref={inputVal} onInput = {(e) => {setResult({ ...result, type: e.target.value }); checkedInput.current.checked = true}} className="newPictureForm__new-category" name="newCategory" type="text" placeholder="Новую Категорию" />
-        </div>
+        </div> */}
 
 
 
@@ -249,42 +257,44 @@ export default function NewPictureForm() {
             </div>
 
             <div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_XXXS" disabled={!result.chart.xxxs.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
-                <label htmlFor="include_XXXS">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_XXS" disabled={!result.chart.xxs.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
-                <label htmlFor="include_XXS">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_XS" disabled={!result.chart.xs.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
-                <label htmlFor="include_XS">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="Include_S" disabled={!result.chart.s.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
-                <label htmlFor="Include_S">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_M" disabled={!result.chart.m.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
-                <label htmlFor="include_M">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_L" disabled={!result.chart.l.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
-                <label htmlFor="include_L">Есть в наличии</label>
-              </div>
-              <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="include_XL" disabled={!result.chart.xl.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
-                <label htmlFor="include_XL">Есть в наличии</label>
+							<div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="iclude_XXL" disabled={!result.chart.xxxl.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
+                <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
                 <input type="checkbox" defaultChecked={false} id="iclude_XXL" disabled={!result.chart.xxl.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxl" />
                 <label htmlFor="iclude_XXL">Есть в наличии</label>
               </div>
               <div className="newPictureForm__boxContainer">
-                <input type="checkbox" defaultChecked={false} id="iclude_XXL" disabled={!result.chart.xxxl.in} onClick={(e) => setAvailabel(e)} name="iclude_XXL" value="xxxl" />
-                <label htmlFor="iclude_XXL">Есть в наличии</label>
+                <input type="checkbox" defaultChecked={false} id="include_XL" disabled={!result.chart.xl.in} onClick={(e) => setAvailabel(e)} name="include_XL" value="xl" />
+                <label htmlFor="include_XL">Есть в наличии</label>
               </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="include_L" disabled={!result.chart.l.in} onClick={(e) => setAvailabel(e)} name="include_L" value="l" />
+                <label htmlFor="include_L">Есть в наличии</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="include_M" disabled={!result.chart.m.in} onClick={(e) => setAvailabel(e)} name="include_M" value="m" />
+                <label htmlFor="include_M">Есть в наличии</label>
+              </div>
+
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="Include_S" disabled={!result.chart.s.in} onClick={(e) => setAvailabel(e)} name="Include_S" value="s" />
+                <label htmlFor="Include_S">Есть в наличии</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="include_XS" disabled={!result.chart.xs.in} onClick={(e) => setAvailabel(e)} name="include_XS" value="xs" />
+                <label htmlFor="include_XS">Есть в наличии</label>
+              </div>
+							<div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="include_XXS" disabled={!result.chart.xxs.in} onClick={(e) => setAvailabel(e)} name="include_XXS" value="xxs" />
+                <label htmlFor="include_XXS">Есть в наличии</label>
+              </div>
+              <div className="newPictureForm__boxContainer">
+                <input type="checkbox" defaultChecked={false} id="include_XXXS" disabled={!result.chart.xxxs.in} onClick={(e) => setAvailabel(e)} name="includeXXXS" value="xxxs" />
+                <label htmlFor="include_XXXS">Есть в наличии</label>
+              </div>
+
             </  div>
 
           </div>

@@ -49,7 +49,7 @@ pictureRouter.delete('/:pictureId', async (req, res) => {
 
 pictureRouter.get('/pagination/:params', async (req, res) => {
   const page = req.params.params ;
-  const pagesize = 3;
+  const pagesize = 10;
 
   let result = []
   let pages = 'not found';
@@ -89,6 +89,15 @@ pictureRouter.put('/update/category', async (req, res) => {
   }
 })
 
+pictureRouter.get('/delete/category/:del', async (req, res) => {
+  try{
+		await PictureModel.deleteMany({type: req.params.del})
+		const types = await PictureModel.distinct('type');
+    res.status(200).json(types);
+  }catch(e){
+     res.status(404).send(e.name);
+  }
+})
 
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);

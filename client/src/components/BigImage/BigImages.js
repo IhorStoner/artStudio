@@ -56,6 +56,7 @@ export default function BigImages({ imgArr, thumbs = true }) {
         return (
             <div className="big-picure">
                 <img src={`${config.serverUrl}/api/images/${isBigImage}`} alt="sliderImg" onClick={() => setIsBigImage(null)} />
+								<div className="big-picure__layers" onClick={() => setIsBigImage(null)}></div>
             </div>
         )
     }

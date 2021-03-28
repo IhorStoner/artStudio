@@ -5,7 +5,6 @@ import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
 import { ReactComponent as BasketDelete } from '../../assets/svg/basketDelete.svg'
 import { ReactComponent as BtnClose } from '../../assets/svg/btnClose.svg'
-import config from '../../config/default.json'
 import { useHistory } from 'react-router'
 import { setOrderedGoods } from '../../redux/action/picturesAction'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,29 +12,40 @@ import { getStateOrder } from '../../redux/selector/picturesSelector'
 import { addProduct, rewriteOrderItem } from '../../redux/action/storageAction'
 import { GoodsContainer } from './GoodsContainer'
 
-
-const conditions = {
-  "Доставка": "Условия доставки  ".repeat(20),
-  "Оплата": "Способы оплаты  ".repeat(20),
-  "Гарантия": "Наша качества ".repeat(20)
-}
-
 export default function OpenPicture({ picture }) {
+	// const haveSize = picture.chart ? Object.keys(picture.chart).find( el => {return (picture.chart[el].in) }) : ""
   const [stateAmount, setStateAmount] = useState(1)
-  const [stateNavList, setStateNavList] = useState('Доставка')
-  const [selectedSize, setSelectedSize] = useState(null)
+  const [stateNavList, setStateNavList] = useState('Описание')
+  const [selectedSize, setSelectedSize] = useState("s")
   const [sentToBasket, setSentToBasket] = useState(false)
+  const [cost, setCost] = useState(0)
   const { push } = useHistory()
   const dispatch = useDispatch()
   const stateOrder = useSelector(getStateOrder)
+	if(picture && picture.chart && picture.chart[selectedSize] && !picture.chart[selectedSize].in){
+		const active = Object.keys(picture.chart).findIndex( key => picture.chart[key].in );
+		setSelectedSize(Object.keys(picture.chart)[active])
+	}
 
+	const conditions = {
+		"Доставка": "Условия доставки  ".repeat(20),
+		"Оплата": "Способы оплаты  ".repeat(20),
+		"Гарантия": "Наша качества ".repeat(20),
+		"Описание": picture.text
+	}
+	
   const handleSelectedSizi = (elem) => {
     setSelectedSize(elem)
   }
 
-  useEffect(() => {
-    picture.chart && setSelectedSize(Object.keys(picture.chart)[0])
-  }, [picture.chart])
+	useEffect(() => {
+		setStateAmount(1)
+		setCost(picture.price)
+	},[selectedSize])
+
+	useEffect(() => {
+		setCost(picture.price)
+	},[picture.picture, picture.price])
 
   const setToBasket = () => {
     setSentToBasket(true)
@@ -51,6 +61,14 @@ export default function OpenPicture({ picture }) {
     dispatch(addProduct({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
     // dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
   }
+
+	const calculate = (digit) => {
+		const { price } = picture
+		if(digit >= 1){
+			setStateAmount(digit)
+			setCost(digit * price)
+		}
+	}
 
   return (
     <div className='container'>
@@ -74,56 +92,58 @@ export default function OpenPicture({ picture }) {
       }
       <div className="open-picture">
         <div className="open-picture__articul">
-          {picture.title}
-          <span>Артикул {picture.vendorCode}</span>
+          <h4 className="open-picture__articul-name">{picture.title}</h4>
+          <span className="open-picture__articul-span">Артикул {picture.vendorCode}</span>
         </div>
         <div className="open-picture__main">
           <div className="open-picture__slider-container">
             <div className="open-picture__slider">
               {picture.images && <OpenPictureSlider imgArr={picture.images} thumbs={true} />}
             </div>
-            <div className="open-picture__discribe">
-              Описание: <br />
-              {picture.text}
-            </div>
+            {/* <div className="open-picture__discribe open-picture__mobile">
+							<h4 className="open-picture__h4-desc">Описание:</h4>
+							<span className="open-picture__span-text">{picture.text}</span>
+            </div> */}
           </div>
           <div className="open-picture__order-container">
-            <h2 className="open-picture__price"> {picture.price} грн </h2>
-            <span> Размеры: <br /></span>
-            <div className="open-picture__chart-container">
-              {picture.chart &&
-                Object.keys(picture.chart).map(
-                  (elem, i) => {
-                    return (picture.chart[elem].in ?
-                      <div
-                        key={i}
-                        onClick={() => handleSelectedSizi(elem)}
-                        className={`open-picture__chart${selectedSize === elem ? '--active' : ''}`}
-                      >
-                        {elem.toUpperCase()}
-                      </div> : null)
-                  }).reverse()
-              }
-            </div>
-            <span className="open-picture__order-container--includes-span">{picture.chart && picture.chart[selectedSize]?.include ? 'Есть в наличии' : ' Нет в наличии'}</span>
+            <div className="open-picture__price"> {stateAmount >= 10 ? <span className="open-picture__price-sale">{cost} грн</span> : ""}   <span className="open-picture__price-current">{ stateAmount >= 10 ? `${ cost - (cost * 0.1).toFixed(1)}грн - 10%`  : `${cost} грн`  } </span></div>
+						<div className="open-picture__area-size">
+							<div className="open-picture__have-size">
+								<span className="open-picture__size-span" > Размеры: </span>
+								<span className="open-picture__order-container--includes-span open-picture__have-phone">{picture.chart && picture.chart[selectedSize]?.include ? 'Есть в наличии' : ' Нет в наличии'}</span>
+							</div>
+							<div className="open-picture__chart-container">
+								{picture.chart &&
+									Object.keys(picture.chart).reverse().filter( el => picture.chart[el].in ).map(( elem, i) => {
+										return (
+											<div key={i} onClick={() => handleSelectedSizi(elem)} className={`${selectedSize === elem ? 'open-picture__chart--active' : 'open-picture__chart'}`}>
+												{elem.toUpperCase()}
+											</div>
+										)          
+									})
+								}
+							</div>
+						</div>
+            <span className="open-picture__order-container--includes-span open-picture__have-desctop">{picture.chart && picture.chart[selectedSize]?.include ? 'Есть в наличии' : ' Нет в наличии'}</span>
             <div className="open-picture__buy-container">
               <div className="open-picture__choose-size">
-                <button onClick={() => setStateAmount(stateAmount - 1)} className="open-picture__choose-btn" >
+                <button onClick={() => calculate(stateAmount - 1)} className="open-picture__choose-btn" >
                   <Discreate />
                 </button>
                 {stateAmount}
-                <button onClick={() => setStateAmount(stateAmount + 1)} className="open-picture__choose-btn">
+                <button onClick={() => calculate(stateAmount + 1)} className="open-picture__choose-btn">
                   <Increate />
                 </button>
               </div>
-              {picture.chart && <button disabled={!picture.chart[selectedSize]?.include} onClick={() => selectedSize ? setToBasket() : alert('Выбирите размер')} className="open-picture__buy-btn"> Купить </button>}
+              {picture.chart && <button onClick={() => selectedSize ? setToBasket() : alert('Выбирите размер')} className="open-picture__buy-btn"> Заказать </button>}
             </div>
             <div>
-              <nav className="open-picture__nav">
-                <ul>
-                  <li onClick={() => setStateNavList('Доставка')} className={stateNavList === 'Доставка' ? `open-picture__nav--active` : ' '}>Доставка</li>
-                  <li onClick={() => setStateNavList('Оплата')} className={stateNavList === 'Оплата' ? `open-picture__nav--active` : ' '}>Оплата</li>
-                  <li onClick={() => setStateNavList('Гарантия')} className={stateNavList === 'Гарантия' ? `open-picture__nav--active` : ' '}>Гарантия</li>
+              <nav className="open-picture__addition-nav">
+                <ul className="open-picture__nav-list">
+									<li onClick={() => setStateNavList('Описание')} className={`open-picture__info-action ${stateNavList === 'Описание' ? `open-picture__nav--active` : ' '}`}>Описание</li>
+                  <li onClick={() => setStateNavList('Доставка')} className={`open-picture__info-action ${stateNavList === 'Доставка' ? `open-picture__nav--active` : ' '}`}>Доставка</li>
+                  <li onClick={() => setStateNavList('Оплата')} className={`open-picture__info-action ${stateNavList === 'Оплата' ? `open-picture__nav--active` : ' '}`}>Оплата</li>
+                  {/* <li onClick={() => setStateNavList('Гарантия')} className={`open-picture__info-action--warantry  ${stateNavList === 'Гарантия' ? `open-picture__nav--active` : ' '}`}>Гарантия</li> */}
                 </ul>
               </nav>
               <div className="open-picture__conditions">

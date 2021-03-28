@@ -61,6 +61,7 @@ export default function OpenPictureSlider({ imgArr, thumbs = false, openButtons 
               <div className="embla__slide" key={index}>
                 <div className="embla__slide__inner embla__slide__inner--height">
                   <img
+										onClick={() => dispatch(setPicturePreview(imgArr))}
                     className="embla__slide__img sliderPopup__img"
                     src={`${config.serverUrl}/api/images/${img}`}
                     alt="sliderImg"

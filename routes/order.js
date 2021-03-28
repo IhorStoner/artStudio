@@ -2,6 +2,7 @@ const { Router } = require('express');
 const orderRouter = Router();
 require('express-async-errors')
 const { OrderModel } = require('../models/OrderModel');
+const nodemailer = require("nodemailer");
 
 orderRouter.get('/', async (req, res) => {
     const orders = await OrderModel.find({});
@@ -50,8 +51,37 @@ orderRouter.post('/rename/', async (req, res) => {
 })
 
 orderRouter.post('/', async (req, res) => {
+		const {client, orderNumber, clothes, price} = req.body
+		const {initials, phone, city, email} = client
     const newOrder = new OrderModel(req.body);
     const { _id } = await newOrder.save();
+
+		let transporter = nodemailer.createTransport({
+			service: "gmail",
+			secure: false, // true for 465, false for other ports
+			auth: {
+				user: 'info.xlia.vip@gmail.com', 
+				pass: 'zaKFBtwcTx0o',
+			},
+		});
+
+
+		transporter.sendMail({
+			from: 'info.xlia.vip@gmail.com',
+			to: email,
+			subject: "Новый заказ",
+			text: `Name: ${initials} Phone: ${phone}`,
+			html: `
+			<h2>Имя: ${initials}</h2>
+			<h3>Номер заказа: ${Date.now()}</h3>
+			<a href="tel:${initials}">Телефон: ${initials} </a>
+			<h3>Адрес: ${city}</h3>
+			<h2>
+				Сумма: ${price}грн
+			</h2>
+			`
+		});
+
     res.status(201).send(newOrder);
 })
 

@@ -174,11 +174,11 @@ export default function EdditPictureForm() {
                 </div>
                 <div className="newPictureForm__text newPictureForm__container">
                     <span>Название</span>
-                    <input className="newPictureForm__input" type="text" value={result.title} onChange={(e) => setResult({ ...result, title: e.target.value })} />
+                    <input className="newPictureForm__input" type="text" value={result.title} onInput={(e) => setResult({ ...result, title: e.target.value })} />
                 </div>
                 <div className="newPictureForm__text newPictureForm__container">
                     <span>Описание</span>
-                    <textarea className="newPictureForm__input" type="text" value={result.text} onChange={(e) => setResult({ ...result, text: e.target.value })} ></textarea>
+                    <textarea className="newPictureForm__input" type="text" defaultValue={result.text} onInput={(e) => setResult({ ...result, text: e.target.value })} ></textarea>
                 </div>
                 <div className="newPictureForm__container">
                     <span>Тип </span>

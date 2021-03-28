@@ -34,6 +34,12 @@
   }
 }
 
+@media screen and (max-width: 1200px){
+	.btn{
+		font-size: 32px;
+	}
+}
+
 @media (max-width: 768px) {
   .btn {
     position: relative;

@@ -28,7 +28,7 @@ export default function Footer() {
         </ul>
       </nav> */}
       <div className="footer__logoContainer">
-        <img src={logo} alt="artStudio" />
+        <img className="footer__logo" src={logo} alt="artStudio" />
         <p className='footer__copyright'>©Арт Студия “название” 2021</p>
       </div>
     </div>

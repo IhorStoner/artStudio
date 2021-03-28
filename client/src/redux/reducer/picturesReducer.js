@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { fetchPictures, fetchOnePicture, setStateEdditPicture,
         setOrderedGoods, setStateType, refreshOrderedGoods,
         fetchTypesOfClothing, setTypesOfClothing, resetOrderedGoods, 
-        setPicturePreview, setTypesOfClothingRename
+        setPicturePreview, setTypesOfClothingRename, setDeleteOfClothing
 } from '../action/picturesAction'
 
 const initialState = {
@@ -51,7 +51,7 @@ const picturesReducer = createReducer(initialState, {
 
   [setTypesOfClothing.pending]: (state) => {
     state.loading = true;
-    state.error = null
+    state.error = null;
   },
   [setTypesOfClothing.fulfilled]: (state, action) => {
     const { types, newArr } = action.payload;
@@ -59,6 +59,15 @@ const picturesReducer = createReducer(initialState, {
     state.picture = newArr[0];
     state.loading = false;
   },  
+
+	[setDeleteOfClothing.pending]: (state, action) => {
+		state.loading = true;
+		state.error = false;
+	},
+	[setDeleteOfClothing.fulfilled]: (state, action) => {
+		state.typeOfClothing = action.payload;
+		state.loading = false;
+	},
 
   [setTypesOfClothingRename.type]: (state, action) => {
     state.typeOfClothing = action.payload

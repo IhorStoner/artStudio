@@ -36,7 +36,7 @@ export const OrderForm = () => {
         }
 
         if (name === 'phone') {
-            return value.length !== 13
+            return value && !/^\+?1?\s*?\(?\d{3}(?:\)|[-|\s])?\s*?\d{3}[-|\s]?\d{4}$/i.test(value)
                 ? false
                 : true
         }
@@ -44,17 +44,18 @@ export const OrderForm = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const model = {
+				if(onValid("phone",clientInfo.phone) && onValid("email",clientInfo.email)){
+					const model = {
             comment: clientInfo.comment,
             price: stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0),
             clothes: stateOrder,
             orderNumber: parseInt(+new Date() / 1000),
             status: 'Новый',
             client: clientInfo
-        }
-        const adId = await axios.post(`${config.serverUrl}/api/order`, model).then(res => console.log(res.data))
-        setConfirm(model.orderNumber)
-
+        	}
+					await axios.post(`${config.serverUrl}/api/order`, model).then(res => console.log(res.data))
+					setConfirm(model.orderNumber)
+				}
     }
 
     const onValidHandler = (name, value) => {
@@ -98,6 +99,7 @@ export const OrderForm = () => {
                         <div>
                             <label htmlFor="initials">ФИО</label>
                             <input
+																required
                                 onChange={(e) => changeHandler(e)}
                                 className="order-form__input"
                                 name="initials"
@@ -109,6 +111,7 @@ export const OrderForm = () => {
                         <div>
                             <label htmlFor="phone">Телефон</label>
                             <input
+																required
                                 onChange={(e) => changeHandler(e)}
                                 className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
                                 name="phone" type='phone'
@@ -119,6 +122,7 @@ export const OrderForm = () => {
                         <div>
                             <label htmlFor="city">Город</label>
                             <input
+																required
                                 onChange={(e) => changeHandler(e)}
                                 className="order-form__input"
                                 name="city" type='text'
@@ -129,6 +133,7 @@ export const OrderForm = () => {
                         <div>
                             <label htmlFor="email">Эл почта</label>
                             <input
+																required
                                 onChange={(e) => changeHandler(e)}
                                 className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
                                 name="email" type='text'

@@ -16,29 +16,26 @@ import { Pagination } from '../Pugination/Pagination'
 export default function AdminPicturesList({ setActiveItem }) {
   const [deletePicture, setDeletePicture] = useState(false)
   const [idDeletePicture, setIdDeletePicture] = useState(null)
-  const [currentPage, setcurrentPage] = useState(null)
+  const [currentPage, setcurrentPage] = useState(1)
   const [allPages, setAllPages] = useState(8)
   const [state, setState] = useState()
   const dispatch = useDispatch()
 
   const fetchData = useCallback(async (ev) => {
-    console.log({currentPage})
     const { data } = await axios.get(`${config.serverUrl}/api/pictures/pagination/${currentPage? currentPage : 1}`,)
     const freshDate = data[0].map(elem => ({ ...elem, date: elem.date.slice(0, 10).replace(/-/g, '.') }))
-    console.log("freshDate ", {data})
     setAllPages(data[1])
     setState(freshDate)
-  }, [])
+  }, [currentPage])
 
   useEffect(() => {
-    console.log({currentPage})
     fetchData()
-  }, [currentPage])
+  }, [currentPage, fetchData])
 
   const deleteObj = useCallback(async (imgId) => {
     await axios.delete(`${config.serverUrl}/api/pictures/${imgId}`).then(res => console.log('res ', res))
     fetchData()
-  })
+  },[fetchData])
 
   const refToCorrect = (obj) => {
     setActiveItem('edditPicture')
@@ -48,6 +45,7 @@ export default function AdminPicturesList({ setActiveItem }) {
   const handleDeleteObj = (id) => {
     deleteObj(id)
   }
+
 
   return (
     <div className="container">
@@ -60,18 +58,42 @@ export default function AdminPicturesList({ setActiveItem }) {
             </div>
           </div>
         </div>}
-        <div className='admin-pictures-list__head'>
-          <div className='admin-pictures-list__item-text'>Название</div>
-          <div className='admin-pictures-list__item-text'>Тип</div>
-          <div className='admin-pictures-list__item-text'>Описание</div>
-          <div className='admin-pictures-list__item-text'>Размеры</div>
-          <div className='admin-pictures-list__item-text admin-pictures-list--small'>Дата публикации </div>
-          <div className='admin-pictures-list__item-text'>Цена</div>
-          <div className='admin-pictures-list__item-text admin-pictures-list__item-text--small'>Отображать на сайте</div>
-          <div></div>
-        </div>
 
-        {state?.map((elem, i) => {
+				<div className="admin-pictures-list__greed">
+						<div className='admin-pictures-list__item-text'>Название</div>
+						<div className='admin-pictures-list__item-text'>Тип</div>
+						<div className='admin-pictures-list__item-text'>Описание</div>
+						<div className='admin-pictures-list__item-text'>Размеры</div>
+						<div className='admin-pictures-list__item-text admin-pictures-list--small'>Дата публикации </div>
+						<div className='admin-pictures-list__item-text'>Цена</div>
+						<div className='admin-pictures-list__item-text admin-pictures-list__item-text--small'>Отображать на сайте</div>
+						<div className='admin-pictures-list__item-text'></div>
+					{state?.map((elem, i) => {
+						return (
+							<React.Fragment key={i}>
+								<div className='admin-pictures-list__item-text' >
+									<div className="admin-pictures-list__phote-title"><img className='admin-pictures-list__image-goods' src={`${config.serverUrl}/api/images/${elem.images[0]}`} alt="альтернативный текст" /><span>{elem.title}</span></div>
+								</div>
+								<div className='admin-pictures-list__item-text'>{elem.type}</div>
+								<div className='admin-pictures-list__item-text'><span>{elem.text}</span></div>
+								<div className='admin-pictures-list__item-text'>{elem.chart && Object.keys(elem.chart).map(v => v).join(", ").toUpperCase()}</div>
+								<div className='admin-pictures-list__item-text'>{elem.date}</div>
+								<div className='admin-pictures-list__item-text admin-pictures-list__price'>{elem.price}</div>
+								<div className='admin-pictures-list__item-text admin-pictures-list__price'>{elem.onSite ? <CheckOkSVG /> : <CheckOffSVG />}</div>
+								<div className='admin-pictures-list__item-text'>
+									<Correct className='admin-pictures-list__pointer' onClick={() => refToCorrect(elem)} />
+									<NavLink to={`/home/works/${elem._id}`} className="admin-pictures-list__shift-btn">
+										<Open className='admin-pictures-list__pointer' />
+									</NavLink>
+									<Delete className='admin-pictures-list__pointer' onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} />
+								</div>
+							</React.Fragment>	
+							)
+					})}
+				</div>
+
+
+        {/* {state?.map((elem, i) => {
           return (
             <div key={i} className='admin-pictures-list__data'>
               <div ><img src={`${config.serverUrl}/api/images/${elem.images[0]}`} alt="альтернативный текст" /></div>
@@ -89,7 +111,7 @@ export default function AdminPicturesList({ setActiveItem }) {
                 </NavLink>
                 <Delete className='admin-pictures-list__pointer' onClick={() => { setDeletePicture(true); setIdDeletePicture(elem._id) }} /></div>
             </div>)
-        })}
+        })} */}
         <Pagination allPages={allPages} currentPage={currentPage} setcurrentPage={setcurrentPage}/>
       </div>
     </div>

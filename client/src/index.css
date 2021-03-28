@@ -2,7 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;
+}
+
+body{
+	min-width: 320px;
+	overflow-x: hidden;
+}
+img{
+	font-size: 18px;
 }
 
 @font-face {
@@ -40,7 +47,7 @@ input[type="checkbox"] {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
