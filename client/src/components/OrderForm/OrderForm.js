@@ -91,7 +91,7 @@ export const OrderForm = () => {
                         <h5 className="order-form__arrange-title">Получатель заказа</h5>
                         <div className="order-form__input-container">
                             <div className="order-form__container-input">
-                                <label htmlFor="initials">ФИО</label>
+                                <label htmlFor="initials">ФИО:</label>
                                 <input
                                     required
                                     onChange={(e) => changeHandler(e)}
@@ -100,10 +100,10 @@ export const OrderForm = () => {
                                     type='text'
                                     value={clientInfo.initials}
                                 />
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div className="order-form__container-input">
-                                <label htmlFor="phone">Телефон</label>
+                                <label htmlFor="phone">Телефон:</label>
                                 <input
                                     required
                                     onChange={(e) => changeHandler(e)}
@@ -111,10 +111,10 @@ export const OrderForm = () => {
                                     name="phone" type='phone'
                                     value={clientInfo.phone}
                                 />
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div className="order-form__container-input">
-                                <label htmlFor="city">Город</label>
+                                <label htmlFor="city">Город:</label>
                                 <input
                                                                     required
                                     onChange={(e) => changeHandler(e)}
@@ -122,10 +122,10 @@ export const OrderForm = () => {
                                     name="city" type='text'
                                     value={clientInfo.city}
                                 />
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div  className="order-form__container-input">
-                                <label htmlFor="email">Эл почта</label>
+                                <label htmlFor="email">Эл почта:</label>
                                 <input
                                                                     required
                                     onChange={(e) => changeHandler(e)}
@@ -133,10 +133,10 @@ export const OrderForm = () => {
                                     name="email" type='text'
                                     value={clientInfo.email}
                                 />
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div  className="order-form__container-input">
-                                <label htmlFor='deliver'>Доставка</label>
+                                <label htmlFor='deliver'>Доставка:</label>
                                 <select onChange={(e) => changeHandler(e)}
                                     className="order-form__input--select"
                                     name="deliver"
@@ -147,10 +147,10 @@ export const OrderForm = () => {
                                     <option>Укрпочта</option>
                                     <option>Самовывоз</option>
                                 </select>
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div className="order-form__container-input">
-                                <label htmlFor='payment'>Оплата</label>
+                                <label htmlFor='payment'>Оплата:</label>
                                 <select
                                     onChange={(e) => changeHandler(e)}
                                     className="order-form__input--select"
@@ -162,10 +162,10 @@ export const OrderForm = () => {
                                     <option value="На карту (полная оплата)" >На карту (полная оплата)</option>
                                     <option value="Онлайн оплата" >Онлайн оплата</option>
                                 </select>
-                                <InportantInputSVG />
+                                <InportantInputSVG className="order-form__stars-attention" />
                             </div>
                             <div className="order-form__container-input">
-                                <label htmlFor='comment'>Комментарий к заказу</label>
+                                <label htmlFor='comment'>Комментарий к заказу:</label>
                                 <textarea
                                     onChange={(e) => changeHandler(e)}
                                     className="order-form__textarea"
