@@ -40,6 +40,7 @@
   border-radius: 10px;
 	line-height: 0;
 	max-height: 450px;
+  height: 450px;
 }
 
 .emblas__slide__img {
@@ -147,5 +148,11 @@
   .emblas__button--next {
     display: none;
     right: 27px;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .emblas__slide__inner{
+    height: 400px;
   }
 }

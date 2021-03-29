@@ -15,6 +15,8 @@
 	&__telephone{
 		color: #000;
 		margin-left: 25px;
+		white-space: nowrap;
+		margin-right: 15px;
 	}
 	&__interaction{
 		display: flex;
@@ -32,17 +34,20 @@
 		align-items: center;
 	}
 	&__wrap-basket{
-		margin-left: 25px;
+		position: static;
+		width: auto;
+		height: 80px;
 	}
 	&__social{
 		margin-left: 25px;
 	}
-  &__basket {
-    margin-left: 1%;
-    cursor: pointer;
-  }
+	&__basket {
+		margin-left: 1%;
+		cursor: pointer;
+	}
 	&__basket-span{
 		margin-left: 20px;
+		display: none;
 	}
 	&__course{
 		margin-left: 40px;
@@ -92,9 +97,15 @@
 	}
 	&__count-span{
 		position: absolute;
-		right: 30px;
-		bottom: 27px;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		color: #fff;
+		transform: translateX(-3px);
 	}
 }
 
@@ -172,6 +183,8 @@
 	}
 	.header__cart-mobile{
 		display: block;
+		height: 80px;
+		width: 80px;
 	}
 }
 

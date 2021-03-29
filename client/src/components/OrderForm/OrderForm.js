@@ -85,102 +85,100 @@ export const OrderForm = () => {
                 </div>
             </div>}
             <div className="order-form__head">Оформление заказа</div>
-            <div className="order-form__label">
-                <div>
-                    <span>Получатель заказа</span>
-                </div>
-                <div>
-                    <span>Ваш заказ</span>
-                </div>
-            </div>
             <form className="order-form">
                 <div className="order-form--main">
-                    <div className="order-form__input-container">
-                        <div>
-                            <label htmlFor="initials">ФИО</label>
-                            <input
-																required
-                                onChange={(e) => changeHandler(e)}
-                                className="order-form__input"
-                                name="initials"
-                                type='text'
-                                value={clientInfo.initials}
-                            />
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor="phone">Телефон</label>
-                            <input
-																required
-                                onChange={(e) => changeHandler(e)}
-                                className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
-                                name="phone" type='phone'
-                                value={clientInfo.phone}
-                            />
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor="city">Город</label>
-                            <input
-																required
-                                onChange={(e) => changeHandler(e)}
-                                className="order-form__input"
-                                name="city" type='text'
-                                value={clientInfo.city}
-                            />
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Эл почта</label>
-                            <input
-																required
-                                onChange={(e) => changeHandler(e)}
-                                className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
-                                name="email" type='text'
-                                value={clientInfo.email}
-                            />
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor='deliver'>Доставка</label>
-                            <select onChange={(e) => changeHandler(e)}
-                                className="order-form__input--select"
-                                name="deliver"
-                                value={clientInfo.deliver}
-                            >
-                                <option>Новая Почта</option>
-                                <option>Интайм</option>
-                                <option>Укрпочта</option>
-                                <option>Самовывоз</option>
-                            </select>
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor='payment'>Оплата</label>
-                            <select
-                                onChange={(e) => changeHandler(e)}
-                                className="order-form__input--select"
-                                name='payment'
-                                value={clientInfo.payment}
-                            >
-                                <option value="Наличными" >Наличными</option>
-                                <option value="На карту (предоплата)" >На карту (предоплата)</option>
-                                <option value="На карту (полная оплата)" >На карту (полная оплата)</option>
-                                <option value="Онлайн оплата" >Онлайн оплата</option>
-                            </select>
-                            <InportantInputSVG />
-                        </div>
-                        <div>
-                            <label htmlFor='comment'>Комментарий к заказу</label>
-                            <textarea
-                                onChange={(e) => changeHandler(e)}
-                                className="order-form__textarea"
-                                name='comment' type='textarea'
-                                value={clientInfo.comment}
-                            ></textarea >
+                    <div className="order-form__arrange-order">
+                        <h5 className="order-form__arrange-title">Получатель заказа</h5>
+                        <div className="order-form__input-container">
+                            <div className="order-form__container-input">
+                                <label htmlFor="initials">ФИО</label>
+                                <input
+                                    required
+                                    onChange={(e) => changeHandler(e)}
+                                    className="order-form__input"
+                                    name="initials"
+                                    type='text'
+                                    value={clientInfo.initials}
+                                />
+                                <InportantInputSVG />
+                            </div>
+                            <div className="order-form__container-input">
+                                <label htmlFor="phone">Телефон</label>
+                                <input
+                                    required
+                                    onChange={(e) => changeHandler(e)}
+                                    className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
+                                    name="phone" type='phone'
+                                    value={clientInfo.phone}
+                                />
+                                <InportantInputSVG />
+                            </div>
+                            <div className="order-form__container-input">
+                                <label htmlFor="city">Город</label>
+                                <input
+                                                                    required
+                                    onChange={(e) => changeHandler(e)}
+                                    className="order-form__input"
+                                    name="city" type='text'
+                                    value={clientInfo.city}
+                                />
+                                <InportantInputSVG />
+                            </div>
+                            <div  className="order-form__container-input">
+                                <label htmlFor="email">Эл почта</label>
+                                <input
+                                                                    required
+                                    onChange={(e) => changeHandler(e)}
+                                    className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
+                                    name="email" type='text'
+                                    value={clientInfo.email}
+                                />
+                                <InportantInputSVG />
+                            </div>
+                            <div  className="order-form__container-input">
+                                <label htmlFor='deliver'>Доставка</label>
+                                <select onChange={(e) => changeHandler(e)}
+                                    className="order-form__input--select"
+                                    name="deliver"
+                                    value={clientInfo.deliver}
+                                >
+                                    <option>Новая Почта</option>
+                                    <option>Интайм</option>
+                                    <option>Укрпочта</option>
+                                    <option>Самовывоз</option>
+                                </select>
+                                <InportantInputSVG />
+                            </div>
+                            <div className="order-form__container-input">
+                                <label htmlFor='payment'>Оплата</label>
+                                <select
+                                    onChange={(e) => changeHandler(e)}
+                                    className="order-form__input--select"
+                                    name='payment'
+                                    value={clientInfo.payment}
+                                >
+                                    <option value="Наличными" >Наличными</option>
+                                    <option value="На карту (предоплата)" >На карту (предоплата)</option>
+                                    <option value="На карту (полная оплата)" >На карту (полная оплата)</option>
+                                    <option value="Онлайн оплата" >Онлайн оплата</option>
+                                </select>
+                                <InportantInputSVG />
+                            </div>
+                            <div className="order-form__container-input">
+                                <label htmlFor='comment'>Комментарий к заказу</label>
+                                <textarea
+                                    onChange={(e) => changeHandler(e)}
+                                    className="order-form__textarea"
+                                    name='comment' type='textarea'
+                                    value={clientInfo.comment}
+                                ></textarea >
+                            </div>
                         </div>
                     </div>
-                    <GoodsContainer />
+                    <div className="order-form__our-order">
+                        <h5 className="order-form__arrange-title">Ваш заказ</h5>
+                        <GoodsContainer />
+                    </div>
                 </div>
                 <div className='order-form__foot'> <button onClick={(e) => { onSubmit(e) }}>Оформить заказ</button></div>
             </form>

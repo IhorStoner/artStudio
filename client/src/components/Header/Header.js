@@ -15,12 +15,12 @@ import { getTypesOfClothing, getStateType } from '../../redux/selector/picturesS
 import  humburger  from '../../assets/svg/hamburger.svg'
 
 export default function Header() {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const stateOrder = useSelector(getStateOrder)
-	const stateTypes = useSelector(getTypesOfClothing)
-	const stateType = useSelector(getStateType)
-	const	stateLocal = useSelector(localSelector)
-	const [picturePage, setPicturePage] = useState(false)
+  const stateTypes = useSelector(getTypesOfClothing)
+  const stateType = useSelector(getStateType)
+  const	stateLocal = useSelector(localSelector)
+  const [picturePage, setPicturePage] = useState(false)
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
   const { push } = useHistory()
@@ -44,10 +44,10 @@ export default function Header() {
 						<div className="header__numburger" onClick = {() => { stateLocal.mobileMenu ? dispatch(MobileMenu(false)) : dispatch(MobileMenu(true))}} >
 							<img className={`header__picture-numburger ${stateLocal.mobileMenu ? "header__picture-numburger--open" : ""}`} src={humburger} alt="humburger" />
 						</div>
-						<div className="header__cart-mobile">
-							<Basket className="header__basket" />
-							<span className="header__count-span">{amount}</span>
-						</div>
+            <NavLink className="header__wrap-basket header__cart-mobile" to='/home/orderForm'>
+              <Basket className="header__basket" />
+              <span className="header__count-span">{amount}</span>
+            </NavLink>
 					</div>
           
 					<div className="header__interaction">

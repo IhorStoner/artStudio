@@ -10,7 +10,21 @@
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.75);
   box-sizing: border-box;
-
+  &__picture-image{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  &__normal-price-basket{
+    &--line-throught{
+      font-size: 18px;
+      text-decoration: line-through;
+      text-align: center;
+    }
+  }
+  &__description-header{
+    position: static;
+  }
   &__btn-close {
     position: absolute;
     left: 700px;
@@ -20,7 +34,9 @@
   &__basket {
     cursor: pointer;
   }
-
+  &__addition-info{
+    display: flex;
+  }
   &__diskribe-image {
     display: flex;
     align-items: center;
@@ -50,6 +66,18 @@
     border-radius: 10px;
     padding: 14px;
   }
+  &__description-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 40%;
+    font-size: 18px;
+    line-height: 20px;
+    padding-right: 60px;
+    & span {
+      margin-right: 15px;
+    }
+  }
   &__head {
     position: relative;
     width: 100%;
@@ -60,24 +88,12 @@
       font-size: 48px;
       line-height: 54px;
     }
-    & div {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      width: 40%;
-      font-size: 18px;
-      line-height: 20px;
-      padding-right: 60px;
-      & span {
-        margin-right: 15px;
-      }
-    }
   }
 
   &__main {
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
   }
 
   &__card {
@@ -170,7 +186,7 @@
   &__goods-container {
     display: flex;
     flex-direction: column;
-    // width: 45%;
+    overflow-x: hidden;
     & > div {
       display: flex;
       flex-direction: column;
@@ -181,33 +197,37 @@
       line-height: 25px;
       margin-bottom: 12px;
       & img {
-        width: 101px;
-        height: 101px;
+        width: 100px;
+        max-width: 100%;
+        object-fit: cover;
         border: 1px solid #ffffff;
         box-sizing: border-box;
         border-radius: 10px;
-        margin-right: 10px;
       }
     }
+  }
+  &__cost-thangs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__remove-thangs-svg{
+    margin-right: 10px;
   }
   &__card-goods {
     display: flex;
     margin-bottom: 10px;
-
-    padding-right: 20px;
     &--info {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 350px;
-      height: 101px;
+      align-items: center;
+      margin-left: 5px;
+      width: 332px;
     }
     &--amount {
       display: flex;
-      width: 100%;
-      flex-direction: column;
       justify-content: space-between;
-      align-items: flex-end;
+      width: 270px;
+      align-items: center;
       & svg {
         cursor: pointer;
       }
@@ -396,6 +416,8 @@
       display: flex;
       align-items: center;
       outline: none;
+      width: 30px;
+      height: 30px;
     }
   }
 
@@ -580,4 +602,54 @@
 	.open-picture__info-action{
 		font-size: 32px;
 	}
+}
+
+@media screen and (max-width: 998px){
+  .sent-to-basket__description-header{
+    display: none;
+  }
+  .sent-to-basket__form{
+    width: auto;
+    max-width: 340px;
+    min-width: 290px;
+  }
+  .sent-to-basket__card-goods{
+    flex-wrap: wrap;
+  }
+  .sent-to-basket__head h2{
+    font-size: 36px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .sent-to-basket__goods-container > div img {
+    width: 66px;
+  }
+  .sent-to-basket__picture-image{
+    height: 66px;
+  }
+  .sent-to-basket__card-goods{
+    margin-bottom: 20px;
+  }
+  .sent-to-basket__normal-price-basket--line-throught{
+    font-size: 16px;
+  }
+  .sent-to-basket__sale-price-basket{
+    font-size: 20px;
+  }
+  .sent-to-basket__foot{
+    flex-direction: column;
+    margin-top: 10px;
+    .sent-to-basket__foot-btn:first-child{
+      margin-bottom: 8px;
+    }
+  }
+  .sent-to-basket__head{
+    margin-bottom: 0;
+  }
+  .sent-to-basket__cost-thangs{
+    min-height: 50px;
+  }
+  .sent-to-basket__card-goods--total{
+    margin-top: 0;
+  }
 }

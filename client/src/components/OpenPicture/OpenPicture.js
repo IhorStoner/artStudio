@@ -77,15 +77,15 @@ export default function OpenPicture({ picture }) {
           <div className="sent-to-basket__form">
             <div className="sent-to-basket__head">
               <h2>Корзина</h2>
-              <div> <span>Количество</span> <span>Стоимость</span></div>
+              <div className="sent-to-basket__description-header"> <span>Количество</span> <span>Стоимость</span></div>
               <BtnClose className="sent-to-basket__btn-close" onClick={() => setSentToBasket(false)} />
             </div>
             <div className="sent-to-basket__main">
               <GoodsContainer />
             </div>
             <div className='sent-to-basket__foot'>
-              <button onClick={() => { push('/home/') }}> Вернуться к покупкам </button>
-              <button onClick={() => { push('/home/orderForm') }}> Оформить заказ </button>
+              <button className="sent-to-basket__foot-btn" onClick={() => { push('/home/') }}> К покупкам </button>
+              <button className="sent-to-basket__foot-btn" onClick={() => { push('/home/orderForm') }}> Оформить заказ </button>
             </div>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default function OpenPicture({ picture }) {
                   <Discreate />
                 </button>
                 {stateAmount}
-                <button onClick={() => calculate(stateAmount + 1)} className="open-picture__choose-btn">
+                <button onClick={() => calculate(stateAmount + 1)} className="open-picture__choose-btn open-picture__choose-btn--plus">
                   <Increate />
                 </button>
               </div>

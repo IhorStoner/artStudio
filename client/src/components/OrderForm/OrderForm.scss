@@ -7,7 +7,26 @@
         display: flex;
         height: auto;
     }
-
+    &__arrange-order{
+        max-width: 700px;
+    }
+    &__our-order{
+        margin-left: 25px;
+        max-width: 700px;
+        min-width: 400px;
+        width: 100%;
+    }
+    &__arrange-title{
+        font-weight: 400;
+        font-style: italic;
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+    &__count-label-area{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     &__head {
         display: flex;
         font-size: 48px;
@@ -36,7 +55,6 @@
     &__input-container {
         display: flex;
         flex-wrap: wrap;
-        width: 55%;
         height: auto;
         & p {
             font-size: 36px;
@@ -60,35 +78,39 @@
     }
     &__textarea {
         height: 182px;
-        width: 500px;
         background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         padding: 20px;
+        flex-grow: 1;
+        margin-right: 18px;
     }
     &__input {
-        width: 500px;
         height: 34px;
+        padding: 2px 8px;
         background: #ffffff;
         border: 1px solid #000000;
         box-sizing: border-box;
         box-shadow: inset 4px 4px 5px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
+        margin-right: 5px;
+        flex-grow: 1;
         &--warning {
             border-radius: 10px;
             border-color: red;
-            width: 500px;
             height: 34px;
         }
         &--select {
-            width: 500px;
             border-radius: 10px;
             font-family: Monotype Corsiva;
             font-weight: normal;
             font-size: 25px;
             line-height: 30px;
+            margin-right: 5px;
+            padding: 2px 8px;
+            flex-grow: 1;
             background: url("../../assets/png/arrowSelect.png") no-repeat right;
             & option:hover {
                 background-color: aqua;
@@ -206,10 +228,8 @@
     &__goods-container {
         display: flex;
         flex-direction: column;
-        width: 45%;
         & > div {
             display: flex;
-            width: 100%;
             font-family: Monotype Corsiva;
             font-weight: normal;
             font-size: 22px;
@@ -222,6 +242,7 @@
                 box-sizing: border-box;
                 border-radius: 10px;
                 margin-right: 10px;
+                object-fit: cover;
             }
         }
     }
@@ -230,14 +251,12 @@
         margin-bottom: 10px;
         &--info {
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 350px;
-            height: 101px;
+            // flex-direction: column;
+            // justify-content: space-between;
+            flex-grow: 1;
         }
         &--amount {
             display: flex;
-            width: 100%;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
@@ -250,10 +269,6 @@
             width: 100%;
             justify-content: flex-end;
             margin-top: 50px;
-
-            & > span {
-                margin-right: 56px;
-            }
         }
     }
 
@@ -283,5 +298,34 @@
                 background: #ff8ff4;
             }
         }
+    }
+}
+
+@media screen and (max-width: 998px){
+    .order-form__head{
+        font-size: 36px;
+        font-style: italic;
+        font-weight: 400;
+        margin: 15px auto;
+        max-width: 500px;
+    }
+    .order-form__arrange-title{
+        display: none;
+    }
+    .order-form--main{
+        flex-direction: column-reverse;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .order-form__card-goods-summ{
+        font-size: 36px;
+    }
+    .order-form__card-goods--total{
+        margin-bottom: 12px;
+        margin-top: 12px;
+        justify-content: space-between;
+    }
+    .order-form__our-order{
+        margin-left: 0;
     }
 }

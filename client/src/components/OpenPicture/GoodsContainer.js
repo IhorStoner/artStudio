@@ -1,30 +1,39 @@
-import React from 'react'
-
-import { removeProduct, rewriteOrderItem, setEmptyBasket } from '../../redux/action/storageAction'
+import React, {useState, useEffect} from 'react'
+import { removeProduct, rewriteOrderItem, setEmptyBasket, } from '../../redux/action/storageAction'
 import { ReactComponent as DeleteSVG } from '../../assets/svg/basketDelete.svg'
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
 import config from '../../config/default.json'
 import { useDispatch, useSelector } from 'react-redux'
-import { getStateOrder } from '../../redux/selector/picturesSelector'
-
-
+import { getStateOrder } from '../../redux/selector/picturesSelector';
 
 export const GoodsContainer = () => {
-    const dispatch = useDispatch()
-    const stateOrder = useSelector(getStateOrder)
+    const dispatch = useDispatch();
+    const stateOrder = useSelector(getStateOrder);
+    const [clothes, setClothes] = useState(useSelector(getStateOrder));
+
+    useEffect(() => {
+      setClothes(stateOrder);
+    },[stateOrder]);
 
     return (
         <div className="sent-to-basket__goods-container">
             <div className="sent-to-basket__cards-container">
-                {stateOrder.map((elem, i) => (
+                {clothes.map((elem, i) => { console.log(elem); return (
                     <div key={i} className='sent-to-basket__card-goods'>
-                        <img className='sent-to-basket__card-goods--img' src={`${config.serverUrl}/api/images/${elem.image}`}></img>
-                        <div className='sent-to-basket__card-goods--info'>
-                            <span>
+                        <div className='sent-to-basket__addition-info'>
+                          <div className="sent-to-basket__img-wrap">
+                              <img className='sent-to-basket__picture-image' src={`${config.serverUrl}/api/images/${elem.image}`} />
+                          </div>
+                          <div className='sent-to-basket__card-goods--info'>
+                              <div className="sent-to-basket__card-description">
                                 <p>{elem.title}</p>
                                 <p>Размер - {elem.size?.toUpperCase()}</p>
-                            </span>
+                              </div>
+                          </div>
+                        </div>
+
+                        <div className='sent-to-basket__card-goods--amount'>
                             <div className="sent-to-basket__choose-size">
                                 <button
                                     className="sent-to-basket__choose-btn"
@@ -46,16 +55,19 @@ export const GoodsContainer = () => {
                                     <Increate />
                                 </button>
                             </div>
-                        </div>
-                        <div className='sent-to-basket__card-goods--amount'>
-                            <DeleteSVG onClick={() => { dispatch(removeProduct(elem._id)) }} />
-                            <p>{elem.price} грн</p>
+                            <span className="sent-to-basket__cost-thangs">
+                              <span className={`sent-to-basket__normal-price-basket ${elem.amount >= 10? "sent-to-basket__normal-price-basket--line-throught":""}`} >{elem.price * elem.amount} грн</span>
+                              {elem.amount >= 10 ? <span className="sent-to-basket__sale-price-basket">{((elem.price * 0.9).toFixed(1) * elem.amount).toFixed(1)} грн  -10%</span>: ""}
+                            </span>
+                            <DeleteSVG className="sent-to-basket__remove-thangs-svg" onClick={() => { dispatch(removeProduct(elem._id)) }} />
                         </div>
                     </div>
-                ))}
+                )})}
             </div>
             <div className="sent-to-basket__card-goods--total">
-                <span> Итог <span ></span>{stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0)} грн</span>
+                <span> Итог <span ></span>{clothes.reduce((accum, elem) => { 
+                  const price = elem.amount >= 10 ? (elem.price * .9).toFixed(1) : elem.price;
+                  return accum + (price * elem.amount) }, 0).toFixed(1)} грн</span>
             </div>
         </div>
     )
