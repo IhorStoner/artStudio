@@ -48,10 +48,11 @@ export default function OpenPicture({ picture }) {
 	},[picture.picture, picture.price])
 
   const setToBasket = () => {
+    
     setSentToBasket(true)
     if (stateAmount < 1) { alert('укажите количество товара'); return }
     const { price, _id, vendorCode, images, title } = picture
-    const checkId = stateOrder.findIndex(elem => elem._id === _id)
+    const checkId = stateOrder.findIndex(elem => elem._id === _id && elem.size === selectedSize)
 
     if (checkId !== -1) {
 
@@ -62,6 +63,23 @@ export default function OpenPicture({ picture }) {
     // dispatch(setOrderedGoods({ amount: stateAmount, title, size: selectedSize, price, _id, vendorCode, image: images[0] }))
   }
 
+  //input set count field
+  const inputNewCount = (e) => {
+    const targ = e.target.value;
+    const toNumber = parseInt(targ);
+    console.log(targ.trim().length === 0)
+    if(targ.trim().length === 0) setStateAmount(parseInt(targ))
+    if(targ.length <= 3 && !isNaN(toNumber)) calculate(toNumber)
+  }
+
+  //exit from input field check data to fix on correct
+  const blurCheckCorrect = (e) => {
+    const targ = e.target.value;
+    const toNumber = parseInt(targ);
+    if(isNaN(toNumber)) calculate(1)
+  }
+
+  //computed total summ
 	const calculate = (digit) => {
 		const { price } = picture
 		if(digit >= 1){
@@ -73,7 +91,7 @@ export default function OpenPicture({ picture }) {
   return (
     <div className='container'>
       {
-        sentToBasket && <div className="sent-to-basket">
+        sentToBasket && <div className="sent-to-basket" onClick={(e) => { if(e.target.classList.contains("sent-to-basket")) setSentToBasket(false)}}>
           <div className="sent-to-basket__form">
             <div className="sent-to-basket__head">
               <h2>Корзина</h2>
@@ -84,7 +102,7 @@ export default function OpenPicture({ picture }) {
               <GoodsContainer />
             </div>
             <div className='sent-to-basket__foot'>
-              <button className="sent-to-basket__foot-btn" onClick={() => { push('/home/') }}> К покупкам </button>
+              <button className="sent-to-basket__foot-btn" onClick={() => { setSentToBasket(false) }}> К покупкам </button>
               <button className="sent-to-basket__foot-btn" onClick={() => { push('/home/orderForm') }}> Оформить заказ </button>
             </div>
           </div>
@@ -130,7 +148,7 @@ export default function OpenPicture({ picture }) {
                 <button onClick={() => calculate(stateAmount - 1)} className="open-picture__choose-btn" >
                   <Discreate />
                 </button>
-                {stateAmount}
+                <input onBlur={blurCheckCorrect} onInput={inputNewCount} className="open-picture__input-change-count" type="number" name="count" value={stateAmount} maxLength="3"/>
                 <button onClick={() => calculate(stateAmount + 1)} className="open-picture__choose-btn open-picture__choose-btn--plus">
                   <Increate />
                 </button>

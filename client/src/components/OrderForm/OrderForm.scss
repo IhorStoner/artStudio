@@ -128,7 +128,44 @@
             }
         }
     }
-
+    &__modal{
+        padding: 50px 0;
+    }
+    &__popup-btn{
+        margin-top: 20px;
+    }
+    &__order-text{
+        padding: 0 15px;
+    }
+    &__popup-btn{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 242px;
+        height: 82px;
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        font-family: Monotype Corsiva;
+        font-weight: normal;
+        font-size: 30px;
+        line-height: 34px;
+        background: #8b008b;
+        
+        &:active {
+            background: #c600c6;
+        }
+        &:hover {
+            background: #e200e2;
+            border: 1px solid #000000;
+            box-sizing: border-box;
+            box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            color: #000;
+        }
+    }
     &__popup {
         position: fixed;
         top: 0;
@@ -140,12 +177,12 @@
         height: 100vh;
         background: rgba(0, 0, 0, 0.85);
         z-index: 1000;
+        min-width: 280px;
         & > div {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 608px;
-            height: 322px;
             font-weight: normal;
             font-size: 48px;
             line-height: 54px;
@@ -154,6 +191,7 @@
             background: #ffffff;
             border: 1px solid #000000;
             border-radius: 10px;
+            align-items: center;
             & div {
                 border-radius: 10px;
                 display: flex;
@@ -332,6 +370,21 @@
     }
     .order-form__our-order{
         margin-left: 0;
+    }
+    .order-form__popup > div {
+        min-width: 280px;
+        max-width: 380px;
+        margin: 0 10px;
+    }
+    .order-form__order-text{
+        font-size: 24px;
+        line-height: 26px;
+        font-weight: 400;
+    }
+    .order-form__popup-btn{
+        height: auto;
+        width: auto;
+        padding: 5px 68px;
     }
 }
 

@@ -36,7 +36,7 @@ export const OrderForm = () => {
         }
 
         if (name === 'phone') {
-            return value && !/^\+?1?\s*?\(?\d{3}(?:\)|[-|\s])?\s*?\d{3}[-|\s]?\d{4}$/i.test(value)
+            return value && !/^((\+?3)?8)?((0\(\d{2}\)?)|(\(0\d{2}\))|(0\d{2}))\d{7}$/i.test(value)
                 ? false
                 : true
         }
@@ -49,7 +49,7 @@ export const OrderForm = () => {
             comment: clientInfo.comment,
             price: stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0),
             clothes: stateOrder,
-            orderNumber: parseInt(+new Date() / 1000),
+            orderNumber: parseInt(Date.now().toString().split("").reverse().splice(1,6).join("")),
             status: 'Новый',
             client: clientInfo
         	}
@@ -79,9 +79,9 @@ export const OrderForm = () => {
     return (
         <div className='container'>
             {confirm && <div className='order-form__popup'>
-                <div className='order-form__modal'>Ваш заказ (№ {confirm}) принят, в ближайшее время с вами свяжется оператор.<div>
-                    <button onClick={() => { setConfirm(false); push('/home/works'); dispatch(setEmptyBasket([])) }}> Хорошо </button>
-                </div>
+                <div className='order-form__modal'>
+                  <span className="order-form__order-text">Ваш заказ (№ {confirm}) принят. В ближайшее время с Вами свяжется оператор.</span>
+                  <button className="order-form__popup-btn" onClick={() => { setConfirm(false); push('/home/works'); dispatch(setEmptyBasket([])) }}> Хорошо </button>
                 </div>
             </div>}
             <div className="order-form__head">Оформление заказа</div>
@@ -107,7 +107,7 @@ export const OrderForm = () => {
                                 <input
                                     required
                                     onChange={(e) => changeHandler(e)}
-                                    className={`order-form__input${!validField('phone') ? '--warning' : ' '}`}
+                                    className={`order-form__input ${!validField('phone') ? 'order-form__input--warning' : ' '}`}
                                     name="phone" type='phone'
                                     value={clientInfo.phone}
                                 />
@@ -129,7 +129,7 @@ export const OrderForm = () => {
                                 <input
                                                                     required
                                     onChange={(e) => changeHandler(e)}
-                                    className={`order-form__input${!validField('email') ? '--warning' : ' '}`}
+                                    className={`order-form__input ${!validField('email') ? 'order-form__input--warning' : ' '}`}
                                     name="email" type='text'
                                     value={clientInfo.email}
                                 />

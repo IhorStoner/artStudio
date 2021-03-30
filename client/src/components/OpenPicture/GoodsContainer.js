@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { removeProduct, rewriteOrderItem, setEmptyBasket, } from '../../redux/action/storageAction'
+import { removeProduct, rewriteOrderItem, setEmptyBasket,writeAndReplaceBasket } from '../../redux/action/storageAction'
 import { ReactComponent as DeleteSVG } from '../../assets/svg/basketDelete.svg'
 import { ReactComponent as Increate } from '../../assets/svg/increate.svg'
 import { ReactComponent as Discreate } from '../../assets/svg/discreate.svg'
@@ -16,10 +16,17 @@ export const GoodsContainer = () => {
       setClothes(stateOrder);
     },[stateOrder]);
 
+    // const rewriteReplacebasket = (title, size, count) => {
+    //     let index = clothes.findIndex( el => (el.title === title && el.size === size));
+    //     let clone = JSON.parse(JSON.stringify(clothes));
+    //     clone[index].amount += 1
+    //     dispatch(writeAndReplaceBasket(clone))
+    // }
+
     return (
         <div className="sent-to-basket__goods-container">
             <div className="sent-to-basket__cards-container">
-                {clothes.map((elem, i) => { console.log(elem); return (
+                {clothes.map((elem, i) => { return (
                     <div key={i} className='sent-to-basket__card-goods'>
                         <div className='sent-to-basket__addition-info'>
                           <div className="sent-to-basket__img-wrap">
@@ -32,14 +39,13 @@ export const GoodsContainer = () => {
                               </div>
                           </div>
                         </div>
-
                         <div className='sent-to-basket__card-goods--amount'>
                             <div className="sent-to-basket__choose-size">
                                 <button
                                     className="sent-to-basket__choose-btn"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount - 1 }))
+                                        elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount -= 1 }))
                                     }}
                                 >
                                     <Discreate />
@@ -50,6 +56,7 @@ export const GoodsContainer = () => {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         dispatch(rewriteOrderItem({ ...elem, amount: elem.amount + 1 }))
+                                        // rewriteReplacebasket(elem.title, elem.size, "plus")
                                     }}
                                 >
                                     <Increate />

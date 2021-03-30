@@ -20,11 +20,13 @@ export default function Header() {
   const stateTypes = useSelector(getTypesOfClothing)
   const stateType = useSelector(getStateType)
   const	stateLocal = useSelector(localSelector)
+  const [category, setCategory] = useState(null)
   const [picturePage, setPicturePage] = useState(false)
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
   const { push } = useHistory()
   const [amount, setAmount] = useState(null)
+  const history = useHistory();
 
   useEffect(() => {
     const count = stateOrder.reduce((accum, elem) => { return accum + elem.amount }, 0)
@@ -86,12 +88,17 @@ export default function Header() {
         </div>
       </div>
     </div>
+		{	(!stateLocal.mobileMenu  && history.location.pathname === "/home/works" && category !== null) &&
+ 			<div className='header__current-open-category' >
+				<span className='header__current-open-category-text'>{category}</span>
+			</div>
+		}
 		{stateLocal.mobileMenu && 
 			<div className="mobile-menu">
 				<ul className="mobile__nav-list">
 				{stateTypes.map(type => (
-					<li className="mobile-menu__category-item" key={type} >
-						<span className={`mobile__link ${stateType === type?"mobile__link--active":""}`} onClick={() =>{dispatch(setStateType(type));setPicturePage(false)}} >{type}</span>
+					<li className="mobile-menu__category-item" key={type} onClick={() => {setCategory(type)}} >
+						<span className={`mobile__link ${stateType === type?"mobile__link--active":""}`} onClick={() =>{dispatch(setStateType(type));setPicturePage(false); dispatch(MobileMenu(false))}  } >{type}</span>
 					</li>
         )
         )}

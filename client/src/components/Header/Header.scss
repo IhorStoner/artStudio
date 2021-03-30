@@ -1,7 +1,7 @@
 .header {
-  position: relative;
-  background-color: #8b008b;
-  font-size: 36px;
+  	position: relative;
+  	background-color: #8b008b;
+  	font-size: 36px;
 	padding: 24px 0;
 	&__logo{
 		position: static;
@@ -21,6 +21,15 @@
 	&__interaction{
 		display: flex;
 		flex-direction: column;
+	}
+	&__current-open-category{
+		background-color: #C580C5;
+		padding: 5px 10px;
+		display: flex;
+		justify-content: center;
+	}
+	&__current-open-category-text{
+		text-align: center;
 	}
   &__container {
     display: flex;
@@ -78,8 +87,9 @@
   }
 	&__numburger{
 		position: absolute;
-		left: 5px;
-		bottom: -5px;
+		left: 20px;
+		top: 50%;
+		transform: translateY(-40%);
 		cursor: pointer;
 		display: none;
 	}
@@ -91,8 +101,9 @@
 	}
 	&__cart-mobile{
 		position: absolute;
-		right: 10px;
-		bottom: -3px;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 20px;
 		display: none;
 	}
 	&__count-span{
@@ -169,7 +180,7 @@
 		justify-content: center;
 	}
 	.logo__img{
-		width: 120px;
+		width: 90px;
 		height: auto;
 	}
 	.header__interaction{
@@ -185,6 +196,9 @@
 		display: block;
 		height: 80px;
 		width: 80px;
+	}
+	.header{
+		padding: 10px 0;
 	}
 }
 
