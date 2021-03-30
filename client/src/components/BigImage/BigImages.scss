@@ -23,7 +23,7 @@
   }
   &--svg {
     position: absolute;
-    left: 370px;
+    right: -35px;
     top: -35px;
     cursor: pointer;
     margin-left: auto;
@@ -61,7 +61,8 @@
   position: relative;
   overflow: hidden;
   width: auto;
-
+  display: flex;
+  justify-content: center;
   &--height {
     // height: 658px;
   }
