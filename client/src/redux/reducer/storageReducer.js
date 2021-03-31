@@ -19,7 +19,7 @@ export const storageReducer = createReducer(initialState, {
     },
     [rewriteOrderItem.type]: (state, action) => {
         const things = action.payload;
-        const basketClothesIndex = state.findIndex(clothes => clothes._id === action.payload._id && things.title === clothes.title &&  things.size && clothes.size);
+        const basketClothesIndex = state.findIndex(clothes => (things.size == clothes.size && clothes._id === action.payload._id ) );
         console.log(basketClothesIndex)
         state.splice(basketClothesIndex, 1, action.payload)
 

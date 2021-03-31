@@ -16,13 +16,6 @@ export const GoodsContainer = () => {
       setClothes(stateOrder);
     },[stateOrder]);
 
-    // const rewriteReplacebasket = (title, size, count) => {
-    //     let index = clothes.findIndex( el => (el.title === title && el.size === size));
-    //     let clone = JSON.parse(JSON.stringify(clothes));
-    //     clone[index].amount += 1
-    //     dispatch(writeAndReplaceBasket(clone))
-    // }
-
     return (
         <div className="sent-to-basket__goods-container">
             <div className="sent-to-basket__cards-container">
@@ -45,7 +38,7 @@ export const GoodsContainer = () => {
                                     className="sent-to-basket__choose-btn"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        elem.amount > 1 && dispatch(rewriteOrderItem({ ...elem, amount: elem.amount -= 1 }))
+                                        if(elem.amount > 1) dispatch(rewriteOrderItem({ ...elem, amount: elem.amount - 1 }))
                                     }}
                                 >
                                     <Discreate />
@@ -56,7 +49,6 @@ export const GoodsContainer = () => {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         dispatch(rewriteOrderItem({ ...elem, amount: elem.amount + 1 }))
-                                        // rewriteReplacebasket(elem.title, elem.size, "plus")
                                     }}
                                 >
                                     <Increate />
