@@ -58,9 +58,9 @@ export default function Header() {
 								<NavLink className="header__social" to="/home/works">
 									<Telegram />
 								</NavLink>
-								<NavLink className="header__social" to="/home/works">
+								<a className="header__social" href="https://www.instagram.com/the_xlia/">
 									<Instagram />
-								</NavLink>
+								</a>
 								<a className="header__telephone" href="tel:+(380) 66 666 66 66">+(380) 66 666 66 66</a>
 							</div>
 							<NavLink className="header__wrap-basket" to='/home/orderForm'>
