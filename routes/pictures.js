@@ -1,7 +1,8 @@
-const { Router } = require('express');
+const { Router, request } = require('express');
 const pictureRouter = Router();
 require('express-async-errors')
 const { PictureModel } = require('../models/PictureModel')
+const { UserModel } = require('../models/UserModel')
 
 pictureRouter.get('/types/:type', async (req, res) => {
   const pictures = await PictureModel.find({ type: req.params.type });
@@ -85,7 +86,7 @@ pictureRouter.put('/update/category', async (req, res) => {
     const newArr = await PictureModel.find();
     res.status(200).json({types, newArr});
   }catch(e){
-     res.status(404).send(e.name);
+    res.status(404).send(e.name);
   }
 })
 
@@ -101,6 +102,7 @@ pictureRouter.get('/delete/category/:del', async (req, res) => {
 
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);
+  const { postionMenu, type } = req.body;
   const { _id } = await newPicture.save();
   res.status(201).send(newPicture);
 })

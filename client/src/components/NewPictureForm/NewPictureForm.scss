@@ -78,7 +78,14 @@
     position: relative;
     margin-right: 1%;
   }
-
+  &__new-category-position-menu{
+    width: 100px;
+    margin-left: 30px;
+    width: 50px;
+  }
+  &__container-position-wrapper{
+    flex-grow: 1;
+  }
   &__images {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

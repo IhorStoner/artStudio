@@ -12,6 +12,7 @@ import './Works.scss'
 
 
 export default function Works() {
+
   const [picturePage, setPicturePage] = useState(false)
   const stateTypes = useSelector(getTypesOfClothing)
   const picturePreview = useSelector(getPicturePreview)
@@ -20,6 +21,15 @@ export default function Works() {
   const dispatch = useDispatch()
   const pictures = useSelector(getPictures)
   const stateType = useSelector(getStateType)
+
+  const firstList = ["Блузки"]
+  const newList = [].concat(stateTypes);
+  firstList.forEach(el => {
+    let posOld = stateTypes.indexOf(el);
+    newList.splice(posOld,1)
+  })
+  newList.unshift(...firstList)
+
 
   // по клику "заказать" открывает форму заказа (OpenPicturePage) и передает в нее id товара
   const handleOpeningPicture = id => {
@@ -40,6 +50,8 @@ export default function Works() {
     dispatch(setStateType(stateTypes[0]))
   }, [dispatch, stateTypes])
 
+  
+
   return (
     <div className={`works${openMenu ? ' works--open' : ' works--close'}`} >
       {
@@ -49,7 +61,7 @@ export default function Works() {
       }
       <Menu onClick={() => setOpenMenu(!openMenu)} className={`works__svg ${openMenu ? 'works__svg--open' : 'works__svg--close'}`} />
       <div className={`works__btns ${openMenu ? 'works__btns--open' : 'works__btns--close'}`}>
-        {stateTypes.map(type => (
+        {newList.map(type => (
           <Button
             key={type}
             text={type}

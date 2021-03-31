@@ -81,7 +81,7 @@ export default function OpenPicture({ picture }) {
 
   //computed total summ
 	const calculate = (digit) => {
-		const { price } = picture
+		const { price } = picture;
 		if(digit >= 1){
 			setStateAmount(digit)
 			setCost(digit * price)
@@ -124,7 +124,7 @@ export default function OpenPicture({ picture }) {
             </div> */}
           </div>
           <div className="open-picture__order-container">
-            <div className="open-picture__price"> {stateAmount >= 10 ? <span className="open-picture__price-sale">{cost} грн</span> : ""}   <span className="open-picture__price-current">{ stateAmount >= 10 ? `${ cost - (cost * 0.1).toFixed(0)}грн - 10%`  : `${cost} грн`  } </span></div>
+            <div className="open-picture__price"> {stateAmount >= 10 ? <span className="open-picture__price-sale">{cost} грн</span> : ""}   <span className="open-picture__price-current">{ stateAmount >= 10 ? `${ Math.floor((cost * 0.9))}грн - 10%`  : `${cost} грн`  } </span></div>
 						<div className="open-picture__area-size">
 							<div className="open-picture__have-size">
 								<span className="open-picture__size-span" > Размеры: </span>

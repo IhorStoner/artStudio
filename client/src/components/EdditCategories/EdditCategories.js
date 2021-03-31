@@ -49,7 +49,7 @@ export const EdditCategories = () => {
             <div className='eddit-categories'>
                 {stateTypes.map((elem,i) => {  return(
                     <div key = {i} className='eddit-categories__select'>
-                        <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div >
+                        <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div>
                         <div className='eddit-categories__select--svg'>
                             <CorrectSVG onClick={() => handleCorrect(elem)} />
                             <DeleteSVG onClick={() => handleDelete(elem)} />

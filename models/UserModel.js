@@ -19,6 +19,9 @@ const UserSchema = new Schema({
     unique: false,
     set: rawPassword => bcrypt.hashSync(rawPassword, SALT_FACTOR)
   },
+  orderMenu: {
+    type: Array
+  }
 });
 
 UserSchema.methods.auth = function (password) {
@@ -37,6 +40,8 @@ UserSchema.statics.verifyToken = function (token) {
     });
   })
 };
+
+
 const UserModel = mongoose.model('admins', UserSchema);
 
 module.exports = UserModel;

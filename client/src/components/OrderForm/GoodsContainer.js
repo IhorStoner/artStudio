@@ -79,7 +79,7 @@ export const GoodsContainer = () => {
                             </div>
                             <DeleteSVG className="order-form__card-goods-trash" onClick={() => { dispatch(removeProduct(elem._id)) }} />
                             <span className={`sent-to-basket__normal-price-basket ${elem.amount >= 10? "sent-to-basket__normal-price-basket--line-throught":""}`} >{elem.price * elem.amount} грн</span>
-                            {elem.amount >= 10 ? <span className="sent-to-basket__sale-price-basket">{((elem.price * 0.9).toFixed(0) * elem.amount).toFixed(0)} грн  -10%</span>: ""}
+                            {elem.amount >= 10 ? <span className="sent-to-basket__sale-price-basket">{((elem.price * elem.amount) * 0.9).toFixed(0)} грн  -10%</span>: ""}
                         </div>
                     </div>
                 )})}
@@ -87,8 +87,8 @@ export const GoodsContainer = () => {
             <div className="order-form__card-goods--total">
                 <span className="order-form__card-goods-summ"> Итог: </span>
                 <span className="order-form__card-goods-summ">{goods.reduce((accum, elem) => { 
-                  const price = elem.amount >= 10 ? (elem.price * .9).toFixed(0) : elem.price;
-                  return accum + (price * elem.amount) }, 0).toFixed(0)} грн</span> 
+                  const price = elem.amount >= 10 ? (elem.price * elem.amount) * .9 : elem.price * elem.amount;
+                  return accum + price }, 0).toFixed(0)} грн</span>
             </div>
         </div>
     )

@@ -56,7 +56,7 @@ export const GoodsContainer = () => {
                             </div>
                             <span className="sent-to-basket__cost-thangs">
                               <span className={`sent-to-basket__normal-price-basket ${elem.amount >= 10? "sent-to-basket__normal-price-basket--line-throught":""}`} >{elem.price * elem.amount} грн</span>
-                              {elem.amount >= 10 ? <span className="sent-to-basket__sale-price-basket">{((elem.price * 0.9).toFixed(0) * elem.amount).toFixed(0)} грн  -10%</span>: ""}
+                              {elem.amount >= 10 ? <span className="sent-to-basket__sale-price-basket">{Math.floor(((elem.price * elem.amount) * 0.9))} грн  -10%</span>: ""}
                             </span>
                             <DeleteSVG className="sent-to-basket__remove-thangs-svg" onClick={() => { dispatch(removeProduct(elem._id)) }} />
                         </div>
@@ -65,8 +65,8 @@ export const GoodsContainer = () => {
             </div>
             <div className="sent-to-basket__card-goods--total">
                 <span> Итог <span ></span>{clothes.reduce((accum, elem) => { 
-                  const price = elem.amount >= 10 ? (elem.price * .9).toFixed(0) : elem.price;
-                  return accum + (price * elem.amount) }, 0).toFixed(0)} грн</span>
+                  const price = elem.amount >= 10 ? (elem.price * elem.amount) * .9 : elem.price * elem.amount;
+                  return accum + price }, 0).toFixed(0)} грн</span>
             </div>
         </div>
     )

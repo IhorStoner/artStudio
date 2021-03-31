@@ -27,6 +27,10 @@ const PictureSchema = new Schema({
   vendorCode: {
     type: Number
   },
+  postionMenu:{
+    type: Number,
+    default: 0
+  },
   chart: {
     xxxs: {
       "in": Boolean,
