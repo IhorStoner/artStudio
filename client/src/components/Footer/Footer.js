@@ -30,6 +30,7 @@ export default function Footer() {
       <div className="footer__logoContainer">
         <img className="footer__logo" src={logo} alt="artStudio" />
         <p className='footer__copyright'>XLiA - модная среда обитания</p>
+        <p className='footer__copyright'>2021</p>
       </div>
     </div>
   )

@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.d1da0690.chunk.css",
-    "main.js": "/static/js/main.280e45d0.chunk.js",
-    "main.js.map": "/static/js/main.280e45d0.chunk.js.map",
+    "main.js": "/static/js/main.800fb177.chunk.js",
+    "main.js.map": "/static/js/main.800fb177.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.788bc986.js",
     "runtime-main.js.map": "/static/js/runtime-main.788bc986.js.map",
     "static/js/2.28668f6c.chunk.js": "/static/js/2.28668f6c.chunk.js",
@@ -24,7 +24,7 @@
     "static/media/correct.66662251.svg": "/static/media/correct.66662251.svg",
     "static/media/delete.a498b82e.svg": "/static/media/delete.a498b82e.svg",
     "static/media/discreate.4c8854aa.svg": "/static/media/discreate.4c8854aa.svg",
-    "static/media/hamburger.32d6bb0b.svg": "/static/media/hamburger.32d6bb0b.svg",
+    "static/media/hamburger.99034c1b.svg": "/static/media/hamburger.99034c1b.svg",
     "static/media/increate.70bc4a0c.svg": "/static/media/increate.70bc4a0c.svg",
     "static/media/instagram.744f45cb.svg": "/static/media/instagram.744f45cb.svg",
     "static/media/magnifier.e2313f9c.svg": "/static/media/magnifier.e2313f9c.svg",
@@ -36,6 +36,6 @@
     "static/js/runtime-main.788bc986.js",
     "static/js/2.28668f6c.chunk.js",
     "static/css/main.d1da0690.chunk.css",
-    "static/js/main.280e45d0.chunk.js"
+    "static/js/main.800fb177.chunk.js"
   ]
 }
