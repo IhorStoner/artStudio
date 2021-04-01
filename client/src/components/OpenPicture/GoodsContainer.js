@@ -16,13 +16,6 @@ export const GoodsContainer = () => {
       setClothes(stateOrder);
     },[stateOrder]);
 
-    // const rewriteReplacebasket = (title, size, count) => {
-    //     let index = clothes.findIndex( el => (el.title === title && el.size === size));
-    //     let clone = JSON.parse(JSON.stringify(clothes));
-    //     clone[index].amount += 1
-    //     dispatch(writeAndReplaceBasket(clone))
-    // }
-
     return (
         <div className="sent-to-basket__goods-container">
             <div className="sent-to-basket__cards-container">

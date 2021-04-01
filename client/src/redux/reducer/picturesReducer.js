@@ -2,7 +2,8 @@ import { createReducer } from "@reduxjs/toolkit";
 import { fetchPictures, fetchOnePicture, setStateEdditPicture,
         setOrderedGoods, setStateType, refreshOrderedGoods,
         fetchTypesOfClothing, setTypesOfClothing, resetOrderedGoods, 
-        setPicturePreview, setTypesOfClothingRename, setDeleteOfClothing
+        setPicturePreview, setTypesOfClothingRename, setDeleteOfClothing,
+				setPositionCategory
 } from '../action/picturesAction'
 
 const initialState = {
@@ -90,7 +91,14 @@ const picturesReducer = createReducer(initialState, {
   },
   [setPicturePreview.type]: (state, action) => {
     state.picturePreview = action.payload
-  }
+  },
+	[setPositionCategory.pending]: (state, action) => {
+		state.loading = true;
+		state.error = false;
+	},
+	[setPositionCategory.fulfilled]: (state, action) => {
+		state.loading = true;
+	}
 });
 
 export default picturesReducer

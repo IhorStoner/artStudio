@@ -19,6 +19,10 @@ const UserSchema = new Schema({
     unique: false,
     set: rawPassword => bcrypt.hashSync(rawPassword, SALT_FACTOR)
   },
+	orderCategory: {
+		type: Array,
+		default: []
+	}
 });
 
 UserSchema.methods.auth = function (password) {

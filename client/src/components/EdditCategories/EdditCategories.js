@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTypesOfClothing, setTypesOfClothing, setDeleteOfClothing } from '../../redux/action/picturesAction'
+import { fetchTypesOfClothing, setTypesOfClothing, setDeleteOfClothing, setPositionCategory } from '../../redux/action/picturesAction'
 import { getTypesOfClothing } from '../../redux/selector/picturesSelector'
 import { ReactComponent as DeleteSVG } from '../../assets/svg/delete.svg'
 import { ReactComponent as CreateNewSVG } from '../../assets/svg/CreateNewTypeOfClothing.svg'
@@ -44,6 +44,10 @@ export const EdditCategories = () => {
         // dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
     }
 
+		const setInstall = (obj) => {
+			dispatch(setPositionCategory(obj))
+		}
+
     return (
         <div className="container">
             <div className='eddit-categories'>
@@ -53,6 +57,7 @@ export const EdditCategories = () => {
                         <div className='eddit-categories__select--svg'>
                             <CorrectSVG onClick={() => handleCorrect(elem)} />
                             <DeleteSVG onClick={() => handleDelete(elem)} />
+														<input name="position" type="number" onChange = {(e) => setInstall({name: elem, pos: parseInt(e.target.value)})} />
                         </div>
                     </div>
                 )}

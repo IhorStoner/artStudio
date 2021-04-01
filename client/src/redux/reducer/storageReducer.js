@@ -4,7 +4,7 @@ import { addProduct, removeProduct, rewriteOrderItem, setEmptyBasket, writeAndRe
 let initialState;
 
 try {
-    initialState = JSON.parse(localStorage.getItem('orderList') || "[]")
+    initialState = JSON.parse(localStorage.getItem('orderList') || [])
 } catch (e) {
     console.log('Local storage is empty')
 }
@@ -19,18 +19,15 @@ export const storageReducer = createReducer(initialState, {
     },
     [rewriteOrderItem.type]: (state, action) => {
         const things = action.payload;
-        const basketClothesIndex = state.findIndex(clothes => clothes._id === action.payload._id && things.title === clothes.title &&  things.size && clothes.size);
-        console.log(basketClothesIndex)
+        const basketClothesIndex = state.findIndex(clothes => { return things.size === clothes.size && clothes._id === action.payload._id});
         state.splice(basketClothesIndex, 1, action.payload)
-
-        return state
     },
     [setEmptyBasket.type]: (state, action) => {
         state.splice(0, state.length)
     },
     [writeAndReplaceBasket.type]: (state, action) => {
-        console.log(action.payload)
-        state = action.payload
+			console.log(state.target)
+      state = action.payload
     }
 });
 
