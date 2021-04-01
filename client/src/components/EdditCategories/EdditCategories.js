@@ -12,9 +12,12 @@ import './EdditCategories.scss'
 import axios from 'axios'
 
 export const EdditCategories = () => {
+	const stateTypes = useSelector(getTypesOfClothing);
     const [newType, setNewType] = useState('')
     const [oldType, setOldType] = useState('')
-    const stateTypes = useSelector(getTypesOfClothing)
+		const [orderMenu, setOrderMenu] = useState(() => {
+			return stateTypes.map((el, i) => {return  {name: el, pos: i +1}})
+		})
     const dispatch = useDispatch()
     const renameInput = useRef();
 
@@ -44,20 +47,31 @@ export const EdditCategories = () => {
         // dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
     }
 
-		const setInstall = (obj) => {
-			dispatch(setPositionCategory(obj))
+
+		const setPositionInMenu = (e) => {
+			const val = parseInt(e.target.value) 
+			const name = e.target.name;
+			setOrderMenu((prevState) => {
+				const index = prevState.findIndex( el => el.name === name);
+				prevState[index].pos = val;
+				return prevState
+			})
+		}
+
+		const sendOrderMenu = () => {
+			dispatch(setPositionCategory(orderMenu))
 		}
 
     return (
         <div className="container">
             <div className='eddit-categories'>
-                {stateTypes.map((elem,i) => {  return(
+                {stateTypes.map((elem,i) => { return(
                     <div key = {i} className='eddit-categories__select'>
-                        <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div >
+                        <div key={elem} className='eddit-categories__select--span'><span>{elem}</span></div>
                         <div className='eddit-categories__select--svg'>
                             <CorrectSVG onClick={() => handleCorrect(elem)} />
                             <DeleteSVG onClick={() => handleDelete(elem)} />
-														<input name="position" type="number" onChange = {(e) => setInstall({name: elem, pos: parseInt(e.target.value)})} />
+														<input name={elem} type="number" defaultValue={i +1} onChange = {setPositionInMenu} />
                         </div>
                     </div>
                 )}
@@ -65,6 +79,7 @@ export const EdditCategories = () => {
                 <div className="eddit-categories__input">
                     <input ref={renameInput} type='text' onChange={(e) => setNewType(e.target.value)} value={newType} />
                     <CreateNewSVG onClick={() => addNewType()} />
+										<button className="eddit-categories__orders-menu" onClick={sendOrderMenu}>Вывод меню</button>
                 </div>
             </div>
         </div>

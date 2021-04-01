@@ -1,8 +1,9 @@
-const { Router } = require('express');
+const { Router, request } = require('express');
 const pictureRouter = Router();
 require('express-async-errors')
 const { PictureModel } = require('../models/PictureModel')
 const UserSchema = require('../models/UserModel')
+
 
 pictureRouter.get('/types/:type', async (req, res) => {
   const pictures = await PictureModel.find({ type: req.params.type });
@@ -20,11 +21,14 @@ pictureRouter.get('/categories', async (req, res) => {
 		const {name, pos} = el;
 		const place = pos -1;
 		const index = pictures.indexOf(name);
-		pictures.splice(index,1);
-		newList.splice(place,1,name)
+		if(pos > 0){
+			pictures.splice(index,1);
+			newList.splice(place,1,name)
+		}
 	})
 
 	newList.push(...pictures)
+	// console.log(newList)
   res.status(200).json(newList)
 })
 
@@ -32,15 +36,7 @@ pictureRouter.put('/set/position/category', (req, res) => {
 	try{
 		UserSchema.findOne({login: 'admin'},function(err, adventure){
 			UserSchema.findById(adventure._id,function (err, doc) {
-				const { name, pos } = req.body;
-				const clone = JSON.parse(JSON.stringify(doc.orderCategory));
-				const index = clone.findIndex(el => el.name === name);
-				if(index === -1){
-					clone.push(req.body)
-				}else{
-					clone.splice(index,1,req.body)
-				}
-				doc.orderCategory = clone;
+				doc.orderCategory = req.body;
 				doc.save()
 				res.status(200).json(true)
 			})
@@ -122,7 +118,7 @@ pictureRouter.put('/update/category', async (req, res) => {
     const newArr = await PictureModel.find();
     res.status(200).json({types, newArr});
   }catch(e){
-     res.status(404).send(e.name);
+    res.status(404).send(e.name);
   }
 })
 
@@ -138,6 +134,7 @@ pictureRouter.get('/delete/category/:del', async (req, res) => {
 
 pictureRouter.post('/', async (req, res) => {
   const newPicture = new PictureModel(req.body);
+  const { postionMenu, type } = req.body;
   const { _id } = await newPicture.save();
   res.status(201).send(newPicture);
 })

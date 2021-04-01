@@ -23,6 +23,7 @@ const UserSchema = new Schema({
 		type: Array,
 		default: []
 	}
+
 });
 
 UserSchema.methods.auth = function (password) {
@@ -41,6 +42,8 @@ UserSchema.statics.verifyToken = function (token) {
     });
   })
 };
+
+
 const UserModel = mongoose.model('admins', UserSchema);
 
 module.exports = UserModel;

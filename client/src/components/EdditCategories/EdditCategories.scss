@@ -1,7 +1,14 @@
 .eddit-categories {
     height: 60vh;
     margin-top: 100px;
-
+		&__orders-menu{
+			margin-left: 120px;
+			outline: none;
+			border: none;
+			font-size: 20px;
+			padding: 5px 20px;
+			cursor: pointer;
+		}
     &__select {
         display: flex;
         align-items: center;

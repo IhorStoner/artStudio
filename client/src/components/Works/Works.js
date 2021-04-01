@@ -12,6 +12,7 @@ import './Works.scss'
 
 
 export default function Works() {
+
   const [picturePage, setPicturePage] = useState(false)
   const stateTypes = useSelector(getTypesOfClothing)
   const picturePreview = useSelector(getPicturePreview)
@@ -39,6 +40,8 @@ export default function Works() {
   useEffect(() => {
     dispatch(setStateType(stateTypes[0]))
   }, [dispatch, stateTypes])
+
+  
 
   return (
     <div className={`works${openMenu ? ' works--open' : ' works--close'}`} >

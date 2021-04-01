@@ -35,7 +35,7 @@ export const setDeleteOfClothing = createAsyncThunk("pictures/setDeleteOfClothin
 })
 
 export const setPositionCategory = createAsyncThunk("pictures/setPositionCategory", async (obj) => {
-	const data = axios.put(`${config.serverUrl}/api/pictures/set/position/category/`, obj).then(
+	const data = axios.put(`${config.serverUrl}/api/pictures/set/position/category`, obj).then(
 		res => res.data)
 	return data;
 })

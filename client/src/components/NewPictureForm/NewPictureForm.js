@@ -23,7 +23,8 @@ export default function NewPictureForm() {
       xxxl: { in: false, include: false },
     },
 		type: "newCategory",
-		newVal: ""
+		newVal: "",
+    postionMenu: 0,
   })
   const [images, setImages] = useState([])
   const [successForm, setSuccessForm] = useState(false)
@@ -126,6 +127,14 @@ export default function NewPictureForm() {
     setResult({ ...result, chart: { ...result.chart, [name]: { ...result.chart[name], include: checked } } })
   }
 
+  const positionMenu = (e) => {
+    const toDigit = parseInt(e.target.value);
+    if(isNaN(toDigit)) return e.target.value = 0;
+    setResult((prevState) => {
+      return {...prevState, postionMenu: toDigit};
+    })
+  }
+
   return (
     <div className="container">
       {successForm && <div style={{ color: 'green', textAlign: 'center' }}>Картина добавлена</div>}
@@ -211,9 +220,12 @@ export default function NewPictureForm() {
             <input ref={checkedInput} value="newCategory" name='type' type='radio' checked="checked" />
             <input ref={inputVal} onInput = {(e) => {setResult({ ...result, type: e.target.value }); checkedInput.current.checked = true}} className="newPictureForm__new-category" name="newCategory" type="text" placeholder="Новую Категорию" />
         </div> */}
-
-
-
+        <div className="newPictureForm__container">
+          <span>Позиция</span>
+          <span className="newPictureForm__container-position-wrapper">
+            <input onChange={positionMenu} name="position" type="number" defaultValue={0} className="newPictureForm__new-category newPictureForm__new-category-position-menu"/>
+          </span>
+        </div>
         <div className="newPictureForm__sizes">
           Размеры
           <div className="newPictureForm__checkboxContainer">
@@ -325,7 +337,7 @@ export default function NewPictureForm() {
           }} />
         </div>
         <div className="newPictureForm__submitContainer">
-          <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => { onSubmit(ev) }}> Добавить </button>
+          <button type='submit' className='newPictureForm__btnSubmit' onClick={(ev) => {ev.preventDefault(); onSubmit(ev) }}> Добавить </button>
         </div>
       </form>
     </div>

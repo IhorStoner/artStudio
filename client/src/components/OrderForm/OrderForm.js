@@ -46,7 +46,7 @@ export const OrderForm = () => {
         e.preventDefault()
 				if(onValid("phone",clientInfo.phone) && onValid("email",clientInfo.email)){
 					const model = {
-            comment: clientInfo.comment,
+          	comment: clientInfo.comment,
             price: stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0),
             clothes: stateOrder,
             orderNumber: parseInt(Date.now().toString().split("").reverse().splice(1,6).join("")),
