@@ -28,7 +28,6 @@ pictureRouter.get('/categories', async (req, res) => {
 	})
 
 	newList.push(...pictures)
-	// console.log(newList)
   res.status(200).json(newList)
 })
 
@@ -124,6 +123,15 @@ pictureRouter.put('/update/category', async (req, res) => {
 
 pictureRouter.get('/delete/category/:del', async (req, res) => {
   try{
+		UserSchema.findOne({login: 'admin'},function(err, adventure){
+			UserSchema.findById(adventure._id,function (err, doc) {
+				const clone = [].concat(doc.orderCategory);
+				const index = clone.findIndex( el => el.name === req.params.del)
+				clone.splice(index,1)
+				doc.orderCategory = clone;
+				doc.save()
+			})
+		})
 		await PictureModel.deleteMany({type: req.params.del})
 		const types = await PictureModel.distinct('type');
     res.status(200).json(types);
