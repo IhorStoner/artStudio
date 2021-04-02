@@ -7,7 +7,7 @@ export default function PictureItem({ picture, className, handleOpeningPicture }
   return (
     <div className={`picture ${className}`}>
       <div className="picture__slider">
-        <ItemsSlider imgArr={picture.images} />
+        <ItemsSlider imgArr={picture.images}  />
       </div>
       <span className="picture__title" title='открыть в новом окне'>
         {title}
@@ -16,7 +16,7 @@ export default function PictureItem({ picture, className, handleOpeningPicture }
         <p className="picture__price">{price} грн</p>
         <button className="picture__btn" onClick={(e) => handleOpeningPicture(_id)}>
           Подробнее
-          </button>
+        </button>
       </div>
     </div >
   )

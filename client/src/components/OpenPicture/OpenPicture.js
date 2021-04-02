@@ -30,7 +30,6 @@ export default function OpenPicture({ picture }) {
 	const conditions = {
 		"Доставка": "Условия доставки  ".repeat(20),
 		"Оплата": "Способы оплаты  ".repeat(20),
-		"Гарантия": "Наша качества ".repeat(20),
 		"Описание": picture.text
 	}
 	
@@ -159,8 +158,7 @@ export default function OpenPicture({ picture }) {
               <nav className="open-picture__addition-nav">
                 <ul className="open-picture__nav-list">
 									<li onClick={() => setStateNavList('Описание')} className={`open-picture__info-action ${stateNavList === 'Описание' ? `open-picture__nav--active` : ' '}`}>Описание</li>
-                  <li onClick={() => setStateNavList('Доставка')} className={`open-picture__info-action ${stateNavList === 'Доставка' ? `open-picture__nav--active` : ' '}`}>Доставка</li>
-                  <li onClick={() => setStateNavList('Оплата')} className={`open-picture__info-action ${stateNavList === 'Оплата' ? `open-picture__nav--active` : ' '}`}>Оплата</li>
+                  <li onClick={() => setStateNavList('Доставка')} className={`open-picture__info-action open-picture__info-delivery ${stateNavList === 'Доставка' ? `open-picture__nav--active` : ' '}`}>Доставка и Оплата</li>
                   {/* <li onClick={() => setStateNavList('Гарантия')} className={`open-picture__info-action--warantry  ${stateNavList === 'Гарантия' ? `open-picture__nav--active` : ' '}`}>Гарантия</li> */}
                 </ul>
               </nav>

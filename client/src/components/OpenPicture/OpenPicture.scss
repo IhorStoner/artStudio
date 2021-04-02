@@ -613,7 +613,7 @@
 		font-size: 20px
 	}
 	.open-picture__nav-list{
-		flex-direction: column;
+		// flex-direction: column;
 	}
 	.open-picture__info-action{
 		margin: 5px;
@@ -670,5 +670,8 @@
   }
   .sent-to-basket__card-goods--total{
     margin-top: 0;
+  }
+  .open-picture__info-delivery {
+    font-size: 22px;
   }
 }

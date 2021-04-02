@@ -11,9 +11,9 @@ import { setPicturePreview } from "../../redux/action/picturesAction";
 import './Works.scss'
 
 
-export default function Works() {
+export default function Works({picturePage,setPicturePage}) {
 
-  const [picturePage, setPicturePage] = useState(false)
+ 
   const stateTypes = useSelector(getTypesOfClothing)
   const picturePreview = useSelector(getPicturePreview)
   const [id, setId] = useState()
@@ -41,8 +41,6 @@ export default function Works() {
     dispatch(setStateType(stateTypes[0]))
   }, [dispatch, stateTypes])
 
-  
-
   return (
     <div className={`works${openMenu ? ' works--open' : ' works--close'}`} >
       {
@@ -68,14 +66,16 @@ export default function Works() {
         picturePage
           ? <OpenPicturePage id={id} />
           : <div className={`works__content ${openMenu ? 'works__content--open' : 'works__content--close'}`} >
-            {pictures?.map((picture, index) => (
-              <PictureItem
-                key={index}
-                className='works__item'
-                picture={picture}
-                handleOpeningPicture={handleOpeningPicture}
-              />
-            ))}
+            {pictures.map((picture, index) => {
+              return (
+                <PictureItem
+                  key={index + picture._id}
+                  className='works__item'
+                  picture={picture}
+                  handleOpeningPicture={handleOpeningPicture}
+                />
+              )
+            })}
           </div>
       }
     </div>

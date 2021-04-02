@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Homepage.scss'
 import Header from '../../components/Header/Header'
 import { useParams } from 'react-router-dom'
@@ -14,6 +14,7 @@ export default function Homepage({ adminPanel }) {
   const { nav } = useParams()
   const { isAuthenticated } = useContext(AuthContext)
   const dispatch = useDispatch()
+  const [picturePage, setPicturePage] = useState(false)
 
   useEffect(() => {
     dispatch(fetchTypesOfClothing())
@@ -22,10 +23,9 @@ export default function Homepage({ adminPanel }) {
 
   return (
     <div className='homepage'>
-      {adminPanel && <div>AdminPanel</div>}
-      <Header />
+      <Header picturePage={picturePage} setPicturePage={setPicturePage} />
       {nav === 'aboutUs' && <div>ABOUT US</div>}
-      {nav === 'works' && <Works />}
+      {nav === 'works' && <Works picturePage={picturePage} setPicturePage={setPicturePage} />}
       {nav === 'orderForm' && <OrderForm />}
       {isAuthenticated && nav === 'adminPanel' && <AdminPanel />}
       <Footer />

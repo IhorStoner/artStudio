@@ -4,7 +4,8 @@ import { addProduct, removeProduct, rewriteOrderItem, setEmptyBasket, writeAndRe
 let initialState;
 
 try {
-    initialState = JSON.parse(localStorage.getItem('orderList') || "[]")
+    initialState = JSON.parse( localStorage.getItem('orderList') || "[]")
+    console.log(initialState)
 } catch (e) {
     console.log('Local storage is empty')
 }

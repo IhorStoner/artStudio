@@ -18,6 +18,7 @@ export default function Routes() {
         <Route path="/home/admin/pictures/:id">
           <Homepage />
         </Route>
+        
 
         <Redirect to='/home/works' />
       </Switch>
