@@ -19,6 +19,16 @@ orderRouter.get('/:orderNumber', async (req, res) => {
     }
 })
 
+orderRouter.get('/next/number', async (req, res) => {
+    try{
+        const allorder = await OrderModel.find();
+        const digit = 10000 + allorder.length + 1;
+        res.status(200).json(digit)
+    }catch(e){
+        res.status(404).send(e.name);
+    }
+})
+
 orderRouter.delete('/:orderNumber', async (req, res) => {
     const order = await OrderModel.deleteOne({ orderNumber: req.params.orderNumber });
     if (!order) {
@@ -73,8 +83,8 @@ orderRouter.post('/', async (req, res) => {
 			text: `Name: ${initials} Phone: ${phone}`,
 			html: `
 			<h2>Имя: ${initials}</h2>
-			<h3>Номер заказа: ${Date.now()}</h3>
-			<a href="tel:${initials}">Телефон: ${initials} </a>
+			<h3>Номер заказа: ${orderNumber}</h3>
+			<span>Телефон: ${client.phone} </span>
 			<h3>Адрес: ${city}</h3>
 			<h2>
 				Сумма: ${price}грн

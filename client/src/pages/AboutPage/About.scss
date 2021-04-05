@@ -1,0 +1,58 @@
+.about-page{
+    &__container{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+    &__short-description{
+        font-weight: 400;
+        font-style: italic;
+        text-align: center;
+        margin-top: 13px;
+    }
+    &__letter{
+        margin-bottom: 10px;
+        display: block;
+        font-size: 25px;
+        margin-bottom: 30px;
+    }
+    &__text{
+        font-weight: 400;
+        font-style: italic;
+        font-size: 25px;
+    }
+    &__part{
+        list-style-type: disc;
+        font-size: 25px;
+    }
+    &__possibility{
+        margin-bottom: 40px;
+    }
+    &__message{
+        font-size: 400;
+        font-style: italic;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 100px;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .about-page__letter{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .about-page__list{
+        padding-left: 25px;
+    }
+    .about-page__part{
+        font-size: 20px;
+    }
+    .about-page__text{
+        font-size: 20px;
+    }
+    .about-page__message{
+        font-size: 20px;
+        margin-bottom: 60px;
+    }
+}

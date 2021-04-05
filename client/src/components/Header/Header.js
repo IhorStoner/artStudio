@@ -23,7 +23,7 @@ export default function Header({ setPicturePage }) {
 	const [category, setCategory] = useState(null)
 	// const [picturePage, setPicturePage] = useState(false)
 	const { nav } = useParams()
-	const { isAuthenticated } = useContext(AuthContext)
+	const { isAuthenticated, logout } = useContext(AuthContext)
 	const { push } = useHistory()
 	const [amount, setAmount] = useState(null)
 	const history = useHistory();
@@ -36,7 +36,7 @@ export default function Header({ setPicturePage }) {
 	return (<>
 		<div className='header'>
 			<div className="container">
-				{isAuthenticated && <NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink>}
+				{isAuthenticated && <><NavLink to='/home/adminPanel' className={`header__nav-item--admin  ${nav === 'adminPanel' && 'header__nav-item--active'}`}>AdminPanel</NavLink><button onClick = {() => {logout()}} className="exit__nav-admin">Exit</button></>}
 				<div className="header__container">
 					<div className="header__logo">
 						<div className="logo__area">
@@ -78,11 +78,14 @@ export default function Header({ setPicturePage }) {
 									<NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
 								</li>
 								<li className="header__course">
-									<NavLink to='/home/masters' className={`header__nav-item ${nav === 'masters' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
+									<NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
 								</li>
-								<li className="header__course" >
-									<NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
+								<li className="header__course">
+									<NavLink to='/home/return' className={`header__nav-item ${nav === 'return' && 'header__nav-item--active'}`}>Обмен и возврат</NavLink>
 								</li>
+								{/* <li className="header__course" >
+									<NavLink to='/home/contact' className={`header__nav-item ${nav === 'contact' && 'header__nav-item--active'}`}>Контакты</NavLink>
+								</li> */}
 							</ul>
 						</nav>
 					</div>

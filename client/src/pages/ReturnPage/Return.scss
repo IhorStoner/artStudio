@@ -1,0 +1,32 @@
+.return{
+    &__container{
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 10px;
+    }
+    &__h5{
+        font-weight: 600;
+        font-size: 25px;
+        font-style: italic;
+        line-height: 28px;
+        padding-top: 16px;
+    }
+    &__span{
+        font-weight: 400;
+        font-style: italic;
+        font-size: 25px;
+        line-height: 28px;
+        margin: 25px 0;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .return__h5{
+        font-size: 22px;
+    }
+    .return__span{
+        font-size: 18px;
+        margin: 15px 0;
+    }
+}

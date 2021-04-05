@@ -29,6 +29,9 @@ export const EdditCategories = () => {
         dispatch(fetchTypesOfClothing())
     }, [])
 
+
+
+
     const addNewType = () => {
         if (newType.length < 3) { return }
         if (stateTypes.includes(newType)) { alert('Такой тип уже существует'); return }
@@ -37,13 +40,13 @@ export const EdditCategories = () => {
     }
 
     const handleCorrect = (elem) => {
-        dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
+        // dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
         setNewType(elem)
         setOldType(elem)
     }
 
     const handleDelete = (name) => {
-				dispatch(setDeleteOfClothing(name))
+			dispatch(setDeleteOfClothing(name))
         // dispatch(setTypesOfClothing([...stateTypes.filter(el => el !== elem)]))
     }
 
@@ -79,7 +82,7 @@ export const EdditCategories = () => {
                 <div className="eddit-categories__input">
                     <input ref={renameInput} type='text' onChange={(e) => setNewType(e.target.value)} value={newType} />
                     <CreateNewSVG onClick={() => addNewType()} />
-										<button className="eddit-categories__orders-menu" onClick={sendOrderMenu}>Вывод меню</button>
+					<button className="eddit-categories__orders-menu" onClick={sendOrderMenu}>Вывод меню</button>
                 </div>
             </div>
         </div>

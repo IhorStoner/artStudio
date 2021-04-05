@@ -166,10 +166,33 @@
 		height: auto;
 	}
 }
+.exit__nav-admin{
+	outline: none;
+	border: 0;
+	background-color: transparent;
+	margin-top: 50px;
+	position: absolute;
+	color: #fff;
+	font-size: 25px;
+	font-style: italic;
+	font-family: 'Monotype Corsiva';
+	left: 0;
+	cursor: pointer;
+}
 
 @media screen and (max-width: 1220px) {
 	.container{
 		padding: 0 20px;
+	}
+	.header__nav-item{
+		font-size: 32px;
+	}
+}
+
+@media screen and (max-width: 1220px) {
+	.header__nav-item{
+		font-size: 27px;
+		white-space: nowrap;
 	}
 }
 

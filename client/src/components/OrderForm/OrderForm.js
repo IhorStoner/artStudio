@@ -43,17 +43,23 @@ export const OrderForm = () => {
     }
 
     const onSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+				const summFinally = stateOrder.reduce((accum, elem) => { 
+					const total = elem.amount >= 10 ? (elem.price * elem.amount) * .9 : elem.price * elem.amount;
+					return  accum + total 
+				},0);
+
 				if(onValid("phone",clientInfo.phone) && onValid("email",clientInfo.email)){
+					const currentOrder = await axios.get(`${config.serverUrl}/api/order/next/number`).then(res => res.data)
 					const model = {
           	comment: clientInfo.comment,
-            price: stateOrder.reduce((accum, elem) => { return accum + (elem.price * elem.amount) }, 0),
+            price: summFinally,
             clothes: stateOrder,
-            orderNumber: parseInt(Date.now().toString().split("").reverse().splice(1,6).join("")),
+            orderNumber: currentOrder,
             status: 'Новый',
             client: clientInfo
         	}
-					await axios.post(`${config.serverUrl}/api/order`, model).then(res => console.log(res.data))
+					await axios.post(`${config.serverUrl}/api/order`, model).then(res => res.data)
 					setConfirm(model.orderNumber)
 				}
     }

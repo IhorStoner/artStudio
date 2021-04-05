@@ -12,23 +12,23 @@ pictureRouter.get('/types/:type', async (req, res) => {
 
 
 pictureRouter.get('/categories', async (req, res) => {
-  const pictures = await PictureModel.distinct('type');
+  const picture = await PictureModel.distinct('type');
 	const position = await UserSchema.findOne({login: 'admin'});
 	const len = parseInt(position.orderCategory.length)
 	const newList = Array(len).fill("");
 
-	position.orderCategory.forEach( el => {
-		const {name, pos} = el;
-		const place = pos -1;
-		const index = pictures.indexOf(name);
-		if(pos > 0){
-			pictures.splice(index,1);
-			newList.splice(place,1,name)
-		}
-	})
+	// position.orderCategory.forEach( el => {
+	// 	// const {name, pos} = el;
+	// 	// const place = pos -1;
+	// 	// const index = pictures.indexOf(name);
+  //   // console.log(index)
+	// 	// if(pos > 0){
+	// 	// 	pictures.splice(index,1);
+	// 	// 	newList.splice(place,1,name)
+	// 	// }
+	// })
 
-	newList.push(...pictures)
-  res.status(200).json(newList)
+  res.status(200).json(picture)
 })
 
 pictureRouter.put('/set/position/category', (req, res) => {
@@ -113,6 +113,7 @@ pictureRouter.put('/update/category', async (req, res) => {
   try{
     const {oldName, newType} = req.body;
     await PictureModel.updateMany({type: oldName},{type: newType});
+    const user = await UserSchema.find();
     const types = await PictureModel.distinct('type');
     const newArr = await PictureModel.find();
     res.status(200).json({types, newArr});
