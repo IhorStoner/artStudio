@@ -14,19 +14,16 @@ pictureRouter.get('/types/:type', async (req, res) => {
 pictureRouter.get('/categories', async (req, res) => {
   const picture = await PictureModel.distinct('type');
 	const position = await UserSchema.findOne({login: 'admin'});
-	const len = parseInt(position.orderCategory.length)
-	const newList = Array(len).fill("");
 
-	// position.orderCategory.forEach( el => {
-	// 	// const {name, pos} = el;
-	// 	// const place = pos -1;
-	// 	// const index = pictures.indexOf(name);
-  //   // console.log(index)
-	// 	// if(pos > 0){
-	// 	// 	pictures.splice(index,1);
-	// 	// 	newList.splice(place,1,name)
-	// 	// }
-	// })
+	position.orderCategory.sort((a,b) => a.pos - b.pos);
+	position.orderCategory.forEach( el => {
+		let index = picture.indexOf(el.name);
+		let pos = el.pos -1
+		if(index !== -1){
+			let val = picture.splice(index,1)[0]
+			picture.splice(pos,0,val)
+		}
+	})
 
   res.status(200).json(picture)
 })
