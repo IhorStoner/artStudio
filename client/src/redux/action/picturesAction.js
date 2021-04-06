@@ -40,6 +40,13 @@ export const setPositionCategory = createAsyncThunk("pictures/setPositionCategor
 	return data;
 })
 
+export const deleteImageInClothes = createAction('pictures/removeCategory', async (obj) => {
+  const data = axios.put(`${config.serverUrl}/api/pictures/delete/image`, obj).then(
+    res => res.data
+  )
+  return data;
+})
+
 
 export const setStateEdditPicture = createAction('SET_EDDIT_PICTURE')
 export const setOrderedGoods = createAction('SET_ORDERED_GOODS')

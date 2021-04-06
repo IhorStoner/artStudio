@@ -37,10 +37,8 @@ const formUpload = promisify(
 ImgRouter.use('/', express.static(FILESTORAGE))
 
 
-ImgRouter.post(
-  '/',
-  async (req, res) => {
-    console.log('req  ', req)
+ImgRouter.post('/', async (req, res) => {
+
     try {
       await formUpload(req, res)
     } catch (err) {

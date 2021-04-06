@@ -9,7 +9,7 @@
     }
     &__h4{
         font-size: 25px;
-        font-style: italic;
+        font-family: sans-serif;
         font-weight: 500;
     }
     &__h4--shifting{
@@ -20,7 +20,7 @@
         padding-bottom: 25px;
     }
     &__h6{
-        font-style: italic;
+        font-family: sans-serif;
         font-size: 25px;
         margin-left: 60px;
         margin-bottom: 30px;
@@ -43,6 +43,7 @@
     }
     &__text{
         font-size: 25px;
+        font-family: sans-serif;
         display: block;
         font-weight: 400;
     }

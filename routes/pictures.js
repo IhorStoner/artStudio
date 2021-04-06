@@ -3,6 +3,8 @@ const pictureRouter = Router();
 require('express-async-errors')
 const { PictureModel } = require('../models/PictureModel')
 const UserSchema = require('../models/UserModel')
+const fs = require("fs");
+const path = require("path");
 
 
 pictureRouter.get('/types/:type', async (req, res) => {
@@ -143,6 +145,31 @@ pictureRouter.post('/', async (req, res) => {
   const { postionMenu, type } = req.body;
   const { _id } = await newPicture.save();
   res.status(201).send(newPicture);
+})
+
+pictureRouter.put('/delete/image', async (req, res) => {
+  try{
+    const {_id, file} = req.body;
+    PictureModel.findById(_id,function (err, doc){
+      const imageArr = doc.images;
+      const fndIndex = imageArr.indexOf(file)
+
+      if(file !== undefined && fndIndex !== -1){
+        imageArr.splice(fndIndex,1);
+        fs.unlink(path.resolve(__dirname, `path/to/uploadedFiles/${file}`), (err) => {
+          if (err) {
+            console.error(err)
+            return
+          }
+        }) 
+        doc.save();
+      }
+      res.status(200).json(doc)
+    })
+
+  }catch(e){
+    res.status(404).send(e.name)
+  }
 })
 
 module.exports = pictureRouter;

@@ -4,16 +4,16 @@ import axios from 'axios'
 import config from '../../config/default.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStateEdditPicture, getTypesOfClothing } from '../../redux/selector/picturesSelector'
-import { setStateEdditPicture } from '../../redux/action/picturesAction'
+import { setStateEdditPicture, deleteImageInClothes } from '../../redux/action/picturesAction'
 
 export default function EdditPictureForm() {
     const stateTypes = useSelector(getTypesOfClothing)
-    const [result, setResult] = useState({})
+    const stateEdditPicture = useSelector(getStateEdditPicture)
+    const [result, setResult] = useState(stateEdditPicture)
     const [images, setImages] = useState([])
     const [currentImages, setCurrentImages] = useState([])
     const [successForm, setSuccessForm] = useState(false)
     const dispatch = useDispatch()
-    const stateEdditPicture = useSelector(getStateEdditPicture)
 
     async function wrap(ev, callback) {
         const btn = ev.target;
@@ -62,31 +62,40 @@ export default function EdditPictureForm() {
     }
 
     const setReset = () => {
+        console.log(stateEdditPicture)
         setResult({})
         setImages([])
         showSuccess()
     }
 
     const onSubmit = useCallback(async (ev) => {
-        const resultImg = await submitAxios(ev)
-        let { _id, chart, onSite, price, text, type, title } = result
+        const resultImg = await submitAxios(ev);
+        const { _id, chart, onSite, price, text, type, title } = result;
+        const newArr = [...resultImg, ...stateEdditPicture.images];
 
-        await axios.put(`${config.serverUrl}/api/pictures/${_id}`, { images: resultImg, chart, onSite, price, text, type, title }).then(res => setReset())
-
+        await axios.put(`${config.serverUrl}/api/pictures/${_id}`, { images: newArr, chart, onSite, price, text, type, title }).then(res => setReset());
     }, [result])
 
     const handleDeleteImage = (file) => {
         setImages([...images].filter(img => img.name !== file.name))
     }
 
-    const setFreshImages = (e) => {
-        setCurrentImages(null)
-        const { files } = e.target
-        setImages((image) => [...image, ...files])
+    //show and set photo
+    const setFreshImages = async (e) => {
+        /// setCurrentImages(null)
+        const { files } = e.target;
+        setImages((image) => [...image, ...files]);
     }
 
     const handleDeleteCurrentImage = (file) => {
-        setCurrentImages([...currentImages].filter(img => img !== file))
+        const confirm = window.confirm("Вы действительно хотите удалить изображение");
+        if(confirm){
+            const regExp = new RegExp(`${config.serverUrl}/api/images/`)
+            const nameImage = file.replace(regExp,"")
+    
+            dispatch(deleteImageInClothes({_id: result._id, file: nameImage})) 
+            setCurrentImages([...currentImages].filter(img => img !== file))
+        }
     }
 
     const swithSizes = e => {

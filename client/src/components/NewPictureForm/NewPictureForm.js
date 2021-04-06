@@ -134,7 +134,7 @@ export default function NewPictureForm() {
       return {...prevState, postionMenu: toDigit};
     })
   }
-
+  console.log(result)
   return (
     <div className="container">
       {successForm && <div style={{ color: 'green', textAlign: 'center' }}>Картина добавлена</div>}

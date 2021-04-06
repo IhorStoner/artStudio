@@ -7,7 +7,6 @@ import { ReactComponent as CreateNewSVG } from '../../assets/svg/CreateNewTypeOf
 import { ReactComponent as CorrectSVG } from '../../assets/svg/correct.svg'
 import config from '../../config/default.json'
 
-
 import './EdditCategories.scss'
 import axios from 'axios'
 

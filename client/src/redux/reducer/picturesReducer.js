@@ -3,7 +3,7 @@ import { fetchPictures, fetchOnePicture, setStateEdditPicture,
         setOrderedGoods, setStateType, refreshOrderedGoods,
         fetchTypesOfClothing, setTypesOfClothing, resetOrderedGoods, 
         setPicturePreview, setTypesOfClothingRename, setDeleteOfClothing,
-				setPositionCategory
+				setPositionCategory, deleteImageInClothes
 } from '../action/picturesAction'
 
 const initialState = {
@@ -20,6 +20,14 @@ const initialState = {
 };
 
 const picturesReducer = createReducer(initialState, {
+  [deleteImageInClothes.pending]: (state) => {
+    state.loading = true;
+    state.error = null
+  },
+  [deleteImageInClothes]: (state) => {
+    // state.data = action.payload;
+    state.loading = false;
+  },
   [fetchPictures.pending]: (state) => {
     state.loading = true;
     state.error = null
