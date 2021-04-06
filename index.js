@@ -9,9 +9,13 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use('/api', apiRouter);
+
+app.get('/.well-known/pki-validation/8BA4C8377A63E5081103A1472EF05B92.txt', async (req, res) => {
+  res.sendFile(path.join(__dirname, '.well-known', 'pki-validation', '8BA4C8377A63E5081103A1472EF05B92.txt'))
+})
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, './client/build')))
