@@ -62,7 +62,6 @@ export default function EdditPictureForm() {
     }
 
     const setReset = () => {
-        console.log(stateEdditPicture)
         setResult({})
         setImages([])
         showSuccess()
@@ -72,7 +71,12 @@ export default function EdditPictureForm() {
         const resultImg = await submitAxios(ev);
         const { _id, chart, onSite, price, text, type, title } = result;
 
-        const newArr = resultImg !== undefined ? [...resultImg, ...stateEdditPicture.images] : [...stateEdditPicture.images];
+        const clearImage = currentImages.map(el => {
+            const regExp = new RegExp(`${config.serverUrl}/api/images/`);
+            return el.replace(regExp,"");
+        })
+
+        const newArr = resultImg !== undefined ? [...resultImg, ...clearImage] : [...clearImage];
 
         await axios.put(`${config.serverUrl}/api/pictures/${_id}`, { images: newArr, chart, onSite, price, text, type, title }).then(res => setReset());
     }, [result])
@@ -88,14 +92,18 @@ export default function EdditPictureForm() {
         setImages((image) => [...image, ...files]);
     }
 
+    
+
     const handleDeleteCurrentImage = (file) => {
         const confirm = window.confirm("Вы действительно хотите удалить изображение");
         if(confirm){
             const regExp = new RegExp(`${config.serverUrl}/api/images/`)
             const nameImage = file.replace(regExp,"")
     
-            dispatch(deleteImageInClothes({_id: result._id, file: nameImage})) 
+            // setCurrentImages()
             setCurrentImages([...currentImages].filter(img => img !== file))
+            dispatch(deleteImageInClothes({_id: result._id, file: nameImage})) 
+            
         }
     }
 
