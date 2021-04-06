@@ -62,7 +62,7 @@ export default function Header({ setPicturePage }) {
 								<a className="header__social" href="https://www.instagram.com/the_xlia/">
 									<Instagram />
 								</a>
-								<a className="header__telephone" href="tel:+(380) 66 666 66 66">+(380) 66 666 66 66</a>
+								<a className="header__telephone" href="tel:+(380)685231066">+38 (068) 523 10 66</a>
 							</div>
 							<NavLink className="header__wrap-basket" to='/home/orderForm'>
 								<Basket className="header__basket" />
