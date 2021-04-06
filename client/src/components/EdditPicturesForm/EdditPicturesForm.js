@@ -71,7 +71,8 @@ export default function EdditPictureForm() {
     const onSubmit = useCallback(async (ev) => {
         const resultImg = await submitAxios(ev);
         const { _id, chart, onSite, price, text, type, title } = result;
-        const newArr = [...resultImg, ...stateEdditPicture.images];
+
+        const newArr = resultImg !== undefined ? [...resultImg, ...stateEdditPicture.images] : [...stateEdditPicture.images];
 
         await axios.put(`${config.serverUrl}/api/pictures/${_id}`, { images: newArr, chart, onSite, price, text, type, title }).then(res => setReset());
     }, [result])
