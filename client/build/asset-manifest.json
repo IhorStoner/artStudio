@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.7ae95ee4.chunk.css",
+    "main.css": "/static/css/main.64a8c00a.chunk.css",
     "main.js": "/static/js/main.c27a3a4b.chunk.js",
     "main.js.map": "/static/js/main.c27a3a4b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.eb1db007.js",
@@ -10,7 +10,7 @@
     "static/js/3.41510ca8.chunk.js": "/static/js/3.41510ca8.chunk.js",
     "static/js/3.41510ca8.chunk.js.map": "/static/js/3.41510ca8.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.7ae95ee4.chunk.css.map": "/static/css/main.7ae95ee4.chunk.css.map",
+    "static/css/main.64a8c00a.chunk.css.map": "/static/css/main.64a8c00a.chunk.css.map",
     "static/js/2.596d795a.chunk.js.LICENSE.txt": "/static/js/2.596d795a.chunk.js.LICENSE.txt",
     "static/media/CreateNewTypeOfClothing.04eb4b98.svg": "/static/media/CreateNewTypeOfClothing.04eb4b98.svg",
     "static/media/InportantInput.99782f65.svg": "/static/media/InportantInput.99782f65.svg",
@@ -35,7 +35,7 @@
   "entrypoints": [
     "static/js/runtime-main.eb1db007.js",
     "static/js/2.596d795a.chunk.js",
-    "static/css/main.7ae95ee4.chunk.css",
+    "static/css/main.64a8c00a.chunk.css",
     "static/js/main.c27a3a4b.chunk.js"
   ]
 }

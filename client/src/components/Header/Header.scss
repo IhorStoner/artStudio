@@ -223,10 +223,16 @@
 	.header{
 		padding: 10px 0;
 	}
+	.header__course{
+		margin-left: 0;
+	}
 }
 
 @media screen and (max-width: 480px){
 	.mobile__link{
 		font-size: 30px;
+	}
+	.header__course{
+		margin-left: 0;
 	}
 }
