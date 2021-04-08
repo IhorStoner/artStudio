@@ -9,7 +9,7 @@ export const Pagination =   ({allPages, setcurrentPage, currentPage }) => {
     return (
         <div className="pagination-container" >
             <div><span onClick={() => setPage(1)} className='pagination-container__pointer'>Первая</span></div>
-            <div><span onClick={() => setPage(currentPage-1)} className='pagination-container__pointer'>Предидущая</span></div>
+            <div><span onClick={() => setPage(currentPage-1)} className='pagination-container__pointer'>Предыдущая</span></div>
             <div className='pagination-container__pages'>
                 {
                     new Array(allPages).fill(1).map((_, i) => (

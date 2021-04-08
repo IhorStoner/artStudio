@@ -109,17 +109,17 @@ export default function Header({ setPicturePage }) {
 				</ul>
 				<nav className='mobile'>
 					<ul className="mobile__nav-list">
-						<li className="mobile__course">
-							<NavLink to='/home/works' className={`mobile__link header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
+						<li className="header__course">
+							<NavLink to='/home/works' className={`header__nav-item ${nav === 'works' && 'header__nav-item--active'}`}>Каталог</NavLink>
 						</li>
-						<li className="mobile__course">
-							<NavLink to='/home/aboutUs' className={`mobile__link header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
+						<li className="header__course">
+							<NavLink to='/home/aboutUs' className={`header__nav-item ${nav === 'aboutUs' && 'header__nav-item--active'}`}>О нас</NavLink>
 						</li>
-						<li className="mobile__course">
-							<NavLink to='/home/masters' className={`mobile__link header__nav-item ${nav === 'masters' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
+						<li className="header__course">
+							<NavLink to='/home/delivery' className={`header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Доставка и оплата</NavLink>
 						</li>
-						<li className="mobile__course" >
-							<NavLink to='/home/delivery' className={`mobile__link header__nav-item ${nav === 'delivery' && 'header__nav-item--active'}`}>Контакты</NavLink>
+						<li className="header__course">
+							<NavLink to='/home/return' className={`header__nav-item ${nav === 'return' && 'header__nav-item--active'}`}>Обмен и возврат</NavLink>
 						</li>
 					</ul>
 				</nav>
